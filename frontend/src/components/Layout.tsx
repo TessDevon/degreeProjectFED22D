@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Navigation } from "../components/Navigation";
+import LoginModal from "./LoginModal";
 
 export const Layout = () => {
   return (
@@ -11,6 +12,7 @@ export const Layout = () => {
       <main>
         <Outlet></Outlet>
       </main>
+      <LoginModal></LoginModal>
       <footer>
         <p className="footerText">Built and styled by: TessDevon</p>
       </footer>
