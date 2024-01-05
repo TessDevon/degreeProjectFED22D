@@ -7,3 +7,10 @@ export class registerPerson {
         public userImage: string,      
     ) {}
 }
+
+export class loginPerson {
+    constructor (
+        public email: string,
+        public password: string,
+    ) {}
+}
