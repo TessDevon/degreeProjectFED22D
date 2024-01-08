@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { loginPerson, registerPerson } from '../models/PersonClass';
 import { LoginUser, saveNewUserData } from '../services/UserServices';
@@ -19,14 +19,29 @@ const customStyles = {
   
 export default function LoginModal() {
     Modal.setAppElement('#root');
-    const [showLoginModal, setShowLoginModal] = useState(true)
-    const [showRegisterModal, setRegisterModal] = useState(false)
+    const [logininfo, setLogininfo] = useState ('');
+    const [showLoginModal, setShowLoginModal] = useState(false);
+    const [showRegisterModal, setRegisterModal] = useState(false);
     const checkNames = new RegExp(/^[a-zA-ZåäöÅÄÖ ,.'-]+$/i);
     const checkEmail = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
     const checkPassword = new RegExp(/^(?=.*[A-ZÅÄÖa-zåäö])(?=.*\d)[A-ZÅÄÖa-zåäö\d]{8,}$/)
     // Kräver inlogging med minst en stor boksav och siffra, minst 6 tecken och inga mellanslag. 
     const checkImg = new RegExp(/\.(jpe?g|png|gif|bmp)$/i)  
     
+
+    ///////////////// Check if user is loggedin //////////////////////
+
+    useEffect(() => {
+        setLogininfo(localStorage.getItem('userIdLocalStorage')) 
+        console.log(logininfo);
+
+        if(logininfo==='' || logininfo==null) {
+            setShowLoginModal(true)
+        } else {
+            setShowLoginModal(false)
+        }
+    }, [logininfo])
+
 
     ///////////////////// Handle login ////////////////////////
 
@@ -46,7 +61,7 @@ export default function LoginModal() {
     }
     const handleLoginSubmit = (e:FormEvent) => {
         e.preventDefault();
-        console.log(formLoginData)
+        //console.log(formLoginData)
         if(checkEmail.test(formLoginData.email)) {
             if(checkPassword.test(formLoginData.password)) {
                 LoginUser(formLoginData.email,formLoginData.password)
@@ -111,10 +126,10 @@ export default function LoginModal() {
             console.log('förnamn fel ifyllt')
         }
     }
-
+    
+   
     return (
         <div className= 'signView'>
-            <button onClick={() => setShowLoginModal(true)}>Öppna loggin</button>
             <Modal isOpen={showLoginModal} style={customStyles}>
                 <h1>Gå vidare för att ta del av vår unika minivärld!</h1>
                 <p> Våra miniatyrvärldar är en inspirationssida för alla som samlar, renoverar och har docksåp som hobby. Här kan man få inspiration genom inlägg från användarna men även en möjlighet att köpa miniatyrer av andra användare eller sälja det man inte längre behöver.</p>
@@ -146,7 +161,7 @@ export default function LoginModal() {
                     <input value={formData.password} type='text' onChange={handleChange} name='password'/>
                     <p>Användarbild (filformatet jpg och png)</p>
                     <input value={formData.userImage} type='img' onChange={handleChange} name='userImage'/>
-                    <button>Logga in</button> 
+                    <button>Registrera</button> 
                 </form>        
                 <p>{JSON.stringify(formData)}</p>
             </Modal>
