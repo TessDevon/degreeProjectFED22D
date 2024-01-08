@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 
 export const Navigation = () => {
+  function Logout() {
+    localStorage.removeItem("userIdLocalStorage")
+    window. location. reload();
+  }
   return (
     <>
       <nav>
@@ -21,6 +25,9 @@ export const Navigation = () => {
             </Link>
           </li>
         </ul>
+        <p onClick={Logout}> 
+          Logga ut
+        </p>
       </nav>
     </>
   );
