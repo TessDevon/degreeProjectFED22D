@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import Modal from 'react-modal';
 import { loginPerson, registerPerson } from '../models/PersonClass';
+import { LoginUser, saveNewUserData } from '../services/UserServices';
 
 
 ///////////////////// Modals //////////////////////////////////////
@@ -20,8 +21,13 @@ export default function LoginModal() {
     Modal.setAppElement('#root');
     const [showLoginModal, setShowLoginModal] = useState(true)
     const [showRegisterModal, setRegisterModal] = useState(false)
+    const checkNames = new RegExp(/^[a-zA-ZåäöÅÄÖ ,.'-]+$/i);
+    const checkEmail = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+    const checkPassword = new RegExp(/^(?=.*[A-ZÅÄÖa-zåäö])(?=.*\d)[A-ZÅÄÖa-zåäö\d]{8,}$/)
+    // Kräver inlogging med minst en stor boksav och siffra, minst 6 tecken och inga mellanslag. 
+    const checkImg = new RegExp(/\.(jpe?g|png|gif|bmp)$/i)  
     
-    
+
     ///////////////////// Handle login ////////////////////////
 
     const [formLoginData, setFormLoginData] = useState<loginPerson>({
@@ -41,8 +47,16 @@ export default function LoginModal() {
     const handleLoginSubmit = (e:FormEvent) => {
         e.preventDefault();
         console.log(formLoginData)
-        // Här ska koden granskas och respondera om något är fel. Om allt stämmer ska värdena skickas till servises och skickas till backenden.
-        //setShowLoginModal(false)
+        if(checkEmail.test(formLoginData.email)) {
+            if(checkPassword.test(formLoginData.password)) {
+                LoginUser(formLoginData.email,formLoginData.password)
+                setShowLoginModal(false)
+            } else {
+                console.log('lösenord felaktigt ifyllt')
+            }
+        } else {
+            console.log('email är fel ifyllt')
+        }
     }
 
     function goToRegister () {
@@ -73,8 +87,29 @@ export default function LoginModal() {
     const handleSubmit = (e:FormEvent) => {
         e.preventDefault();
         console.log(formData)
-        // Här ska koden granskas och respondera om något är fel. Om allt stämmer ska värdena skickas till servises och skickas till backenden.
-        //setRegisterModal(false)
+
+        if(checkNames.test(formData.firstname)) {
+            if(checkNames.test(formData.lastname)) {
+                if(checkEmail.test(formData.email)) {
+                    if(checkPassword.test(formData.password)) {
+                        if(checkImg.test(formData.userImage)) {
+                            saveNewUserData(formData.firstname,formData.lastname,formData.email,formData.password,formData.userImage)
+                            setRegisterModal(false)
+                        } else {
+                            console.log('img går ej att spara')
+                        }
+                    } else {
+                        console.log('lösenord felaktigt ifyllt')
+                    }
+                } else {
+                    console.log('email är fel ifyllt')
+                }
+            } else {
+                console.log('efternamnet är fel ifyllt')
+            }
+        } else {
+            console.log('förnamn fel ifyllt')
+        }
     }
 
     return (
@@ -86,7 +121,9 @@ export default function LoginModal() {
                 <h2>Logga in</h2>
                 <div className='loginView'>
                     <form onSubmit={handleLoginSubmit}>
+                        <p>Epost</p>
                         <input value={formLoginData.email} type='text' onChange={handleLoginChange} name='email'/>
+                        <p>Lösenord (minst 6 tecken, varav en stor bokstav och en siffra)</p>
                         <input value={formLoginData.password} type='text' onChange={handleLoginChange} name='password'/>
                         <button>Logga in</button> 
                     </form>
@@ -99,10 +136,15 @@ export default function LoginModal() {
                 <p> Våra miniatyrvärldar är en inspirationssida för alla som samlar, renoverar och har docksåp som hobby. Här kan man få inspiration genom inlägg från användarna men även en möjlighet att köpa miniatyrer av andra användare eller sälja det man inte längre behöver.</p>
                 <h2>Registrera ny användare</h2>
                 <form onSubmit={handleSubmit}>
+                    <p>Namn</p>
                     <input value={formData.firstname} type='text' onChange={handleChange} name='firstname'/>
+                    <p>Efternamn</p>
                     <input value={formData.lastname} type='text' onChange={handleChange} name='lastname'/>
+                    <p>Email</p>
                     <input value={formData.email} type='text' onChange={handleChange} name='email'/>
+                    <p>Lösenord (minst 6 tecken, varav en stor bokstav och en siffra)</p>
                     <input value={formData.password} type='text' onChange={handleChange} name='password'/>
+                    <p>Användarbild (filformatet jpg och png)</p>
                     <input value={formData.userImage} type='img' onChange={handleChange} name='userImage'/>
                     <button>Logga in</button> 
                 </form>        
