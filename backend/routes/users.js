@@ -50,23 +50,9 @@ function createNewUser (req, res) {
         console.log(err);
       }
       console.log("result", result) 
-      res.send(result);
-    })
-
-    // Sparar användaren lokalt för att testas mot sidan när användaren hanterar sidan.
-    req.app.locals.con.query(sql, function(err, result) {
-      if (err) {
-        console.log(err);
-      }
-
-      //console.log(result);
-
-      let userToken = (CryptoJS.SHA3(result[0].userID + process.env.TOKEN).toString())
-      if(passwordToCheck === result[0].userPassword) {
-        res.json({userId:result[0].userId, token:userToken})
-        return;
-      }
-      res.status(401).json("Incurrect password or email")
+      // Sparar användaren lokalt för att testas mot sidan när användaren hanterar sidan.
+      let userToken = (CryptoJS.SHA3(result.insertedId + process.env.TOKEN).toString())
+      res.json({userId:result.insertedId, token:userToken})
     })
   })
 };
