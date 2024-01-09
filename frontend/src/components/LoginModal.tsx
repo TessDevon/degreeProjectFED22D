@@ -16,12 +16,15 @@ const customStyles = {
       transform: 'translate(-50%, -50%)',  //Skuggar bakomliggande huvudsida.
     },
   };
-  
+        /*console.log(checkPassword);
+        console.log(formLoginData.password)*/
 export default function LoginModal() {
     Modal.setAppElement('#root');
     const [logininfo, setLogininfo] = useState ('');
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [showRegisterModal, setRegisterModal] = useState(false);
+    const [errorLoginMessage, setErrorLoginMessage] = useState(''); 
+    const [errorRegisterMessage, seterrorRegisterMessage] = useState('');
     const checkNames = new RegExp(/^[a-zA-ZåäöÅÄÖ ,.'-]+$/i);
     const checkEmail = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
     const checkPassword = new RegExp(/^(?=.*[A-ZÅÄÖa-zåäö])(?=.*\d)[A-ZÅÄÖa-zåäö\d]{8,}$/)
@@ -33,7 +36,7 @@ export default function LoginModal() {
 
     useEffect(() => {
         setLogininfo(localStorage.getItem('userIdLocalStorage')) 
-        console.log(logininfo);
+        //console.log(logininfo);
 
         if(logininfo==='' || logininfo==null) {
             setShowLoginModal(true)
@@ -65,12 +68,25 @@ export default function LoginModal() {
         if(checkEmail.test(formLoginData.email)) {
             if(checkPassword.test(formLoginData.password)) {
                 LoginUser(formLoginData.email,formLoginData.password)
-                setShowLoginModal(false)
+                // When the response from the database is OK, the code is executed. 
+                // Then: to wait for the entire flow in the backend.
+ 
+                .then ((ok) => {
+                    if (ok) {
+                        setShowLoginModal(false)
+                        setErrorLoginMessage('')
+                    } else {
+                        setErrorLoginMessage('Det gick inte att logga in denna användare. Fyll i på nytt och försök igen.')
+                        setFormLoginData({email: "", password: "",})
+                    }
+                })
             } else {
-                console.log('lösenord felaktigt ifyllt')
+                setErrorLoginMessage('lösenord felaktigt ifyllt')
+                setShowLoginModal(true)
             }
         } else {
-            console.log('email är fel ifyllt')
+            setErrorLoginMessage('email är fel ifyllt')
+            setShowLoginModal(true)
         }
     }
 
@@ -80,7 +96,7 @@ export default function LoginModal() {
     }
 
     
-    ///////////////////// Handle new user//////////////////////
+    ///////////////////// Handle new user //////////////////////
 
     const [formData, setFormData] = useState<registerPerson>({
         firstname: "",
@@ -101,7 +117,7 @@ export default function LoginModal() {
     }
     const handleSubmit = (e:FormEvent) => {
         e.preventDefault();
-        console.log(formData)
+        //console.log(formData)
 
         if(checkNames.test(formData.firstname)) {
             if(checkNames.test(formData.lastname)) {
@@ -109,24 +125,42 @@ export default function LoginModal() {
                     if(checkPassword.test(formData.password)) {
                         if(checkImg.test(formData.userImage)) {
                             saveNewUserData(formData.firstname,formData.lastname,formData.email,formData.password,formData.userImage)
-                            setRegisterModal(false)
+                            .then ((ok) => {
+                                if (ok) {
+                                    setRegisterModal(false)
+                                    setErrorLoginMessage('')
+                                } else {
+                                    seterrorRegisterMessage('Finns redan en användare med denna email.')
+                                    setFormData({
+                                    firstname: "", 
+                                    lastname:"",
+                                    email: "",
+                                    password: "",
+                                    userImage: "",
+                                })
+                                }
+                            });
+                            
                         } else {
-                            console.log('img går ej att spara')
+                            seterrorRegisterMessage('img går ej att spara')
                         }
                     } else {
-                        console.log('lösenord felaktigt ifyllt')
+                        seterrorRegisterMessage('lösenord felaktigt ifyllt')
                     }
                 } else {
-                    console.log('email är fel ifyllt')
+                    seterrorRegisterMessage('email är fel ifyllt')
                 }
             } else {
-                console.log('efternamnet är fel ifyllt')
+                seterrorRegisterMessage('efternamnet är fel ifyllt')
             }
         } else {
-            console.log('förnamn fel ifyllt')
+            seterrorRegisterMessage('Förnamnet är fel ifyllt')
         }
     }
     
+    /* To check data in our forms on web.
+         <p>{JSON.stringify(formData)}</p>
+         <p>{JSON.stringify(formLoginData)}</p> */
    
     return (
         <div className= 'signView'>
@@ -142,8 +176,8 @@ export default function LoginModal() {
                         <input value={formLoginData.password} type='text' onChange={handleLoginChange} name='password'/>
                         <button>Logga in</button> 
                     </form>
+                    <p>{errorLoginMessage}</p>
                     <button onClick={goToRegister}>Registrera dig som ny användare</button>
-                    <p>{JSON.stringify(formLoginData)}</p>
                 </div>
             </Modal>
             <Modal isOpen={showRegisterModal} style={customStyles}>
@@ -163,7 +197,7 @@ export default function LoginModal() {
                     <input value={formData.userImage} type='img' onChange={handleChange} name='userImage'/>
                     <button>Registrera</button> 
                 </form>        
-                <p>{JSON.stringify(formData)}</p>
+                <p>{errorRegisterMessage}</p>
             </Modal>
         </div>
     )
