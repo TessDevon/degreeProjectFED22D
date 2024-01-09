@@ -10,7 +10,7 @@ const mysql = require('mysql2');
 
 router.post('/', function(req,res) {
   let newUser = req.body; 
-  console.log(newUser);
+  //console.log(newUser);
 
   req.app.locals.con.connect(function (err) {
     if (err) {
@@ -34,7 +34,7 @@ router.post('/', function(req,res) {
 
 function createNewUser (req, res) {
   let newUser = req.body; 
-  console.log(newUser);
+  //console.log(newUser);
 
   req.app.locals.con.connect(function (err) {
     if (err) {
@@ -59,7 +59,7 @@ function createNewUser (req, res) {
         console.log(err);
       }
 
-      console.log(result);
+      //console.log(result);
 
       let userToken = (CryptoJS.SHA3(result[0].userID + process.env.TOKEN).toString())
       if(passwordToCheck === result[0].userPassword) {
@@ -86,10 +86,10 @@ router.post('/login', function(req,res) {
     }
 
     let passwordToCheck = CryptoJS.SHA3(userPassword).toString()
-    console.log(passwordToCheck);
+    //console.log(passwordToCheck);
 
     let sql = `SELECT userEmail, userPassword, userId FROM users WHERE userEmail = ${mysql.escape(userEmail)}`;
-    console.log(sql);
+    //console.log(sql);
 
     // Sparar användaren lokalt för att testas mot sidan när användaren hanterar sidan. 
     req.app.locals.con.query(sql, function(err, result) {
@@ -97,12 +97,13 @@ router.post('/login', function(req,res) {
         console.log(err);
       }
 
-      console.log(result);
-
-      let userToken = (CryptoJS.SHA3(result[0].userID + process.env.TOKEN).toString())
-      if(passwordToCheck === result[0].userPassword) {
-        res.json({userId:result[0].userId, token:userToken})
-        return;
+      //console.log(result);
+      if (result.length > 0) {
+        let userToken = (CryptoJS.SHA3(result[0].userID + process.env.TOKEN).toString())
+        if(passwordToCheck === result[0].userPassword) {
+          res.json({userId:result[0].userId, token:userToken})
+          return;
+        }   
       }
       res.status(401).json("Incurrect password or email")
     })
