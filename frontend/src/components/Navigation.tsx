@@ -1,6 +1,10 @@
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
+
 export const Navigation = () => {
+  const { t } = useTranslation();
+
   function Logout() {
     localStorage.removeItem("userIdLocalStorage")
     window. location. reload();
@@ -11,22 +15,22 @@ export const Navigation = () => {
         <ul className="nav">
           <li className="headerLink">
             <Link className="Link" to="/">
-                Inspiration
+                {t('navigationInspirationText')}
             </Link>
           </li>
           <li className="headerLink">
             <Link className="Link" to="/Selling">
-                Köp och sälj
+                {t('navigationBuySellText')}
             </Link>
           </li>
           <li className="headerLink">
             <Link className="Link" to="/About">
-                Om oss
+                {t('navigationAboutText')}
             </Link>
           </li>
         </ul>
         <p onClick={Logout}> 
-          Logga ut
+          {t('navigationLogoutText')}
         </p>
       </nav>
     </>

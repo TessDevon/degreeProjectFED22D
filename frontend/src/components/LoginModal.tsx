@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { loginPerson, registerPerson } from '../models/PersonClass';
 import { LoginUser, saveNewUserData } from '../services/UserServices';
-
+import { useTranslation } from "react-i18next";
 
 ///////////////////// Modals //////////////////////////////////////
 
@@ -12,13 +12,14 @@ const customStyles = {
       left: '50%',
       right: 'auto',
       bottom: 'auto',
-      marginRight: '-50%', //Gör att sidan täcker hela vyn liggandes.
-      transform: 'translate(-50%, -50%)',  //Skuggar bakomliggande huvudsida.
+      marginRight: '-50%', // Makes the page cover the entire landscape view.
+      transform: 'translate(-50%, -50%)',  // Shadows behind main page.
     },
   };
         /*console.log(checkPassword);
         console.log(formLoginData.password)*/
 export default function LoginModal() {
+    const { t } = useTranslation();
     Modal.setAppElement('#root');
     const [logininfo, setLogininfo] = useState ('');
     const [showLoginModal, setShowLoginModal] = useState(false);
@@ -28,7 +29,7 @@ export default function LoginModal() {
     const checkNames = new RegExp(/^[a-zA-ZåäöÅÄÖ ,.'-]+$/i);
     const checkEmail = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
     const checkPassword = new RegExp(/^(?=.*[A-ZÅÄÖa-zåäö])(?=.*\d)[A-ZÅÄÖa-zåäö\d]{8,}$/)
-    // Kräver inlogging med minst en stor boksav och siffra, minst 6 tecken och inga mellanslag. 
+    // Requires login with at least one capital letter and number, at least 6 characters and no spaces. 
     const checkImg = new RegExp(/\.(jpe?g|png|gif|bmp)$/i)  
     
 
@@ -48,6 +49,10 @@ export default function LoginModal() {
 
     ///////////////////// Handle login ////////////////////////
 
+    //i18next to js
+    const loginErrorEmail = t('loginErrorEmail');
+    const loginErrorPassword = t('loginErrorPassword');
+    const loginErrorServererror = t('loginErrorServererror')
     const [formLoginData, setFormLoginData] = useState<loginPerson>({
         email: "",
         password: "",
@@ -76,16 +81,16 @@ export default function LoginModal() {
                         setShowLoginModal(false)
                         setErrorLoginMessage('')
                     } else {
-                        setErrorLoginMessage('Det gick inte att logga in denna användare. Fyll i på nytt och försök igen.')
+                        setErrorLoginMessage(loginErrorServererror);
                         setFormLoginData({email: "", password: "",})
                     }
                 })
             } else {
-                setErrorLoginMessage('lösenord felaktigt ifyllt')
+                setErrorLoginMessage(loginErrorPassword);
                 setShowLoginModal(true)
             }
         } else {
-            setErrorLoginMessage('email är fel ifyllt')
+            setErrorLoginMessage(loginErrorEmail);
             setShowLoginModal(true)
         }
     }
@@ -97,7 +102,10 @@ export default function LoginModal() {
 
     
     ///////////////////// Handle new user //////////////////////
-
+    //i18next to js
+    const registerErrorName = t('registerErrorName');
+    const registerErrorImg = t('registerErrorImg');
+    const registerErrorServererror = t('registerErrorServererror')
     const [formData, setFormData] = useState<registerPerson>({
         firstname: "",
         lastname:"",
@@ -130,7 +138,7 @@ export default function LoginModal() {
                                     setRegisterModal(false)
                                     setErrorLoginMessage('')
                                 } else {
-                                    seterrorRegisterMessage('Finns redan en användare med denna email.')
+                                    seterrorRegisterMessage(registerErrorServererror);
                                     setFormData({
                                     firstname: "", 
                                     lastname:"",
@@ -142,19 +150,19 @@ export default function LoginModal() {
                             });
                             
                         } else {
-                            seterrorRegisterMessage('img går ej att spara')
+                            seterrorRegisterMessage(registerErrorImg)
                         }
                     } else {
-                        seterrorRegisterMessage('lösenord felaktigt ifyllt')
+                        seterrorRegisterMessage(loginErrorPassword)
                     }
                 } else {
-                    seterrorRegisterMessage('email är fel ifyllt')
+                    seterrorRegisterMessage(loginErrorEmail)
                 }
             } else {
-                seterrorRegisterMessage('efternamnet är fel ifyllt')
+                seterrorRegisterMessage(registerErrorName)
             }
         } else {
-            seterrorRegisterMessage('Förnamnet är fel ifyllt')
+            seterrorRegisterMessage(registerErrorName)
         }
     }
     
@@ -165,37 +173,37 @@ export default function LoginModal() {
     return (
         <div className= 'signView'>
             <Modal isOpen={showLoginModal} style={customStyles}>
-                <h1>Gå vidare för att ta del av vår unika minivärld!</h1>
-                <p> Våra miniatyrvärldar är en inspirationssida för alla som samlar, renoverar och har docksåp som hobby. Här kan man få inspiration genom inlägg från användarna men även en möjlighet att köpa miniatyrer av andra användare eller sälja det man inte längre behöver.</p>
-                <h2>Logga in</h2>
+                <h1>{t('loginMainheader')}</h1>
+                <p>{t('loginMaintext')}</p>
+                <h2>{t('loginInnerMainheader')}</h2>
                 <div className='loginView'>
                     <form onSubmit={handleLoginSubmit}>
-                        <p>Epost</p>
+                        <p>{t('loginFormEmailText')}</p>
                         <input value={formLoginData.email} type='text' onChange={handleLoginChange} name='email'/>
-                        <p>Lösenord (minst 6 tecken, varav en stor bokstav och en siffra)</p>
+                        <p>{t('loginFormPasswordText')}</p>
                         <input value={formLoginData.password} type='text' onChange={handleLoginChange} name='password'/>
-                        <button>Logga in</button> 
+                        <button>{t('loginFormBtnText')}</button> 
                     </form>
                     <p>{errorLoginMessage}</p>
-                    <button onClick={goToRegister}>Registrera dig som ny användare</button>
+                    <button onClick={goToRegister}>{t('loginRegisterBtnText')}</button>
                 </div>
             </Modal>
             <Modal isOpen={showRegisterModal} style={customStyles}>
-                <h1>Gå vidare för att ta del av vår unika minivärld!</h1>
-                <p> Våra miniatyrvärldar är en inspirationssida för alla som samlar, renoverar och har docksåp som hobby. Här kan man få inspiration genom inlägg från användarna men även en möjlighet att köpa miniatyrer av andra användare eller sälja det man inte längre behöver.</p>
-                <h2>Registrera ny användare</h2>
+                <h1>{t('loginMainheader')}</h1>
+                <p> {t('loginMaintext')}</p>
+                <h2> {t('registerInnerMainheader')}</h2>
                 <form onSubmit={handleSubmit}>
-                    <p>Namn</p>
+                    <p>{t('registerFirstnameText')}</p>
                     <input value={formData.firstname} type='text' onChange={handleChange} name='firstname'/>
-                    <p>Efternamn</p>
+                    <p>{t('registerLastnameText')}</p>
                     <input value={formData.lastname} type='text' onChange={handleChange} name='lastname'/>
-                    <p>Email</p>
+                    <p>{t('loginFormEmailText')}</p>
                     <input value={formData.email} type='text' onChange={handleChange} name='email'/>
-                    <p>Lösenord (minst 6 tecken, varav en stor bokstav och en siffra)</p>
+                    <p>{t('loginFormPasswordText')}</p>
                     <input value={formData.password} type='text' onChange={handleChange} name='password'/>
-                    <p>Användarbild (filformatet jpg och png)</p>
+                    <p>{t('registerUserImgText')}</p>
                     <input value={formData.userImage} type='img' onChange={handleChange} name='userImage'/>
-                    <button>Registrera</button> 
+                    <button>{t('registerRegistrationbtnText')}</button> 
                 </form>        
                 <p>{errorRegisterMessage}</p>
             </Modal>
