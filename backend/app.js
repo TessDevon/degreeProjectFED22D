@@ -12,6 +12,10 @@ const cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var inspirationPostRouter = require('./routes/inspirationPost');
+var inspirationCommentRouter = require('./routes/inspirationComment');
+var sellingPostRouter = require('./routes/sellingPost');
+var sellingCommentRouter = require('./routes/sellingComment'); 
 
 //import 'dotenv/config'
 
@@ -35,5 +39,9 @@ app.locals.con = mysql.createConnection({
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/inspirationPost', inspirationPostRouter);
+app.use('/inspirationComment', inspirationCommentRouter);
+app.use('/sellingPost.js', sellingPostRouter);
+app.use('/sellingComment.js', sellingCommentRouter);
 
 module.exports = app;
