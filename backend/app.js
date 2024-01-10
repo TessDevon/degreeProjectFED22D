@@ -15,7 +15,8 @@ var usersRouter = require('./routes/users');
 var inspirationPostRouter = require('./routes/inspirationPost');
 var inspirationCommentRouter = require('./routes/inspirationComment');
 var sellingPostRouter = require('./routes/sellingPost');
-var sellingCommentRouter = require('./routes/sellingComment'); 
+var sellingPostItemRouter = require('./routes/sellingPostItem');
+var sellingPostItemCommentsRouter = require('./routes/sellingPostItemComments'); 
 
 //import 'dotenv/config'
 
@@ -42,6 +43,7 @@ app.use('/users', usersRouter);
 app.use('/inspirationPost', inspirationPostRouter);
 app.use('/inspirationComment', inspirationCommentRouter);
 app.use('/sellingPost', sellingPostRouter);
-app.use('/sellingComment', sellingCommentRouter);
+app.use('/sellingPostItem', sellingPostItemRouter);
+app.use('/sellingItemsComment', sellingPostItemCommentsRouter);
 
 module.exports = app;
