@@ -44,6 +44,6 @@ app.use('/inspirationPost', inspirationPostRouter);
 app.use('/inspirationComment', inspirationCommentRouter);
 app.use('/sellingPost', sellingPostRouter);
 app.use('/sellingPostItem', sellingPostItemRouter);
-app.use('/sellingItemsComment', sellingPostItemCommentsRouter);
+app.use('/sellingPostItemComments', sellingPostItemCommentsRouter);
 
 module.exports = app;
