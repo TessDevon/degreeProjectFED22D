@@ -3,17 +3,14 @@ var router = express.Router();
 const mysql = require('mysql2');
 
 
-var express = require('express');
-var router = express.Router();
-const mysql = require('mysql2');
-
-
 router.post('/', function(req,res,next) {
     let newSellingPost = req.body;
 
     req.app.locals.con.connect(function(err){
         if (err) {
             console.log(err);
+            res.send(500);
+            return
         }
 
         let sql = `INSERT INTO sellingposts (sellingPostHeader, sellingPostDescription, sellingPostImg, sellingPostUserID) VALUES (${mysql.escape(newSellingPost.sellingPostHeader)}, ${mysql.escape(newSellingPost.sellingPostDescription)}, ${mysql.escape(newSellingPost.sellingPostImg)}, ${mysql.escape(newSellingPost.sellingPostUserID)})`
@@ -21,6 +18,8 @@ router.post('/', function(req,res,next) {
         req.app.locals.con.query(sql, function(err, result) {
             if(err) {
                 console.log(err);
+                res.send(500);
+                return
             }
             console.log('result', result);
         })
@@ -34,6 +33,8 @@ router.get('/', function(req,res,next) {
     req.app.locals.con.connect(function(err){
         if (err) {
             console.log(err);
+            res.send(500);
+            return
         }
 
         let sql = `SELECT * FROM sellingposts`
@@ -41,11 +42,13 @@ router.get('/', function(req,res,next) {
         req.app.locals.con.query(sql, function(err, result) {
             if(err) {
                 console.log(err);
+                res.send(500);
+                return
             }
             console.log('result', result);
+            res.json(result);
         })
     })
-    res.send(200);
 });
        
 module.exports = router;
