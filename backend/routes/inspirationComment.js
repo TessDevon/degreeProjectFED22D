@@ -22,9 +22,9 @@ router.post('/', function(req,res,next) {
               return
           }
           console.log('result', result);
+          res.send(201);
       })
   })
-  res.send(201);
 });
 
 
