@@ -9,6 +9,8 @@ router.post('/', function(req,res,next) {
   req.app.locals.con.connect(function(err){
       if (err) {
           console.log(err);
+          res.send(500);
+          return
       }
 
       let sql = `INSERT INTO inspirationcomments (inspirationCommentsDescription, inspirationCommentsImg, inspirationCommentsUnserID, inspirationCommentsPostID) VALUES (${mysql.escape(newInspiraionComment.inspirationCommentsDescription)}, ${mysql.escape(newInspiraionComment.inspirationCommentsImg)}, ${mysql.escape(newInspiraionComment.inspirationCommentsUnserID)}, ${mysql.escape(newInspiraionComment.inspirationCommentsPostID)})`
@@ -16,6 +18,8 @@ router.post('/', function(req,res,next) {
       req.app.locals.con.query(sql, function(err, result) {
           if(err) {
               console.log(err);
+              res.send(500);
+              return
           }
           console.log('result', result);
       })
@@ -29,6 +33,8 @@ router.get('/', function(req,res,next) {
   req.app.locals.con.connect(function(err){
       if (err) {
           console.log(err);
+          res.send(500);
+          return
       }
 
       let sql = `SELECT * FROM inspirationcomments`
@@ -36,11 +42,13 @@ router.get('/', function(req,res,next) {
       req.app.locals.con.query(sql, function(err, result) {
           if(err) {
               console.log(err);
+              res.send(500);
+              return
           }
           console.log('result', result);
+          res.json(result);
       })
   })
-  res.send(200);
 });
      
 module.exports = router;
