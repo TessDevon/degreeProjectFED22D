@@ -41,7 +41,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/inspirationPost', inspirationPostRouter);
 app.use('/inspirationComment', inspirationCommentRouter);
-app.use('/sellingPost.js', sellingPostRouter);
-app.use('/sellingComment.js', sellingCommentRouter);
+app.use('/sellingPost', sellingPostRouter);
+app.use('/sellingComment', sellingCommentRouter);
 
 module.exports = app;
