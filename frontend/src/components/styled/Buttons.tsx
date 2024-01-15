@@ -10,14 +10,12 @@ export const StyledButton = styled.button `
 
 
 export const StyledButtonRightsided = styled(StyledButton) `
-    //float:right;
     position: relative;
     left:90%
 `
 
 export const StyledButtonCenter = styled(StyledButton) `
     position: relative;
-    //top:60px;
     left:40%;
 `
 

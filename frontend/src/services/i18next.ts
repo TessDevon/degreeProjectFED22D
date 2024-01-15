@@ -20,6 +20,7 @@ i18next
                 navigationBuySellText: 'Köp och sälj',
                 navigationAboutText: 'Om oss',
                 navigationLogoutText: 'Logga ut',
+                navigationChatText:'Chat',
                 
                 //Loginview
                 loginMainheader: 'Gå vidare för att ta del av vår unika minivärld!',

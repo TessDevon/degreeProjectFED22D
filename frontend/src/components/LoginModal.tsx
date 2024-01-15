@@ -189,12 +189,12 @@ export default function LoginModal() {
                 <div className='loginView'>
                     <form onSubmit={handleLoginSubmit}>
                         <div>
-                        <StyledText>{t('loginFormEmailText')}</StyledText>
-                        <StyledTextInputHoleRow value={formLoginData.email} type='text' onChange={handleLoginChange} name='email'/>
+                            <StyledText>{t('loginFormEmailText')}</StyledText>
+                            <StyledTextInputHoleRow value={formLoginData.email} type='text' onChange={handleLoginChange} name='email'/>
                         </div>
                         <div>
-                        <StyledText>{t('loginFormPasswordText')}</StyledText>
-                        <StyledTextInputHoleRow value={formLoginData.password} type='text' onChange={handleLoginChange} name='password'/>
+                            <StyledText>{t('loginFormPasswordText')}</StyledText>
+                            <StyledTextInputHoleRow value={formLoginData.password} type='text' onChange={handleLoginChange} name='password'/>
                         </div>
                         <StyledButtonRightsided>{t('loginFormBtnText')}</StyledButtonRightsided> 
                     </form>
