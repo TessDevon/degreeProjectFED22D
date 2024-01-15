@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { StyleNav, StyleNavLi, StyleNavP, StyledNavUl } from "./styled/Navigation";
 
 
 export const Navigation = () => {
@@ -11,28 +12,29 @@ export const Navigation = () => {
   }
   return (
     <>
-      <nav>
-        <ul className="nav">
-          <li className="headerLink">
-            <Link className="Link" to="/">
+      <StyleNav>
+        <StyledNavUl className="nav">
+          <StyleNavLi className="headerLink">
+            <Link style={{textDecoration:'none', color: 'black'}} className="Link" to="/">
                 {t('navigationInspirationText')}
             </Link>
-          </li>
-          <li className="headerLink">
-            <Link className="Link" to="/Selling">
+          </StyleNavLi>
+          <StyleNavLi className="headerLink">
+            <Link style={{textDecoration:'none', color: 'black'}} className="Link" to="/Selling">
                 {t('navigationBuySellText')}
             </Link>
-          </li>
-          <li className="headerLink">
-            <Link className="Link" to="/About">
+          </StyleNavLi>
+          <StyleNavLi className="headerLink">
+            <Link style={{textDecoration:'none', color: 'black'}} className="Link" to="/About">
                 {t('navigationAboutText')}
             </Link>
-          </li>
-        </ul>
-        <p onClick={Logout}> 
+          </StyleNavLi>
+        </StyledNavUl>
+        <StyleNavP> {t('navigationChatText')}</StyleNavP> 
+        <StyleNavP onClick={Logout}> 
           {t('navigationLogoutText')}
-        </p>
-      </nav>
+        </StyleNavP>
+      </StyleNav>
     </>
   );
 };
