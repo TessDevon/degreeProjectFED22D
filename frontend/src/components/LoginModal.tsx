@@ -3,6 +3,11 @@ import Modal from 'react-modal';
 import { loginPerson, registerPerson } from '../models/PersonClass';
 import { LoginUser, saveNewUserData } from '../services/UserServices';
 import { useTranslation } from "react-i18next";
+import { StyledH2, StyledH3 } from './styled/Headers';
+import { StyledText } from './styled/Text';
+import { StyledTextInput, StyledTextInputHoleRow, WrapperInputsTwoColum} from './styled/Form';
+import { StyledButtonCenter, StyledButtonRightsided } from './styled/Buttons';
+import { ErrorMassage } from './styled/ErrorMassage';
 
 ///////////////////// Modals //////////////////////////////////////
 
@@ -14,6 +19,10 @@ const customStyles = {
       bottom: 'auto',
       marginRight: '-50%', // Makes the page cover the entire landscape view.
       transform: 'translate(-50%, -50%)',  // Shadows behind main page.
+      paddingLeft:'20%',
+      paddingRight:'20%',
+      display:'flex',
+      flexDirection: 'column', 
     },
   };
         /*console.log(checkPassword);
@@ -173,39 +182,61 @@ export default function LoginModal() {
     return (
         <div className= 'signView'>
             <Modal isOpen={showLoginModal} style={customStyles}>
-                <h1>{t('loginMainheader')}</h1>
-                <p>{t('loginMaintext')}</p>
-                <h2>{t('loginInnerMainheader')}</h2>
+                <StyledH2>{t('loginMainheader')}</StyledH2>
+                <StyledText>{t('loginMaintext')}</StyledText>
+                <StyledH3>{t('loginInnerMainheader')}</StyledH3>
+                <ErrorMassage>{errorLoginMessage}</ErrorMassage>
                 <div className='loginView'>
                     <form onSubmit={handleLoginSubmit}>
-                        <p>{t('loginFormEmailText')}</p>
-                        <input value={formLoginData.email} type='text' onChange={handleLoginChange} name='email'/>
-                        <p>{t('loginFormPasswordText')}</p>
-                        <input value={formLoginData.password} type='text' onChange={handleLoginChange} name='password'/>
-                        <button>{t('loginFormBtnText')}</button> 
+                        <div>
+                        <StyledText>{t('loginFormEmailText')}</StyledText>
+                        <StyledTextInputHoleRow value={formLoginData.email} type='text' onChange={handleLoginChange} name='email'/>
+                        </div>
+                        <div>
+                        <StyledText>{t('loginFormPasswordText')}</StyledText>
+                        <StyledTextInputHoleRow value={formLoginData.password} type='text' onChange={handleLoginChange} name='password'/>
+                        </div>
+                        <StyledButtonRightsided>{t('loginFormBtnText')}</StyledButtonRightsided> 
                     </form>
-                    <p>{errorLoginMessage}</p>
-                    <button onClick={goToRegister}>{t('loginRegisterBtnText')}</button>
+                    <StyledButtonCenter onClick={goToRegister}>{t('loginRegisterBtnText')}</StyledButtonCenter>
                 </div>
             </Modal>
             <Modal isOpen={showRegisterModal} style={customStyles}>
-                <h1>{t('loginMainheader')}</h1>
-                <p> {t('loginMaintext')}</p>
-                <h2> {t('registerInnerMainheader')}</h2>
+                <StyledH2>{t('loginMainheader')}</StyledH2>
+                <StyledText> {t('loginMaintext')}</StyledText>
+                <StyledH3> {t('registerInnerMainheader')}</StyledH3>
+                <ErrorMassage>{errorRegisterMessage}</ErrorMassage>
                 <form onSubmit={handleSubmit}>
-                    <p>{t('registerFirstnameText')}</p>
-                    <input value={formData.firstname} type='text' onChange={handleChange} name='firstname'/>
-                    <p>{t('registerLastnameText')}</p>
-                    <input value={formData.lastname} type='text' onChange={handleChange} name='lastname'/>
-                    <p>{t('loginFormEmailText')}</p>
-                    <input value={formData.email} type='text' onChange={handleChange} name='email'/>
-                    <p>{t('loginFormPasswordText')}</p>
-                    <input value={formData.password} type='text' onChange={handleChange} name='password'/>
-                    <p>{t('registerUserImgText')}</p>
-                    <input value={formData.userImage} type='img' onChange={handleChange} name='userImage'/>
-                    <button>{t('registerRegistrationbtnText')}</button> 
-                </form>        
-                <p>{errorRegisterMessage}</p>
+                    <WrapperInputsTwoColum>
+                        <div>
+                            <div>
+                                <StyledText>{t('registerFirstnameText')}</StyledText>
+                                <StyledTextInput value={formData.firstname} type='text' onChange={handleChange} name='firstname'/>    
+                            </div>
+                            <div>
+                                <StyledText>{t('registerLastnameText')}</StyledText>
+                                <StyledTextInput value={formData.lastname} type='text' onChange={handleChange} name='lastname'/>
+                            </div>  
+
+                            <div>
+                                <StyledText>{t('loginFormEmailText')}</StyledText>
+                                <StyledTextInput value={formData.email} type='text' onChange={handleChange} name='email'/>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <StyledText>{t('loginFormPasswordText')}</StyledText>
+                                <StyledTextInput value={formData.password} type='text' onChange={handleChange} name='password'/>
+                            </div>
+                    
+                            <div>
+                                <StyledText>{t('registerUserImgText')}</StyledText>
+                                <StyledTextInput value={formData.userImage} type='img' onChange={handleChange} name='userImage'/>
+                            </div>
+                        </div>
+                    </WrapperInputsTwoColum>
+                    <StyledButtonRightsided>{t('registerRegistrationbtnText')}</StyledButtonRightsided> 
+                </form>          
             </Modal>
         </div>
     )
