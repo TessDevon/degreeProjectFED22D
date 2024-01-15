@@ -38,7 +38,7 @@ i18next
                 registerRegistrationbtnText:'Registrera',
 
                 //loginErrors
-                loginErrorEmail: 'email är fel ifyllt',
+                loginErrorEmail: 'Email är fel ifyllt',
                 loginErrorPassword: 'lösenord felaktigt ifyllt',
                 loginErrorServererror: 'Det gick inte att logga in denna användare. Fyll i på nytt och försök igen.',
                 registerErrorServererror: 'Finns redan en användare med denna email.',
