@@ -6,6 +6,9 @@ import { HeaderWrapper, HeaderWrapperInner, Wrapper, WrapperFooter, WrapperOuter
 import { StyledHeaderImg } from "./styled/Image";
 import headerimg  from "../assets/headerimg.jpg"
 import { FooterText } from "./styled/Text";
+import Burger from "./Burger";
+//import { NavigationSmallScreen } from "./styled/NavigationSmallScreen";
+
 
 
 export const Layout = () => {  
@@ -19,7 +22,7 @@ export const Layout = () => {
               <StyledH1>{t('appName')}</StyledH1>
               <StyledHeaderImg width={160} height={75} src={headerimg}/>
             </HeaderWrapperInner>
-            <Navigation></Navigation>
+            <Burger></Burger>
           </HeaderWrapper>
         </header>
         <main>
