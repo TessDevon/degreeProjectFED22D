@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div` 
     background-color: #9f2033;
+    width: 100%;
 `
 export const HeaderWrapper = styled.div `
     border-width: 2px;
@@ -44,12 +45,21 @@ export const WrapperbodyOuter = styled.div `
 export const HeaderWrapperInner = styled.div `
     display: flex;
     flex-direction: row;
-    width: 45%;    
+    width:75%;
+
+    @media (min-width: 863px) {
+        width: 50%;
+    }
 `;
 
 export const WrapperbodyInnerLeftAbout = styled.div `
     margin-left: 5%;
     margin-right: 5%;
+    width: 90%;
+
+    @media (min-width: 768px) {
+
+    }
     
     @media (min-width: 1024px) {
         width: 70%;
@@ -63,6 +73,7 @@ export const WrapperbodyInnerRightAbout = styled.div `
     margin-left: 5%;
     margin-right: 5%;
     margin-bottom: 5%;
+    width: 90%;
 
     @media (min-width: 1024px) {
         width: 20%;
