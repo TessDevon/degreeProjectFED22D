@@ -5,7 +5,7 @@ import Navigation from './Navigation';
 const StyledBurger = styled.div`
     width: 2rem;
     height: 2rem;
-    position: fixed;
+    position: absolute;
     top:30px;
     right: 45px;
     display: flex;
@@ -14,7 +14,6 @@ const StyledBurger = styled.div`
     z-index: 20;
 
     @media (min-width: 768px) {
-        //top: 38px;
         right:45px;
     }
 
