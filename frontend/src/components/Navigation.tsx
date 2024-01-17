@@ -8,13 +8,18 @@ const StyleNav = styled.nav `
     position: absolute;
     transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
     top:8px;
+    padding-top: 35px;
+    padding-bottom: 20px;
+    padding-right: 15px;
     right: 8px;
     margin-bottom: -10px;
     background-color: white;
     border: 2px solid #C7A440;
     transition: transform 0.3s ease-in-out;
+    border-bottom-left-radius: 15px;
 
-    @media (min-width: 863px) {
+    @media (min-width: 940px) {
+        padding: 0px;
         display: flex;
         transform: none;
         flex-direction: row;
@@ -22,15 +27,27 @@ const StyleNav = styled.nav `
         border: 0px;
         margin-top: 20px;
         margin-bottom: 0px;
+        right: 15px;
     }
-`;
+
+    @media (min-width: 1024px) {
+        display: flex;
+        transform: none;
+        flex-direction: row;
+        background-color: transparent;
+        border: 0px;
+        margin-top: 20px;
+        margin-bottom: 0px;
+        right: 30px;
+    }
+  `;
 
 const StyledNavUl = styled.ul `
     display: flex;
     flex-direction: column;
     list-style-type: none;
 
-    @media (min-width: 863px) {
+    @media (min-width: 940px) {
         flex-direction: row;
         margin-top: 20px;
         margin-left: 20px;
@@ -39,21 +56,29 @@ const StyledNavUl = styled.ul `
 
 const StyleNavLi = styled.li `
     font-family: 'Antic Didone';
-    font-size: 18px;
+    font-size: 17px;
     text-shadow: 1px 1px 2px #7e6829;
     margin:20px;
     margin-left:0px;
     border-bottom: 1px solid #C7A440;
     
-    @media (min-width: 863px) {
+    @media (min-width: 940px) {
         margin:0;
         margin-right: 30px;    
         border-bottom: 0px;
+        margin-top: -15px;
+    }
+
+    @media (min-width: 1170px) {
+      font-size: 17px;
+      margin-top: -10px;
+      //margin-top: -5px;
     }
 
     @media (min-width: 1410px) {
         font-size: 20px;
         margin-right: 50px;
+        margin-top: 5px;
     }
 `;
 
@@ -61,19 +86,25 @@ const StyleNavP = styled.p `
     margin-left: 40px;
     margin-right: 30px;
     font-family: 'Antic Didone';
-    font-size: 18px;
+    font-size: 17px;
     text-shadow: 1px 1px 1px #7e6829;
     border-bottom: 1px solid #C7A440;
     &:hover{
         cursor: pointer;
     }
-    @media (min-width: 863px) {
+    @media (min-width: 940px) {
         margin-left: 0px;
         border-bottom: 0px;
+        margin-top: 5px;
+    }
+    @media (min-width: 1170px) {
+      font-size: 17px;
+      margin-top: 10px;
     }
     @media (min-width: 1410px) {
         font-size: 20px;
         margin-right: 50px;
+        margin-top: 25px;
     }
 `;
 
