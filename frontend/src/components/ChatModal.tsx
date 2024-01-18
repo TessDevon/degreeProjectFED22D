@@ -10,6 +10,7 @@ const customStyles = {
       marginRight: '-50%', //Gör att sidan täcker hela vyn liggandes.
       transform: 'translate(-50%, -50%)',  //Skuggar bakomliggande huvudsida.
     },
+    
   };
 
   /*

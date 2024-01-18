@@ -72,7 +72,6 @@ const StyleNavLi = styled.li `
     @media (min-width: 1170px) {
       font-size: 17px;
       margin-top: -10px;
-      //margin-top: -5px;
     }
 
     @media (min-width: 1410px) {
