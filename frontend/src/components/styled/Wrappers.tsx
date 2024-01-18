@@ -65,6 +65,21 @@ export const WrapperComment = styled.div `
     border-top-left-radius: 15px;
     padding-left: 2%;
     margin-top: 20px;
+`;
+
+export const WrapperItemComment = styled(WrapperComment) `
+        border: 1px #C7A440 solid;
+        border-top-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        padding-right: 2%;
+`;
+
+export const WrapperCommentBuy = styled.div `
+    border-left: 1px #C7A440 solid;
+    border-top: 1px #C7A440 solid;
+    border-top-left-radius: 15px;
+    padding-left: 2%;
+    margin-top: 20px;
 
 `;
 

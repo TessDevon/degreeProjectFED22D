@@ -85,8 +85,19 @@ i18next
                 inspirationPostDescriptionText: 'Beskrivning',
                 inspirationPostImg: 'Lägg till bild',
                 inspirationAddPostBtnText: 'Skicka',
-
+                
                 inspirationheaderScale: 'Räkna ut skala',
+
+
+                sellviewHeaderH2: 'Köp och sälj',
+                sellviewHeaderPost: 'Säljinlägg',
+                sellPostText:'Fyll i information om säljtråden. Vad? Skala? Ev frakt. Skicka gärna med en bild på varorna som säljs.',
+                sellPostHeader: 'Rubrik',
+                sellPostDescription: 'Beskrivning',
+                sellPostImg: 'Lägg till bild',
+                sellInformation: '',
+                sellHeaderRule: 'Föräsäljningsregler:',
+                selltextRule:'FAST PRIS eller som AUKTION, auktion ska pågå i minst 24 timmar och allt som syns på bilden ska ingå. Kommentera köp i varan. Köp är bindande och det är bara ordet ”köper” som låser köpen, alt "köper om...". Inläggen ska tas bort 24 timmar efter såld vara. Om varorna inte sålts inom en månad kommer dessa att tas bort.',
 
                 //footer
                 authertext: 'Built and styled by: TessDevon'
