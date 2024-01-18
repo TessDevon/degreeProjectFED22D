@@ -18,7 +18,7 @@ i18next
                 //Navigation
                 navigationInspirationText: 'Inspiration',
                 navigationBuySellText: 'Köp och sälj',
-                navigationAboutText: 'Om oss',
+                navigationAboutText: 'Om sidan',
                 navigationLogoutText: 'Logga ut',
                 navigationChatText:'Chat',
                 
@@ -72,6 +72,21 @@ i18next
                 aboutEvent2Date:'Datum: 14-15 september',
                 aboutEvent2Time:'Tid:10-16.30, 10-15',
                 aboutEvent2Place:'Backagården, Höör, Skåne',
+
+                inspirationheaderH2:'Inspiration',
+                inspirationheaderPost: 'Inlägg',
+                
+                inspriationheaderAdd: 'Lägg till inlägg',
+                inspirationPostErrorName:'Skriv in text i textfälten.',
+                inspirationPostErrorImg:'Lägg till bild (filformatet jpg och png)',
+                inspirationPostErrorServererror:'Det gick inte att spara Inlägget',
+                inspirationPostText:'Här fyller du i för att skicka ett inlägga till sidan. En kort övergripande rubrik och en beskrivande text. Skicka gärna med en bild. Ett tips är att göra ett collage av bilder och postar om du vill ha med flera.',
+                inspirationPostHeaderText:'Rubrik',
+                inspirationPostDescriptionText: 'Beskrivning',
+                inspirationPostImg: 'Lägg till bild',
+                inspirationAddPostBtnText: 'Skicka',
+
+                inspirationheaderScale: 'Räkna ut skala',
 
                 //footer
                 authertext: 'Built and styled by: TessDevon'
