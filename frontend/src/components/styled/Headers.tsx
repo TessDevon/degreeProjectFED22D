@@ -34,7 +34,7 @@ export const StyledH2 = styled.h1 `
 
     @media (min-width: 1410px) {
         margin-bottom: 10px;
-        font-size: 46px;
+        font-size: 40px;
     }
 `;
 
@@ -47,6 +47,6 @@ export const StyledH3 = styled.h3 `
 
     @media (min-width: 1410px) {
         margin-bottom: 10px;
-        font-size: 36px;
+        font-size: 24px;
     }
 `;

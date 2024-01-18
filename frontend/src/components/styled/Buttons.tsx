@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 
 export const StyledButton = styled.button `
-    font-size: 24px;
+    font-size: 20px;
     font-family: 'Jaldi';
     padding-left: 15px;
     padding-right: 15px;
@@ -19,6 +19,9 @@ export const StyledButtonCenter = styled(StyledButton) `
     left:40%;
 `
 
+export const StyledButtonInspirationviewComment = styled(StyledButtonRightsided) `
+    left:80%;
+`;
 
 
 

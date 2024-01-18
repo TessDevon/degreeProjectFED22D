@@ -6,7 +6,7 @@ export const StyledText = styled.p `
     font-size: 18px;
 
     @media (min-width: 1024px) {
-        font-size:24px;
+        font-size:20px;
     }
 `;
 
@@ -20,3 +20,9 @@ export const FooterText = styled(StyledText) `
     margin: 0px 15px;
     text-align: end;
 `;
+
+export const StyledTextGold = styled(StyledTextBold) `
+text-shadow: 1px 0.5px 0.5px #7e6829;
+color: #C7A440;
+
+`
