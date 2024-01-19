@@ -7,3 +7,7 @@ export const ErrorMassage = styled.p `
     font-size: 24px;
     text-align: center;
 `;
+
+export const ErrorLeftcenterdMassage = styled(ErrorMassage) `
+    text-align: left;
+`;

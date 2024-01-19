@@ -1,5 +1,4 @@
 import LoginModal from "../components/LoginModal";
-//import { FiTrash2 } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 import { StyledH2, StyledH3 } from "../components/styled/Headers";
 import {
@@ -30,9 +29,9 @@ import { StyledDeliteItem, StyledInspirationPostImg, StyledUserImg } from "../co
 import userimg from "../assets/userImg.jpg"
 import userimg2 from "../assets/userImg2.jpg"
 import trashIcon from "../assets/trashIcon.svg"
+import { ScaleCalculator } from "../components/ScaleCalculator";
 
-//import { StyledHeaderImg } from "../components/styled/Image";
-//import { Wrapperbody } from "../components/styled/Wrappers";
+
 
 export const Inspiration = () => {
   const { t } = useTranslation();
@@ -49,8 +48,9 @@ export const Inspiration = () => {
     inspirationPostDescription: "",
     inspirationPostImg: "",
   });
- 
-  const[deleteIcon, setDeliteIcon] = useState(true) //För att styra radera utifrån anvID.
+
+  
+  //const[deleteIcon, setDeliteIcon] = useState(true) //För att styra radera utifrån anvID.
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
@@ -194,12 +194,8 @@ export const Inspiration = () => {
               </form>
             </WrapperInspirationRightInnerView>
             <WrapperInspirationRightInnerView>
-              <StyledH3>{t("inspirationheaderScale")}</StyledH3>
-              <StyledTextBold>{t('aboutEvent1')}</StyledTextBold>
-              <StyledText>{t('aboutEvent1Date')}</StyledText>
-              <StyledText>{t('aboutEvent2Date')}</StyledText>
-              <StyledText>{t('aboutEvent2Time')}</StyledText>
-              <StyledText>{t('aboutEvent2Place')}</StyledText>
+              <StyledH3>{t('inspirationheaderScale')}</StyledH3>
+              <ScaleCalculator/>
             </WrapperInspirationRightInnerView>
           </WrapperbodyInnerRightInspiration>
         </WrapperbodyOuter>

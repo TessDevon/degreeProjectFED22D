@@ -87,8 +87,10 @@ i18next
                 inspirationAddPostBtnText: 'Skicka',
                 
                 inspirationheaderScale: 'Räkna ut skala',
-
-
+                inspirationScaletext1: 'Räkna om verklig skala till dockhusskala:',
+                inspirationScaletextinfo1: 'För att se hur stor/hög leksaken ska vara utifrån vald skala.',
+                inspirationScaletext2: 'Räkna om dockhusskala till verklig skala:',
+                inspirationScaletextinfo2: 'Hur stor/hög är leksaken utifrån vald skala om den funnits i verklig mått',
                 sellviewHeaderH2: 'Köp och sälj',
                 sellviewHeaderPost: 'Säljinlägg',
                 sellPostText:'Fyll i information om säljtråden. Vad? Skala? Ev frakt. Skicka gärna med en bild på varorna som säljs.',
@@ -98,6 +100,19 @@ i18next
                 sellInformation: '',
                 sellHeaderRule: 'Föräsäljningsregler:',
                 selltextRule:'FAST PRIS eller som AUKTION, auktion ska pågå i minst 24 timmar och allt som syns på bilden ska ingå. Kommentera köp i varan. Köp är bindande och det är bara ordet ”köper” som låser köpen, alt "köper om...". Inläggen ska tas bort 24 timmar efter såld vara. Om varorna inte sålts inom en månad kommer dessa att tas bort.',
+
+                scaleErrorRadio: 'Endast siffror',
+                scaleRealHeader: 'Räkna om verkliga mått till vald dockhusskala:',
+                scaleRealLabeltext: 'Verkliga mått i cm:',
+                scaleRealSelectscale: 'Välj skala',
+                scaleOption1: 'Skala 1:12',
+                scaleOption2: 'Skala 1:18',
+                scaleBtnText: 'Visa',
+                scaleMessage: 'Det motsvarar',
+                scaleMessage2: 'cm i vald skala.',
+                scaleMiniHeader: 'Räkna om dockhus mått till verklig skala från vald dockhusskala:',
+                scaleMiniLabeltext: 'Dockhusmått i cm:',
+                checkNumberErrorMessage: 'Skriv endast in siffror i detta fält.',
 
                 //footer
                 authertext: 'Built and styled by: TessDevon'

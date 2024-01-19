@@ -25,4 +25,19 @@ export const StyledTextGold = styled(StyledTextBold) `
 text-shadow: 1px 0.5px 0.5px #7e6829;
 color: #C7A440;
 
+`;
+
+export const StyledSpanText = styled.span `
+    font-family: "Jaldi";
+    font-size: 18px;
+    font-weight: bold;
+
+    @media (min-width: 1024px) {
+        font-size:20px;
+    }
+`;
+
+export const StyledSpanGoldText = styled(StyledSpanText) `
+    text-shadow: 1px 0.5px 0.5px #7e6829;
+    color: #C7A440;
 `
