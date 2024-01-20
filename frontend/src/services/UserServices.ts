@@ -9,7 +9,7 @@
             headers: {
                 "Content-Type": "application/json",      
             },
-            body: JSON.stringify({newEmail:email, newPassword:password, newFirstname:firstname, newLastname:lastname, userImg:userImage})
+            body: JSON.stringify({newEmail:email, newPassword:password, newFirstname:firstname, newLastname:lastname})
         })
         .then(res => {
             if (res.ok) {
@@ -21,8 +21,27 @@
         .then(data=> {console.log('Sparad användare');return data;})
         .then(data =>{
             localStorage.setItem("userIdLocalStorage", JSON.stringify({id:data.userId, token:data.token}))
+            saveUserImg(userImage, data.userId, data.token)
             return true;
         })
+        .catch ((err) => {
+            console.log(err)
+            return false;
+        });
+    }
+
+    export function saveUserImg (userImage, userId, token) {
+        console.log(userImage)
+        const formdata = new FormData()
+        formdata.append("image", userImage)
+        return fetch("http://localhost:3000/users/" +userId+ "/userimage", {
+            method: "POST", 
+            headers: {
+                "token": token
+            },
+            body: formdata
+        })
+        .then(data=> {console.log("Bild sparad"); return true;})
         .catch ((err) => {
             console.log(err)
             return false;

@@ -39,7 +39,7 @@ export default function LoginModal() {
     const checkEmail = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
     const checkPassword = new RegExp(/^(?=.*[A-ZÅÄÖa-zåäö])(?=.*\d)[A-ZÅÄÖa-zåäö\d]{8,}$/)
     // Requires login with at least one capital letter and number, at least 6 characters and no spaces. 
-    const checkImg = new RegExp(/\.(jpe?g|png|gif|bmp)$/i)  
+    const checkImg = new RegExp(/.*\.(jpe?g|png|jpg)$/i)  
     
 
     ///////////////// Check if user is loggedin //////////////////////
@@ -79,6 +79,7 @@ export default function LoginModal() {
     const handleLoginSubmit = (e:FormEvent) => {
         e.preventDefault();
         //console.log(formLoginData)
+        
         if(checkEmail.test(formLoginData.email)) {
             if(checkPassword.test(formLoginData.password)) {
                 LoginUser(formLoginData.email,formLoginData.password)
@@ -120,7 +121,7 @@ export default function LoginModal() {
         lastname:"",
         email: "",
         password: "",
-        userImage: "",
+        userImage: undefined,
     });
 
     const handleChange = (e:ChangeEvent<HTMLInputElement>) => {    
@@ -131,16 +132,19 @@ export default function LoginModal() {
         if(e.target.type === "number") {
             setFormData({...formData, [name]:+e.target.value});
         }
+        if (e.target.type === 'file' && e.target.files != null) {
+            setFormData({ ...formData, [name]: e.target.files[0]});
+            }
     }
     const handleSubmit = (e:FormEvent) => {
         e.preventDefault();
-        //console.log(formData)
+        console.log(formData)
 
         if(checkNames.test(formData.firstname)) {
             if(checkNames.test(formData.lastname)) {
                 if(checkEmail.test(formData.email)) {
                     if(checkPassword.test(formData.password)) {
-                        if(checkImg.test(formData.userImage)) {
+                        if(formData.userImage!=undefined && checkImg.test(formData.userImage?.name)) {
                             saveNewUserData(formData.firstname,formData.lastname,formData.email,formData.password,formData.userImage)
                             .then ((ok) => {
                                 if (ok) {
@@ -153,7 +157,7 @@ export default function LoginModal() {
                                     lastname:"",
                                     email: "",
                                     password: "",
-                                    userImage: "",
+                                    userImage: undefined,
                                 })
                                 }
                             });
@@ -231,7 +235,7 @@ export default function LoginModal() {
                     
                             <div>
                                 <StyledText>{t('registerUserImgText')}</StyledText>
-                                <StyledTextInput value={formData.userImage} type='img' onChange={handleChange} name='userImage'/>
+                                <StyledTextInput type='file' onChange={handleChange} name='userImage'/>
                             </div>
                         </div>
                     </WrapperInputsTwoColum>

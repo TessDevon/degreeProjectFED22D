@@ -4,7 +4,7 @@ export class registerPerson {
         public lastname: string, 
         public email: string,
         public password: string,
-        public userImage: string,      
+        public userImage: File|undefined,      
     ) {}
 }
 
