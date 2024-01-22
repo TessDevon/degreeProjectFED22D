@@ -20,6 +20,6 @@ export class ShowPersons {
         public userID: string,
         public userFirstname: string,
         public userLastname: string,
-        public userImage: string,
+        public userImg: string,
     ) {}
 }
