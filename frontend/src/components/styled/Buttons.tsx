@@ -19,8 +19,8 @@ export const StyledButtonCenter = styled(StyledButton) `
     left:40%;
 `
 
-export const StyledButtonInspirationviewComment = styled(StyledButtonRightsided) `
-    left:80%;
+export const StyledButtonInspirationviewComment = styled(StyledButton) `
+    height: 40px;
 `;
 
 

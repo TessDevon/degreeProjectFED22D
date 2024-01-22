@@ -16,6 +16,14 @@ export const StyledTextInput = styled.input `
     margin-bottom: 3%;
     width: 50%;
 `;
+
+export const StyledTextInputComment = styled.input `
+    font-size: 24px;
+    display: inline;
+    margin-bottom: 3%;
+    width: 50%;
+`;
+
 export const StyledRadioInput = styled.input `
     font-size: 24px;
     margin-bottom: 3%;

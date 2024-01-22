@@ -44,8 +44,6 @@ export const WrapperRow = styled.div `
     
 `;
 
-
-
 export const WrapperRowSpaceBetween = styled(WrapperRow) `
     justify-content: space-between;
 `;

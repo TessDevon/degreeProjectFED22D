@@ -85,7 +85,10 @@ i18next
                 inspirationPostDescriptionText: 'Beskrivning',
                 inspirationPostImg: 'Lägg till bild',
                 inspirationAddPostBtnText: 'Skicka',
+                inspirationCommentBtn: 'Kommentera',
+
                 
+                inspirationPostCommentDescriptionText: 'Kommentera inlägg',
                 inspirationheaderScale: 'Räkna ut skala',
                 inspirationScaletext1: 'Räkna om verklig skala till dockhusskala:',
                 inspirationScaletextinfo1: 'För att se hur stor/hög leksaken ska vara utifrån vald skala.',

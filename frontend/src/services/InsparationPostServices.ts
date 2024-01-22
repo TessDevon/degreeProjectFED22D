@@ -43,7 +43,6 @@ export function saveInspirationPostData (inspirationPostHeader, inspirationPostD
             return false; 
         });
     }
-    
 
     export function fetchInspirationPostData (userID, token) {
         return fetch("http://localhost:3000/inspirationPost", {
@@ -71,26 +70,58 @@ export function saveInspirationPostData (inspirationPostHeader, inspirationPostD
             return false
         })
     }
-    /*return fetch("http://localhost:3000/inseration", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",      
-        },
-        body: JSON.stringify({inspirationPostHeader:inspirationPostHeader, inspirationPostDescription:inspirationPostDescription, inspirationPostImg:inspirationPostImg})
-    })
-    .then(res => {
-        if (res.ok) {
-            return res.json();
-        } else {
-            throw "Något gick fel. Det gick inte att spara inlägget."
-        }
-    })
-    .then(data=> {console.log('Sparat inlägg');return data;})
-    .then(data =>{
-        //localStorage.setItem("userIdLocalStorage", JSON.stringify({id:data.userId, token:data.token}))
-        return true;
-    })
-    .catch ((err) => {
-        console.log(err)
-        return false;
-    });*/
+    
+
+    export function saveInspirationPostCommentData (inspirationCommentsDescription, userID, token, inspirationCommentsPostID) {
+        return fetch("http://localhost:3000/inspirationComment/", {
+            method:"POST", 
+            headers:{
+                "Content-Type": "application/json",
+            },
+            body:JSON.stringify({inspirationCommentsDescription:inspirationCommentsDescription, token:token, userId:userID, inspirationCommentsPostID:inspirationCommentsPostID})
+        })
+        
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            } else {
+                throw "Går ej att spara kommentaren"
+            }
+        })
+        .then(data => {console.log('Sparad kommentar');return data;})
+        .then(data => {
+            return true;
+        })
+        .catch((err) => {
+            console.log(err)
+            return false
+        })
+    }
+
+    export function fetchInspirationPostCommentData (userID, token) {
+        return fetch("http://localhost:3000/inspirationComment/", {
+            method:"GET", 
+            headers:{
+                "token": token,
+                "userID": userID
+            },
+        })
+        
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            } else {
+                throw "Går ej att hämta kommentareren"
+            }
+        })
+        .then(data => {console.log('Hämtat kommentar');return data;})
+        .then(data => {
+            return data;
+        })
+        .catch((err) => {
+            console.log(err)
+            return false
+        })
+    }
+
+    
