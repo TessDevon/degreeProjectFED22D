@@ -1,73 +1,77 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-const mysql = require('mysql2');
+const mysql = require("mysql2");
+const CryptoJS = require("crypto-js");
 
-
-router.post('/', function(req,res,next) {
+router.post("/", function (req, res, next) {
   let newInspiraionComment = req.body;
+  let userId = newInspiraionComment.userId;
+  let token = newInspiraionComment.token;
+  let userToken = CryptoJS.SHA3(userId + process.env.TOKEN).toString();
+  if (userToken != token) {
+    res.sendStatus(401);
+    return;
+  }
 
-  req.app.locals.con.connect(function(err){
+  req.app.locals.con.connect(function (err) {
+    if (err) {
+      console.log(err);
+      res.send(500);
+      return;
+    }
+
+    let sql = `INSERT INTO inspirationcomments (inspirationCommentsDescription, inpirationCommentsUserID, inspirationCommentsPostID) VALUES (${mysql.escape(
+      newInspiraionComment.inspirationCommentsDescription
+    )}, ${mysql.escape(newInspiraionComment.userId)}, ${mysql.escape(
+      newInspiraionComment.inspirationCommentsPostID
+    )})`;
+
+    req.app.locals.con.query(sql, function (err, result) {
       if (err) {
-          console.log(err);
-          res.send(500);
-          return
+        console.log(err);
+        res.send(500);
+        return;
       }
-
-      let sql = `INSERT INTO inspirationcomments (inspirationCommentsDescription, inspirationCommentsImg, inspirationCommentsUnserID, inspirationCommentsPostID) VALUES (${mysql.escape(newInspiraionComment.inspirationCommentsDescription)}, ${mysql.escape(newInspiraionComment.inspirationCommentsImg)}, ${mysql.escape(newInspiraionComment.inspirationCommentsUnserID)}, ${mysql.escape(newInspiraionComment.inspirationCommentsPostID)})`
-
-      req.app.locals.con.query(sql, function(err, result) {
-          if(err) {
-              console.log(err);
-              res.send(500);
-              return
-          }
-          console.log('result', result);
-          res.send(201);
-      })
-  })
+      console.log("result", result);
+      res.send(201);
+    });
+  });
 });
 
+router.get("/", function (req, res, next) {
+  let userId = req.headers.userid;
+  let token = req.headers.token;
 
-router.get('/', function(req,res,next) {
+  let userToken = CryptoJS.SHA3(userId + process.env.TOKEN).toString();
 
-  req.app.locals.con.connect(function(err){
+  console.log(userToken);
+  console.log(token);
+  console.log(userId);
+
+  if (userToken != token) {
+    res.sendStatus(401);
+    return;
+  }
+
+  req.app.locals.con.connect(function (err) {
+    if (err) {
+      console.log(err);
+      res.send(500);
+      return;
+    }
+
+    let sql = `SELECT * FROM inspirationcomments`;
+
+    req.app.locals.con.query(sql, function (err, result) {
       if (err) {
-          console.log(err);
-          res.send(500);
-          return
+        console.log(err);
+        res.send(500);
+        return;
       }
-
-      let sql = `SELECT * FROM inspirationcomments`
-
-      req.app.locals.con.query(sql, function(err, result) {
-          if(err) {
-              console.log(err);
-              res.send(500);
-              return
-          }
-          console.log('result', result);
-          res.json(result);
-      })
-  })
+      console.log("result", result);
+      res.json(result);
+    });
+  });
 });
-     
+
 module.exports = router;
-
-
-/* Codeexample to post new post:
-  let saveInspirationPostHeader = 'Julhuset';
-  let saveInspirationPostDescription = 'Jag har börjat med att ta bort all löstsittande tapet. Sedan använde jag mig av crapbookingpapper som träreglar. Satte fast dessa med limstift.';
-  let saveInspirationPostImg = '../public/images/exempelbild1.jpg';
-  let saveInspirationPostUserID = 8;
-  */
-
-/*Codeaxample sql-querys for later use, QRUD: 
-  //// hämta alla posts ////    
-  SELECT * FROM inspirationposts  
-  //// lägga till en ny post ////                                   
-  INSERT INTO inspirationposts (inspirationPostHeader, inspirationPostDescription, inspirationPostImg, inspirationPostUserID) VALUES (${mysql.escape(newInspiraionPost.inspirationPostHeader)}, ${mysql.escape(newInspiraionPost.inspirationPostDescription)}, ${mysql.escape(newInspiraionPost.inspirationPostImg)}, ${mysql.escape(newInspiraionPost.inspirationPostUserID)})       
-  //// ändra värde i post (header) vald rad ////
-  UPDATE inspirationposts SET inspirationPostHeader="Skidstugan" WHERE ID=5
-  //// radera vald post /// 
-  DELETE FROM inspirationposts WHERE ID=5 
-*/
