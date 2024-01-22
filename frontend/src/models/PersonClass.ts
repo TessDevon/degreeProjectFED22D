@@ -14,3 +14,12 @@ export class loginPerson {
         public password: string,
     ) {}
 }
+
+export class ShowPersons {
+    constructor (
+        public userID: string,
+        public userFirstname: string,
+        public userLastname: string,
+        public userImage: string,
+    ) {}
+}

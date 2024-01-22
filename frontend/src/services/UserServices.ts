@@ -1,6 +1,9 @@
 
     // Function that saves a new user, if the email is not already registered.
     // The requirements are in the front end.
+
+import { ShowPersons } from "../models/PersonClass";
+
     
 
     export function saveNewUserData (firstname,lastname,email,password,userImage) {
@@ -78,5 +81,31 @@
     })
 }
     
+    export function fetchPersonsData (userID, token) {
+    return fetch("http://localhost:3000/users", {
+        method:"GET", 
+        headers:{
+            "token": token,
+            "userID": userID
+        },
+    })
     
+    .then(res => {
+        if (res.ok) {
+            return res.json();
+        } else {
+            throw "Går ej att hämta person"
+        }
+    })
+    .then(data => {console.log('Sparad post');return data;})
+    .then(data => {
+        
+        return data;
+    })
+    .catch((err) => {
+        console.log(err)
+        return false
+    })
+}    
+
     

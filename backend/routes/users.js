@@ -99,19 +99,9 @@ function createNewUser (req, res) {
         console.log("result", result) 
         res.sendStatus(200)
       })
+    })
   })
-
-  })
-
-
-
 };
-
-
-
-
-
-
 
 
 //
@@ -151,6 +141,42 @@ router.post('/login', function(req,res) {
     })
   })
 })
+
+router.get('/', function(req,res,next) {
+  let userId = req.headers.userid
+  let token = req.headers.token
+
+  let userToken = (CryptoJS.SHA3(userId + process.env.TOKEN).toString())
+
+  console.log(userToken)
+  console.log(token)
+  console.log(userId)
+
+  if (userToken != token) {
+      res.sendStatus(401);
+      return
+  }
+
+  req.app.locals.con.connect(function(err){
+      if (err) {
+          console.log(err);
+          res.send(500);
+          return
+      }
+
+      let sql = `SELECT userFirstname, userLastname, userImg, userID FROM users`
+
+      req.app.locals.con.query(sql, function(err, result) {
+          if(err) {
+              console.log(err);
+              res.send(500);
+              return
+          }
+          console.log('result', result);
+          res.json(result);
+      })
+  })
+});
 
 
 module.exports = router;
