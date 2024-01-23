@@ -1,10 +1,22 @@
+const { v4: uuidv4 } = require('uuid');
+
 var express = require('express');
 var router = express.Router();
 const mysql = require('mysql2');
+const CryptoJS = require('crypto-js');
+const multer = require("multer");
 
 
 router.post('/', function(req,res,next) {
     let newSellingPost = req.body;
+    let userId = req.body.userID
+    let token = req.body.token
+    let userToken = (CryptoJS.SHA3(userId + process.env.TOKEN).toString())
+
+    if (userToken != token) {
+        res.sendStatus(401);
+        return
+      }
 
     req.app.locals.con.connect(function(err){
         if (err) {
@@ -13,22 +25,74 @@ router.post('/', function(req,res,next) {
             return
         }
 
-        let sql = `INSERT INTO sellingposts (sellingPostHeader, sellingPostDescription, sellingPostImg, sellingPostUserID) VALUES (${mysql.escape(newSellingPost.sellingPostHeader)}, ${mysql.escape(newSellingPost.sellingPostDescription)}, ${mysql.escape(newSellingPost.sellingPostImg)}, ${mysql.escape(newSellingPost.sellingPostUserID)})`
+        let sql = `INSERT INTO sellingposts (sellingPostHeader, sellingPostDescription, sellingPostUserID) VALUES (${mysql.escape(newSellingPost.sellingPostHeader)}, ${mysql.escape(newSellingPost.sellingPostDescription)}, ${mysql.escape(newSellingPost.userID)})`
 
         req.app.locals.con.query(sql, function(err, result) {
             if(err) {
                 console.log(err);
-                res.send(500);
+                res.sendStatus(500);
                 return
             }
             console.log('result', result);
-            res.send(201);
+            res.json({postID:result.insertId});
         })
     })
 });
 
+let storage = multer.diskStorage({
+    destination:function(req,file, cb) {
+        cb(null, "public/upload/selling")
+    }, 
+    filename: function(req, file, cb) {
+        cb(null, uuidv4()+"."+file.originalname.split('.').pop())
+    },
+})
+const upload = multer({storage: storage});
+
+router.post("/:sellingPostID/sellimage", upload.single("image"), function(req,res){
+    let userId = req.headers.userid
+    let sellingPostID = req.params.sellingPostID
+    let token = req.headers.token
+    let sellingPostImage = req.file.filename
+
+    let userToken = (CryptoJS.SHA3(userId + process.env.TOKEN).toString())
+
+    if (userToken != token) {
+        res.sendStatus(401);
+        return
+    }
+
+    req.app.locals.con.connect(function (err) {
+        if (err) {
+          console.log(err);
+        }
+
+        let sql = `UPDATE sellingposts SET sellingPostImg =${mysql.escape(sellingPostImage)} WHERE sellingPostUserID=${mysql.escape(userId)} AND sellingPostID=${mysql.escape(sellingPostID)} `
+    
+        req.app.locals.con.query(sql, function(err, result) {
+            if(err) {
+                console.log(err);
+            }
+            console.log("result", result)
+            res.sendStatus(200)
+        })
+    })
+})
+
+
+
 
 router.get('/', function(req,res,next) {
+
+    let userId = req.headers.userid
+    let token = req.headers.token
+
+    let userToken = (CryptoJS.SHA3(userId + process.env.TOKEN).toString())
+
+    if (userToken != token) {
+        res.sendStatus(401);
+        return
+    }
 
     req.app.locals.con.connect(function(err){
         if (err) {
@@ -53,21 +117,3 @@ router.get('/', function(req,res,next) {
        
 module.exports = router;
 
-
-/* Codeexample to post new post:
-    let saveInspirationPostHeader = 'Julhuset';
-    let saveInspirationPostDescription = 'Jag har börjat med att ta bort all löstsittande tapet. Sedan använde jag mig av crapbookingpapper som träreglar. Satte fast dessa med limstift.';
-    let saveInspirationPostImg = '../public/images/exempelbild1.jpg';
-    let saveInspirationPostUserID = 8;
-    */
-
-/*Codeaxample sql-querys for later use, QRUD: 
-    //// hämta alla posts ////    
-    SELECT * FROM inspirationposts  
-    //// lägga till en ny post ////                                   
-    INSERT INTO inspirationposts (inspirationPostHeader, inspirationPostDescription, inspirationPostImg, inspirationPostUserID) VALUES (${mysql.escape(newInspiraionPost.inspirationPostHeader)}, ${mysql.escape(newInspiraionPost.inspirationPostDescription)}, ${mysql.escape(newInspiraionPost.inspirationPostImg)}, ${mysql.escape(newInspiraionPost.inspirationPostUserID)})       
-    //// ändra värde i post (header) vald rad ////
-    UPDATE inspirationposts SET inspirationPostHeader="Skidstugan" WHERE ID=5
-    //// radera vald post /// 
-    DELETE FROM inspirationposts WHERE ID=5 
-*/
