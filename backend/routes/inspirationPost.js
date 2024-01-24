@@ -9,16 +9,11 @@ const multer = require("multer");
 
 router.post('/', function(req,res,next) {
     let newInspiraionPost = req.body;
-    console.log(req.body)
 
     let userId = req.body.userID
     let token = req.body.token
 
     let userToken = (CryptoJS.SHA3(userId + process.env.TOKEN).toString())
-
-    console.log(userToken)
-    console.log(token)
-    console.log(userId)
 
     if (userToken != token) {
         res.sendStatus(401);
@@ -57,17 +52,12 @@ let storage = multer.diskStorage({
 const upload = multer({storage: storage});
 
 router.post("/:inspirationPostID/postimage", upload.single("image"), function(req,res){
-    console.log(req.file);
     let userId = req.headers.userid
     let inspirationPostID = req.params.inspirationPostID
     let token = req.headers.token
     let inspirationPostImage = req.file.filename
 
     let userToken = (CryptoJS.SHA3(userId + process.env.TOKEN).toString())
-
-    console.log(userToken)
-    console.log(token)
-    console.log(userId)
 
     if (userToken != token) {
         res.sendStatus(401);
@@ -98,10 +88,6 @@ router.get('/', function(req,res,next) {
 
     let userToken = (CryptoJS.SHA3(userId + process.env.TOKEN).toString())
 
-    console.log(userToken)
-    console.log(token)
-    console.log(userId)
-
     if (userToken != token) {
         res.sendStatus(401);
         return
@@ -130,21 +116,3 @@ router.get('/', function(req,res,next) {
        
 module.exports = router;
 
-
-/* Codeexample to post new post:
-    let saveInspirationPostHeader = 'Julhuset';
-    let saveInspirationPostDescription = 'Jag har börjat med att ta bort all löstsittande tapet. Sedan använde jag mig av crapbookingpapper som träreglar. Satte fast dessa med limstift.';
-    let saveInspirationPostImg = '../public/images/exempelbild1.jpg';
-    let saveInspirationPostUserID = 8;
-    */
-
-/*Codeaxample sql-querys for later use, QRUD: 
-    //// hämta alla posts ////    
-    SELECT * FROM inspirationposts  
-    //// lägga till en ny post ////                                   
-    INSERT INTO inspirationposts (inspirationPostHeader, inspirationPostDescription, inspirationPostImg, inspirationPostUserID) VALUES (${mysql.escape(newInspiraionPost.inspirationPostHeader)}, ${mysql.escape(newInspiraionPost.inspirationPostDescription)}, ${mysql.escape(newInspiraionPost.inspirationPostImg)}, ${mysql.escape(newInspiraionPost.inspirationPostUserID)})       
-    //// ändra värde i post (header) vald rad ////
-    UPDATE inspirationposts SET inspirationPostHeader="Skidstugan" WHERE ID=5
-    //// radera vald post /// 
-    DELETE FROM inspirationposts WHERE ID=5 
-*/

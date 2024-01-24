@@ -98,7 +98,7 @@ export const Inspiration = () => {
     if (showPosts.length == 0) fetchPostFunction();
   }, [showPosts, showUsers, showComments]);
 
-  console.log(showComments);
+  //console.log(showComments);
 
   //////////////////////////////////////////////////////////////////////
   //////////////////////////// Form to add Post ////////////////////////
@@ -119,7 +119,7 @@ export const Inspiration = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log(formData);
+    //console.log(formData);
 
     let id = "";
     let token = "";
@@ -165,7 +165,7 @@ export const Inspiration = () => {
     } else {
       seterrorInspirationPostMessage(inspirationPostErrorName);
     }
-    console.log(formData);
+    //console.log(formData);
   };
 
   //////////////////////////////////////////////////////////////////////
@@ -186,7 +186,7 @@ export const Inspiration = () => {
   };
   const handleCommentSubmit = (e: FormEvent, inspirationPostID: number) => {
     e.preventDefault();
-    console.log(formCommentData);
+    //console.log(formCommentData);
 
     let id = "";
     let token = "";
@@ -220,7 +220,7 @@ export const Inspiration = () => {
     } else {
       seterrorInspirationPostCommentMessage(inspirationPostErrorName);
     }
-    console.log(FormData);
+    //console.log(FormData);
   };
 
   return (
@@ -240,7 +240,7 @@ export const Inspiration = () => {
                           (user) => user.userID == post.inspirationPostUserID
                         )
                         .map((user: ShowPersons) => (
-                          <WrapperUserview>
+                          <WrapperUserview key={user.userID}>
                             <StyledUserImg
                               width={70}
                               height={70}
@@ -287,7 +287,7 @@ export const Inspiration = () => {
                                   comment.inpirationCommentsUserID
                               )
                               .map((user: ShowPersons) => (
-                                <WrapperUserview>
+                                <WrapperUserview key={user.userID}>
                                   <StyledUserImg
                                     width={70}
                                     height={70}

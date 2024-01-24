@@ -44,10 +44,6 @@ router.get("/", function (req, res, next) {
 
   let userToken = CryptoJS.SHA3(userId + process.env.TOKEN).toString();
 
-  console.log(userToken);
-  console.log(token);
-  console.log(userId);
-
   if (userToken != token) {
     res.sendStatus(401);
     return;

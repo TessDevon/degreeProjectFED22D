@@ -26,7 +26,6 @@ export function saveInspirationPostData (inspirationPostHeader, inspirationPostD
 }
 
     export function savePostImg (inspirationPostImg, userID, token, inspirationPostID) {
-        console.log(inspirationPostImg)
         const formdata = new FormData()
         formdata.append("image", inspirationPostImg)
         return fetch("http://localhost:3000/inspirationPost/" + inspirationPostID +"/postimage", {
