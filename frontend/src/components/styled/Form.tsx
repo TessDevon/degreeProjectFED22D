@@ -11,14 +11,14 @@ export const WrapperInputsTwoColum = styled.div`
 `;
 
 export const StyledTextInput = styled.input ` 
-    font-size: 24px;
+    font-size: 18px;
     display: block;
     margin-bottom: 3%;
     width: 50%;
 `;
 
 export const StyledTextInputComment = styled.input `
-    font-size: 24px;
+    font-size: 18px;
     display: inline;
     margin-bottom: 3%;
     width: 50%;

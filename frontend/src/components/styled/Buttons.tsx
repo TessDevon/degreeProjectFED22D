@@ -20,7 +20,8 @@ export const StyledButtonCenter = styled(StyledButton) `
 `
 
 export const StyledButtonInspirationviewComment = styled(StyledButton) `
-    height: 40px;
+    height: 35px;
+    width: 150px;
 `;
 
 
