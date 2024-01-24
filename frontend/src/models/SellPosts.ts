@@ -24,6 +24,17 @@ export class SellingPostItem {
     ) {}
 }
 
+export class ShowSellingPostItem {
+    constructor (
+        public sellingItemDescription: string,
+        public sellingItemImg: string,
+        public sellingItemDate: string,
+        public sellingItemID: number,
+        public sellingItemUnserID: number,
+        public sellingItemPostID:number,
+    ) {}
+}
+
 export class SellingCommentPost {
     constructor (
         public sellingCommentsDescription: string,
@@ -34,10 +45,10 @@ export class SellingCommentPost {
 
 export class ShowSellingPostComment {
     constructor (    
-        public sellingCommentsID: string,
-        public sellingCommentsDescription: string,
-        public sellingCommentsDate: string,
-        public sellingCommentsUserID: number,
-        public sellingCommentsPostID: number,
+        public sellingPostItemCommentsID: number,
+        public sellingPostItemCommentsDescription: string,
+        public sellingPostItemCommentsDate : string,
+        public sellingpostitemcommentsUserID: number,
+        public sellingPostItemID: number,
     ) {}
 }

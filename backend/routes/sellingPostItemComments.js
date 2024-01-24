@@ -1,10 +1,22 @@
 var express = require('express');
 var router = express.Router();
 const mysql = require('mysql2');
+const CryptoJS = require("crypto-js");
 
 
 router.post('/', function(req,res,next) {
   let newSellingItemcomment = req.body;
+  let userId = newSellingItemcomment.userID;
+  let token = newSellingItemcomment.token;
+  let userToken = CryptoJS.SHA3(userId + process.env.TOKEN).toString();
+  let sellingpostitemcommentsUserID = newSellingItemcomment.sellingpostitemcommentsUserID;
+  let sellingPostItemID = newSellingItemcomment.sellingPostItemID
+
+
+  if (userToken != token) {
+    res.sendStatus(401);
+    return;
+  }
 
   req.app.locals.con.connect(function(err){
       if (err) {
@@ -13,7 +25,7 @@ router.post('/', function(req,res,next) {
           return
       }
 
-      let sql = `INSERT INTO sellingpostitemcomments (sellingPostItemCommentsDescription, sellingPostItemCommentsImg, sellingpostitemcommentsUserID , sellingPostItemID) VALUES (${mysql.escape(newSellingItemcomment.sellingPostItemCommentsDescription)}, ${mysql.escape(newSellingItemcomment.sellingPostItemCommentsImg)}, ${mysql.escape(newSellingItemcomment.sellingpostitemcommentsUserID)}, ${mysql.escape(newSellingItemcomment.sellingPostItemID)})`
+      let sql = `INSERT INTO sellingpostitemcomments (sellingPostItemCommentsDescription, sellingpostitemcommentsUserID , sellingPostItemID) VALUES (${mysql.escape(newSellingItemcomment.sellingPostItemCommentsDescription)}, ${mysql.escape(newSellingItemcomment.sellingpostitemcommentsUserID)}, ${mysql.escape(newSellingItemcomment.sellingPostItemID)})`
 
       req.app.locals.con.query(sql, function(err, result) {
           if(err) {
@@ -22,13 +34,23 @@ router.post('/', function(req,res,next) {
               return
           }
           console.log('result', result);
-          res.send(201);
+          res.json(result);
       })
   })
 });
 
 
 router.get('/', function(req,res,next) {
+
+  let userId = req.headers.userid
+  let token = req.headers.token
+
+  let userToken = (CryptoJS.SHA3(userId + process.env.TOKEN).toString())
+
+  if (userToken != token) {
+      res.sendStatus(401);
+      return
+  }
 
   req.app.locals.con.connect(function(err){
       if (err) {
@@ -52,22 +74,3 @@ router.get('/', function(req,res,next) {
 });
      
 module.exports = router;
-
-
-/* Codeexample to post new post:
-  let saveInspirationPostHeader = 'Julhuset';
-  let saveInspirationPostDescription = 'Jag har börjat med att ta bort all löstsittande tapet. Sedan använde jag mig av crapbookingpapper som träreglar. Satte fast dessa med limstift.';
-  let saveInspirationPostImg = '../public/images/exempelbild1.jpg';
-  let saveInspirationPostUserID = 8;
-  */
-
-/*Codeaxample sql-querys for later use, QRUD: 
-  //// hämta alla posts ////    
-  SELECT * FROM inspirationposts  
-  //// lägga till en ny post ////                                   
-  INSERT INTO inspirationposts (inspirationPostHeader, inspirationPostDescription, inspirationPostImg, inspirationPostUserID) VALUES (${mysql.escape(newInspiraionPost.inspirationPostHeader)}, ${mysql.escape(newInspiraionPost.inspirationPostDescription)}, ${mysql.escape(newInspiraionPost.inspirationPostImg)}, ${mysql.escape(newInspiraionPost.inspirationPostUserID)})       
-  //// ändra värde i post (header) vald rad ////
-  UPDATE inspirationposts SET inspirationPostHeader="Skidstugan" WHERE ID=5
-  //// radera vald post /// 
-  DELETE FROM inspirationposts WHERE ID=5 
-*/

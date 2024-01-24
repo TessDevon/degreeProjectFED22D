@@ -94,6 +94,7 @@ i18next
                 inspirationScaletextinfo1: 'För att se hur stor/hög leksaken ska vara utifrån vald skala.',
                 inspirationScaletext2: 'Räkna om dockhusskala till verklig skala:',
                 inspirationScaletextinfo2: 'Hur stor/hög är leksaken utifrån vald skala om den funnits i verklig mått',
+                
                 sellviewHeaderH2: 'Köp och sälj',
                 sellviewHeaderPost: 'Säljinlägg',
                 sellPostText:'Fyll i information om säljtråden. Vad? Skala? Ev frakt. Skicka gärna med en bild på varorna som säljs.',
@@ -101,8 +102,19 @@ i18next
                 sellPostDescription: 'Beskrivning',
                 sellPostImg: 'Lägg till bild',
                 sellInformation: '',
-                sellHeaderRule: 'Föräsäljningsregler:',
+                sellHeaderRule: 'Försäljningsregler:',
                 selltextRule:'FAST PRIS eller som AUKTION, auktion ska pågå i minst 24 timmar och allt som syns på bilden ska ingå. Kommentera köp i varan. Köp är bindande och det är bara ordet ”köper” som låser köpen, alt "köper om...". Inläggen ska tas bort 24 timmar efter såld vara. Om varorna inte sålts inom en månad kommer dessa att tas bort.',
+                sellAddItemBtn:'Kommentera',
+
+                sellingPostItemErrorName:'Skriv in text i textfälten.',
+                sellingPostItemErrorImg:'Lägg till bild (filformatet jpg och png)',
+                sellingPostItemErrorServererror:'Varan gick inte att lägga in.',
+                
+                sellingItemInutText: 'Lägg till vara med beskrivning och bild',
+                sellItemBtn:'Lägg till',
+
+                sellItemBuyBtn:'Köpinlägg',
+                sellingItemInutBuyText:'Köpkommentar',
 
                 scaleErrorRadio: 'Endast siffror',
                 scaleRealHeader: 'Räkna om verkliga mått till vald dockhusskala:',

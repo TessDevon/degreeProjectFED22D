@@ -1,7 +1,10 @@
 import LoginModal from "../components/LoginModal";
 import { StyledButtonInspirationviewComment } from "../components/styled/Buttons";
 import { ErrorMassage } from "../components/styled/ErrorMassage";
-import { StyledTextInput } from "../components/styled/Form";
+import {
+  StyledTextInput,
+  StyledTextInputComment,
+} from "../components/styled/Form";
 import { StyledH2, StyledH3 } from "../components/styled/Headers";
 import {
   StyledDeliteItem,
@@ -15,6 +18,7 @@ import {
 } from "../components/styled/Text";
 import {
   WrapperBody,
+  WrapperComment,
   WrapperCommentBuy,
   WrapperInspirationRightInnerView,
   WrapperItemComment,
@@ -37,21 +41,35 @@ import {
   fetchSellPostData,
   saveSellPostData,
 } from "../services/SellPostServices";
-import { ShowSellPost, sellPost, sellingPost } from "../models/SellPosts";
+import {
+  fetchSellItemData,
+  saveSellItemData,
+} from "../services/SellItemServises";
+import {
+  SellingPostItem,
+  ShowSellPost,
+  ShowSellingPostComment,
+  ShowSellingPostItem,
+  sellPost,
+} from "../models/SellPosts";
 import { ShowPersons } from "../models/PersonClass";
 import { fetchPersonsData } from "../services/UserServices";
-//import { Wrapperbody } from "../components/styled/Wrappers";
+import { ShowInspirationPostComment } from "../models/InspirationPosts";
+import {
+  fetchSellBuyItemData,
+  saveSellItemBuyData,
+} from "../services/SellItemBuyServices";
 
 export const Selling = () => {
   const { t } = useTranslation();
   const [errorSellingPostMessage, seterrorSellingPostMessage] = useState("");
-  //const [errorSellingPostItemMessage, seterrorSellingPostItemMessage,] =
-  //useState("");
-  //const [errorSellingCommentMessage,seterrorSellingPostCommentMessage,] =
-  //useState("");
+  const [errorSellingPostItemMessage, seterrorSellingPostItemMessage] =
+    useState("");
 
-  //const [errorRegisterMessage, seterrorRegisterMessage] = useState("");
-  const checkPostText = new RegExp(/^[a-zA-ZåäöÅÄÖ ,.'-/!]+$/i);
+  const [errorSellingPostItemBuyMessage, seterrorSellingPostItemBuyMessage] =
+    useState("");
+
+  const checkPostText = new RegExp(/^[a-zA-ZåäöÅÄÖ0-9 ,.'-/!]+$/i);
   const checkPostImg = new RegExp(/.*\.(jpe?g|png|jpg)$/i);
   const sellingPostErrorName = t("inspirationPostErrorName");
   const sellingPostErrorImg = t("inspirationPostErrorImg");
@@ -61,21 +79,25 @@ export const Selling = () => {
     sellPostDescription: "",
     sellPostImg: undefined,
   });
-  /*
-  const [formSellItemData, setFormSellItemData] = useState({
 
-  })
+  const [formItemData, setFormItemData] = useState<SellingPostItem>({
+    sellingItemDescription: "",
+    sellingItemImg: undefined,
+  });
 
   const [formSellData, setformSellData] = useState({
-    sellPostCommentDescription: "",
+    sellingItemBuyDescription: "",
   });
   //const[deleteIcon, setDeliteIcon] = useState(true) För att styra radera utifrån anvID.
-*/
 
   const [showPosts, setShowPost] = useState<ShowSellPost>([]);
   const [showUsers, setShowUsers] = useState<ShowPersons>([]);
-  //  const [showItemComments, setShowItemComments] = useState<ShowInspirationPostComment>([]);
-  //  const [showComments, setShowComments] = useState<ShowInspirationPostComment>([]);
+  const [showItemComments, setShowItemComments] = useState<ShowSellingPostItem>(
+    []
+  );
+  const [showComments, setShowComments] = useState<ShowInspirationPostComment>(
+    []
+  );
 
   useEffect(() => {
     const fetchPostFunction = async () => {
@@ -93,13 +115,11 @@ export const Selling = () => {
 
       setShowPost(await fetchSellPostData(id, token));
       setShowUsers(await fetchPersonsData(id, token));
-      //setShowComments(await fetchInspirationPostCommentData(id, token));
+      setShowItemComments(await fetchSellItemData(id, token));
+      setShowComments(await fetchSellBuyItemData(id, token));
     };
     if (showPosts.length == 0) fetchPostFunction();
   }, [showPosts, showUsers /*showComments*/]);
-
-  console.log(showPosts);
-  /**/
 
   //////////////////////////////////////////////////////////////
   ///////////////// Form to add sellPost ///////////////////////
@@ -168,31 +188,30 @@ export const Selling = () => {
     console.log(formData);
   };
 
-  ////////////////////////////////////////////////////////////
-  ///////////////////// Form to sell Item ////////////////////
-  ////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////
+  //////////////////////// Form to sell Item /////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////
 
-  /*Add code*/
-
-  /////////////////////////////////////////////////////////////
-  //////////////////// Form to Comment ////////////////////////
-  /////////////////////////////////////////////////////////////
-  /*
-  const handleCommentChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleItemChange = (e: ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     if (e.target.type === "text") {
-      setformCommentData({ ...formCommentData, [name]: e.target.value });
+      setFormItemData({ ...formItemData, [name]: e.target.value });
     }
     if (e.target.type === "number") {
-      setformCommentData({ ...formCommentData, [name]: +e.target.value });
+      setFormItemData({ ...formItemData, [name]: +e.target.value });
     }
     if (e.target.type === "file" && e.target.files != null) {
-      setformCommentData({ ...formCommentData, [name]: e.target.files[0] });
+      setFormItemData({ ...formItemData, [name]: e.target.files[0] });
     }
   };
-  const handleCommentSubmit = (e: FormEvent, inspirationPostID: number) => {
+
+  const handleItemSubmit = (
+    e: FormEvent,
+    sellingItemPostID: number,
+    sellingPostUserID: number
+  ) => {
     e.preventDefault();
-    console.log(formCommentData);
+    console.log();
 
     let id = "";
     let token = "";
@@ -205,30 +224,95 @@ export const Selling = () => {
       token = userLocalstorage.token;
     }
 
-    if (checkPostText.test(formCommentData.inspirationPostCommentDescription)) {
-      saveInspirationPostCommentData(
-        formCommentData.inspirationPostCommentDescription,
+    if (checkPostText.test(formItemData.sellingItemDescription)) {
+      console.log(formItemData.sellingItemImg);
+      if (
+        formItemData.sellingItemImg != undefined &&
+        checkPostImg.test(formItemData.sellingItemImg?.name)
+      ) {
+        saveSellItemData(
+          formItemData.sellingItemDescription,
+          formItemData.sellingItemImg,
+          id,
+          token,
+          sellingItemPostID,
+          sellingPostUserID
+        ).then((ok) => {
+          if (ok) {
+            seterrorSellingPostItemMessage("");
+            setFormItemData({
+              sellingItemDescription: "",
+              sellingItemImg: undefined,
+            });
+          } else {
+            seterrorSellingPostItemMessage(sellingPostErrorServererror);
+          }
+        });
+      } else {
+        seterrorSellingPostItemMessage(sellingPostErrorImg);
+      }
+    } else {
+      seterrorSellingPostItemMessage(sellingPostErrorName);
+    }
+  };
+
+  //////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////// Form to Comment /////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////
+
+  const handleItemBuyChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const name = e.target.name;
+    if (e.target.type === "text") {
+      setformSellData({ ...formSellData, [name]: e.target.value });
+    }
+    if (e.target.type === "number") {
+      setformSellData({ ...formSellData, [name]: +e.target.value });
+    }
+    if (e.target.type === "file" && e.target.files != null) {
+      setformSellData({ ...formSellData, [name]: e.target.files[0] });
+    }
+  };
+
+  const handleItemBuySubmit = (
+    e: FormEvent,
+    sellingItemID: number,
+    sellingItemUnserID: number
+  ) => {
+    e.preventDefault();
+    console.log();
+
+    let id = "";
+    let token = "";
+
+    const userLocalstorage = JSON.parse(
+      localStorage.getItem("userIdLocalStorage") || ""
+    );
+    if (userLocalstorage) {
+      id = userLocalstorage.id;
+      token = userLocalstorage.token;
+    }
+    console.log(sellingItemID);
+    if (checkPostText.test(formSellData.sellingItemBuyDescription)) {
+      saveSellItemBuyData(
+        formSellData.sellingItemBuyDescription,
         id,
         token,
-        inspirationPostID
+        sellingItemUnserID,
+        sellingItemID
       ).then((ok) => {
         if (ok) {
-          seterrorInspirationPostMessage("");
-          setformCommentData({
-            inspirationPostCommentDescription: "",
+          seterrorSellingPostItemBuyMessage("");
+          setformSellData({
+            sellingItemBuyDescription: "",
           });
         } else {
-          seterrorInspirationPostCommentMessage(
-            inspirationPostErrorServererror
-          );
+          seterrorSellingPostItemBuyMessage(sellingPostErrorServererror);
         }
       });
     } else {
-      seterrorInspirationPostCommentMessage(inspirationPostErrorName);
+      seterrorSellingPostItemBuyMessage(sellingPostErrorName);
     }
-    console.log(FormData);
   };
-*/
 
   return (
     <>
@@ -245,7 +329,7 @@ export const Selling = () => {
                       {showUsers
                         .filter((user) => user.userID == post.sellingPostUserID)
                         .map((user: ShowPersons) => (
-                          <WrapperUserview>
+                          <WrapperUserview key={user.userID}>
                             <StyledUserImg
                               width={70}
                               height={70}
@@ -272,55 +356,150 @@ export const Selling = () => {
                     />
                     <StyledTextGold>{post.sellingPostHeader}</StyledTextGold>
                     <StyledText>{post.sellingPostDescription}</StyledText>
-                    <StyledButtonInspirationviewComment>
-                      Kommentera
-                    </StyledButtonInspirationviewComment>
-                    <WrapperItemComment>
-                      <WrapperRowSpaceBetween>
-                        <WrapperUserview>
-                          <StyledUserImg width={70} height={70} src={userimg} />
-                          <StyledTextBold>Anna-Lena</StyledTextBold>
-                        </WrapperUserview>
-                        <WrapperRow>
-                          <StyledDeliteItem
-                            width={30}
-                            height={30}
-                            src={trashIcon}
-                          />
-                          <StyledTextBold>2024-01-25, 6:25</StyledTextBold>
-                        </WrapperRow>
-                      </WrapperRowSpaceBetween>
-                      <StyledInspirationPostImg
-                        width={160}
-                        height={75}
-                        src={sellImg}
-                      />
-                      <StyledText>4 svarta hjul. 25kr PP!</StyledText>
-                      <StyledButtonInspirationviewComment>
-                        Kommentera
-                      </StyledButtonInspirationviewComment>
-                      <WrapperCommentBuy>
+                    <form
+                      onSubmit={(e) =>
+                        handleItemSubmit(
+                          e,
+                          post.sellingPostID,
+                          post.sellingPostUserID
+                        )
+                      }
+                    >
+                      <WrapperComment>
+                        <StyledText>{t("sellingItemInutText")}</StyledText>
                         <WrapperRowSpaceBetween>
-                          <WrapperUserview>
-                            <StyledUserImg
-                              width={70}
-                              height={70}
-                              src={userimg2}
-                            />
-                            <StyledTextBold>Marie</StyledTextBold>
-                          </WrapperUserview>
-                          <WrapperRow>
-                            <StyledDeliteItem
-                              width={30}
-                              height={30}
-                              src={trashIcon}
-                            />
-                            <StyledTextBold>2024-01-25, 7:35</StyledTextBold>
-                          </WrapperRow>
+                          <StyledTextInputComment
+                            value={formItemData.sellingItemDescription}
+                            type="text"
+                            onChange={handleItemChange}
+                            name="sellingItemDescription"
+                          />
+                          <StyledTextInput
+                            type="file"
+                            onChange={handleItemChange}
+                            name="sellingItemImg"
+                          />
+                          <StyledButtonInspirationviewComment>
+                            {t("sellItemBtn")}
+                          </StyledButtonInspirationviewComment>
                         </WrapperRowSpaceBetween>
-                        <StyledText>Köper!</StyledText>
-                      </WrapperCommentBuy>
-                    </WrapperItemComment>
+                        <ErrorMassage>
+                          {errorSellingPostItemMessage}
+                        </ErrorMassage>
+                      </WrapperComment>
+                    </form>
+                    {showItemComments
+                      .filter(
+                        (itemcomment: ShowSellingPostItem) =>
+                          itemcomment.sellingItemPostID == post.sellingPostID
+                      )
+                      .map((itemcomment: ShowSellingPostItem) => (
+                        <WrapperItemComment key={itemcomment.sellingItemID}>
+                          <WrapperRowSpaceBetween>
+                            {showUsers
+                              .filter(
+                                (user) =>
+                                  user.userID == itemcomment.sellingItemUnserID
+                              )
+                              .map((user: ShowPersons) => (
+                                <WrapperUserview key={user.userID}>
+                                  <StyledUserImg
+                                    width={70}
+                                    height={70}
+                                    src={`http://localhost:3000/upload/${user.userImg}`}
+                                  />
+                                  <StyledTextBold>
+                                    {user.userFirstname} {user.userLastname}
+                                  </StyledTextBold>
+                                </WrapperUserview>
+                              ))}
+                            <WrapperRowSpaceBetween>
+                              <WrapperRow>
+                                <StyledDeliteItem
+                                  width={30}
+                                  height={30}
+                                  src={trashIcon}
+                                />
+                                <StyledTextBold>
+                                  {itemcomment.sellingItemDate}
+                                </StyledTextBold>
+                              </WrapperRow>
+                            </WrapperRowSpaceBetween>
+                          </WrapperRowSpaceBetween>
+                          <StyledInspirationPostImg
+                            width={160}
+                            height={75}
+                            src={sellImg}
+                          />
+                          <StyledText>
+                            {itemcomment.sellingItemDescription}
+                          </StyledText>
+                          <form
+                            onSubmit={(e) =>
+                              handleItemBuySubmit(
+                                e,
+                                itemcomment.sellingItemID,
+                                itemcomment.sellingItemUnserID
+                              )
+                            }
+                          >
+                            <WrapperComment>
+                              <StyledText>
+                                {t("sellingItemInutBuyText")}
+                              </StyledText>
+                              <WrapperRowSpaceBetween>
+                                <StyledTextInputComment
+                                  value={formSellData.sellingItemBuyDescription}
+                                  type="text"
+                                  onChange={handleItemBuyChange}
+                                  name="sellingItemBuyDescription"
+                                />
+                                <StyledButtonInspirationviewComment>
+                                  {t("sellItemBuyBtn")}
+                                </StyledButtonInspirationviewComment>
+                              </WrapperRowSpaceBetween>
+                              <ErrorMassage>
+                                {errorSellingPostItemBuyMessage}
+                              </ErrorMassage>
+                            </WrapperComment>
+                          </form>
+                          {showComments
+                            .filter(
+                              (comment: ShowSellingPostComment) =>
+                                comment.sellingPostItemID ==
+                                itemcomment.sellingItemID
+                            )
+                            .map((comment: ShowSellingPostComment) => (
+                              <WrapperCommentBuy
+                                key={comment.sellingPostItemCommentsID}
+                              >
+                                <WrapperRowSpaceBetween>
+                                  <WrapperUserview>
+                                    <StyledUserImg
+                                      width={70}
+                                      height={70}
+                                      src={userimg2}
+                                    />
+                                    <StyledTextBold>Marie</StyledTextBold>
+                                  </WrapperUserview>
+                                  <WrapperRow>
+                                    <StyledDeliteItem
+                                      width={30}
+                                      height={30}
+                                      src={trashIcon}
+                                    />
+                                    <StyledTextBold>
+                                      {comment.sellingPostItemCommentsDate}
+                                    </StyledTextBold>
+                                  </WrapperRow>
+                                </WrapperRowSpaceBetween>
+                                <StyledText>
+                                  {comment.sellingPostItemCommentsDescription}
+                                </StyledText>
+                              </WrapperCommentBuy>
+                            ))}
+                        </WrapperItemComment>
+                      ))}
                   </WrapperPost>
                 ))}
               </div>
