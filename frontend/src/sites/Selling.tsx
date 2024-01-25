@@ -63,6 +63,7 @@ import {
   saveSellItemBuyData,
 } from "../services/SellItemBuyServices";
 
+
 export const Selling = () => {
   const { t } = useTranslation();
   const [errorSellingPostMessage, seterrorSellingPostMessage] = useState("");
@@ -71,36 +72,34 @@ export const Selling = () => {
 
   const [errorSellingPostItemBuyMessage, seterrorSellingPostItemBuyMessage] =
     useState("");
+  const [formData, setFormData] = useState<sellPost>({
+    sellPostHeader: "",
+    sellPostDescription: "",
+    sellPostImg: undefined,
+  });
+  const [formItemData, setFormItemData] = useState<SellingPostItem>({
+    sellingItemDescription: "",
+    sellingItemImg: undefined,
+  });
+  const [formSellData, setformSellData] = useState({
+    sellingItemBuyDescription: "",
+  });
+  const [showPosts, setShowPost] = useState<ShowSellPost[]>([]);
+  const [showUsers, setShowUsers] = useState<ShowPersons[]>([]);
+  const [showItemComments, setShowItemComments] = useState<
+    ShowSellingPostItem[]
+  >([]);
+  const [showComments, setShowComments] = useState<ShowSellingPostComment>([]);
+
 
   const checkPostText = new RegExp(/^[a-zA-ZåäöÅÄÖ0-9 ,.'-/!]+$/i);
   const checkPostImg = new RegExp(/.*\.(jpe?g|png|jpg)$/i);
   const sellingPostErrorName = t("inspirationPostErrorName");
   const sellingPostErrorImg = t("inspirationPostErrorImg");
   const sellingPostErrorServererror = t("inspirationPostErrorServererror");
-  const [formData, setFormData] = useState<sellPost>({
-    sellPostHeader: "",
-    sellPostDescription: "",
-    sellPostImg: undefined,
-  });
+  
 
-  const [formItemData, setFormItemData] = useState<SellingPostItem>({
-    sellingItemDescription: "",
-    sellingItemImg: undefined,
-  });
-
-  const [formSellData, setformSellData] = useState({
-    sellingItemBuyDescription: "",
-  });
-  //const[deleteIcon, setDeliteIcon] = useState(true) För att styra radera utifrån anvID.
-
-  const [showPosts, setShowPost] = useState<ShowSellPost[]>([]);
-  const [showUsers, setShowUsers] = useState<ShowPersons[]>([]);
-  const [showItemComments, setShowItemComments] = useState<
-    ShowSellingPostItem[]
-  >([]);
-  const [showComments, setShowComments] = useState<ShowSellingPostComment>(
-    []
-  );
+  
 
   useEffect(() => {
     const fetchPostFunction = async () => {
@@ -124,7 +123,7 @@ export const Selling = () => {
     if (showPosts.length == 0) fetchPostFunction();
   }, [showPosts, showUsers /*showComments*/]);
 
-  function getUser () {
+  function getUser() {
     let id = "";
     const userLocalstorage = JSON.parse(
       localStorage.getItem("userIdLocalStorage") || ""
@@ -186,6 +185,7 @@ export const Selling = () => {
                 sellPostDescription: "",
                 sellPostImg: undefined,
               });
+              window.location.reload();
             } else {
               seterrorSellingPostMessage(sellingPostErrorServererror);
             }
@@ -202,9 +202,7 @@ export const Selling = () => {
     console.log(formData);
   };
 
-  const deletePost = (
-    deletePostId: number
-  ) => {
+  const deletePost = (deletePostId: number) => {
     console.log("Körs");
 
     let id = "";
@@ -277,6 +275,7 @@ export const Selling = () => {
               sellingItemDescription: "",
               sellingItemImg: undefined,
             });
+            window.location.reload();
           } else {
             seterrorSellingPostItemMessage(sellingPostErrorServererror);
           }
@@ -289,9 +288,7 @@ export const Selling = () => {
     }
   };
 
-  const deleteItem = (
-    deleteItemId: number
-  ) => {
+  const deleteItem = (deleteItemId: number) => {
     console.log("Körs");
 
     let id = "";
@@ -357,6 +354,7 @@ export const Selling = () => {
           setformSellData({
             sellingItemBuyDescription: "",
           });
+          window.location.reload();
         } else {
           seterrorSellingPostItemBuyMessage(sellingPostErrorServererror);
         }
@@ -366,9 +364,7 @@ export const Selling = () => {
     }
   };
 
-  const deleteItemComment = (
-    deleteItemCommentId: number
-  ) => {
+  const deleteItemComment = (deleteItemCommentId: number) => {
     console.log("Körs");
 
     let id = "";
@@ -404,36 +400,36 @@ export const Selling = () => {
                         )
                         .map((user: ShowPersons) => (
                           <>
-                          <WrapperUserview key={user.userID}>
-                            <StyledUserImg
-                              width={70}
-                              height={70}
-                              src={`http://localhost:3000/upload/${user.userImg}`}
-                            />
-                            <StyledTextBold>
-                              {user.userFirstname} {user.userLastname}
-                            </StyledTextBold>
-                          </WrapperUserview>
-                        
-                      <WrapperRow>
-                      {user.userID == getUser() &&
-                        <StyledDeliteItem
-                          onClick={() => {
-                            deletePost(post.sellingPostID);
-                          }}
-                          width={30}
-                          height={30}
-                          src={trashIcon}
-                        />
-                        }
-                        <StyledTextBold>
-                          {new Date(post.sellingPostDate).toLocaleString(
-                            "sv-SE"
-                          )}
-                        </StyledTextBold>
-                      </WrapperRow>
-                      </>
-                      ))}
+                            <WrapperUserview key={user.userID}>
+                              <StyledUserImg
+                                width={70}
+                                height={70}
+                                src={`http://localhost:3000/upload/${user.userImg}`}
+                              />
+                              <StyledTextBold>
+                                {user.userFirstname} {user.userLastname}
+                              </StyledTextBold>
+                            </WrapperUserview>
+
+                            <WrapperRow>
+                              {user.userID == getUser() && (
+                                <StyledDeliteItem
+                                  onClick={() => {
+                                    deletePost(post.sellingPostID);
+                                  }}
+                                  width={30}
+                                  height={30}
+                                  src={trashIcon}
+                                />
+                              )}
+                              <StyledTextBold>
+                                {new Date(post.sellingPostDate).toLocaleString(
+                                  "sv-SE"
+                                )}
+                              </StyledTextBold>
+                            </WrapperRow>
+                          </>
+                        ))}
                     </WrapperRowSpaceBetween>
                     <StyledInspirationPostImg
                       width={160}
@@ -442,6 +438,7 @@ export const Selling = () => {
                     />
                     <StyledTextGold>{post.sellingPostHeader}</StyledTextGold>
                     <StyledText>{post.sellingPostDescription}</StyledText>
+                    {post.sellingPostUserID == Number(getUser()) && 
                     <form
                       onSubmit={(e) =>
                         handleItemSubmit(
@@ -474,6 +471,7 @@ export const Selling = () => {
                         </ErrorMassage>
                       </WrapperComment>
                     </form>
+                    }
                     {showItemComments
                       .filter(
                         (itemcomment: ShowSellingPostItem) =>
@@ -490,38 +488,40 @@ export const Selling = () => {
                               )
                               .map((user: ShowPersons) => (
                                 <>
-                                <WrapperUserview key={user.userID}>
-                                  <StyledUserImg
-                                    width={70}
-                                    height={70}
-                                    src={`http://localhost:3000/upload/${user.userImg}`}
-                                  />
-                                  <StyledTextBold>
-                                    {user.userFirstname} {user.userLastname}
-                                  </StyledTextBold>
-                                </WrapperUserview>
-                              
-                            <WrapperRowSpaceBetween>
-                              <WrapperRow>
-                              {user.userID == getUser() && 
-                                <StyledDeliteItem
-                                  onClick={() => {
-                                    deleteItem(itemcomment.sellingItemID);
-                                  }}
-                                  width={30}
-                                  height={30}
-                                  src={trashIcon}
-                                />
-                                }
-                                <StyledTextBold>
-                                  {new Date(
-                                    itemcomment.sellingItemDate
-                                  ).toLocaleString("sv-SE")}
-                                </StyledTextBold>
-                              </WrapperRow>
-                            </WrapperRowSpaceBetween>
-                            </>
-                            ))}
+                                  <WrapperUserview key={user.userID}>
+                                    <StyledUserImg
+                                      width={70}
+                                      height={70}
+                                      src={`http://localhost:3000/upload/${user.userImg}`}
+                                    />
+                                    <StyledTextBold>
+                                      {user.userFirstname} {user.userLastname}
+                                    </StyledTextBold>
+                                  </WrapperUserview>
+
+                                  <WrapperRowSpaceBetween>
+                                    <WrapperRow>
+                                      {user.userID == getUser() && (
+                                        <StyledDeliteItem
+                                          onClick={() => {
+                                            deleteItem(
+                                              itemcomment.sellingItemID
+                                            );
+                                          }}
+                                          width={30}
+                                          height={30}
+                                          src={trashIcon}
+                                        />
+                                      )}
+                                      <StyledTextBold>
+                                        {new Date(
+                                          itemcomment.sellingItemDate
+                                        ).toLocaleString("sv-SE")}
+                                      </StyledTextBold>
+                                    </WrapperRow>
+                                  </WrapperRowSpaceBetween>
+                                </>
+                              ))}
                           </WrapperRowSpaceBetween>
                           <StyledInspirationPostImg
                             width={160}
@@ -531,6 +531,63 @@ export const Selling = () => {
                           <StyledText>
                             {itemcomment.sellingItemDescription}
                           </StyledText>
+                          {showComments
+                            .filter(
+                              (comment: ShowSellingPostComment) =>
+                                comment.sellingPostItemID ==
+                                itemcomment.sellingItemID
+                            )
+                            .map((comment: ShowSellingPostComment) => (
+                              <WrapperCommentBuy
+                                key={comment.sellingPostItemCommentsID}
+                              >
+                                <WrapperRowSpaceBetween>
+                                  {showUsers
+                                    .filter(
+                                      (user) =>
+                                        Number(user.userID) ==
+                                        comment.sellingpostitemcommentsUserID
+                                    )
+                                    .map((user: ShowPersons) => (
+                                      <>
+                                        <WrapperUserview>
+                                          <StyledUserImg
+                                            width={70}
+                                            height={70}
+                                            src={`http://localhost:3000/upload/${user.userImg}`}
+                                          />
+                                          <StyledTextBold>
+                                            {user.userFirstname}{" "}
+                                            {user.userLastname}
+                                          </StyledTextBold>
+                                        </WrapperUserview>
+                                        <WrapperRow>
+                                          {user.userID == getUser() && (
+                                            <StyledDeliteItem
+                                              onClick={() => {
+                                                deleteItemComment(
+                                                  comment.sellingPostItemCommentsID
+                                                );
+                                              }}
+                                              width={30}
+                                              height={30}
+                                              src={trashIcon}
+                                            />
+                                          )}
+                                          <StyledTextBold>
+                                            {new Date(
+                                              comment.sellingPostItemCommentsDate
+                                            ).toLocaleString("sv-SE")}
+                                          </StyledTextBold>
+                                        </WrapperRow>
+                                      </>
+                                    ))}
+                                </WrapperRowSpaceBetween>
+                                <StyledText>
+                                  {comment.sellingPostItemCommentsDescription}
+                                </StyledText>
+                              </WrapperCommentBuy>
+                            ))}
                           <form
                             onSubmit={(e) =>
                               handleItemBuySubmit(
@@ -560,63 +617,7 @@ export const Selling = () => {
                               </ErrorMassage>
                             </WrapperComment>
                           </form>
-                          {showComments
-                            .filter(
-                              (comment: ShowSellingPostComment) =>
-                                comment.sellingPostItemID ==
-                                itemcomment.sellingItemID
-                            )
-                            .map((comment: ShowSellingPostComment) => (
-                              <WrapperCommentBuy
-                                key={comment.sellingPostItemCommentsID}
-                              >
-                                <WrapperRowSpaceBetween>
-                                  {showUsers
-                                    .filter(
-                                      (user) =>
-                                        Number(user.userID) ==
-                                        comment.sellingpostitemcommentsUserID
-                                    )
-                                    .map((user: ShowPersons) => (
-                                      <>
-                                      <WrapperUserview>
-                                        <StyledUserImg
-                                          width={70}
-                                          height={70}
-                                          src={`http://localhost:3000/upload/${user.userImg}`}
-                                        />
-                                        <StyledTextBold>
-                                          {user.userFirstname}{" "}
-                                          {user.userLastname}
-                                        </StyledTextBold>
-                                      </WrapperUserview>
-                                  <WrapperRow>
-                                  {user.userID == getUser() &&
-                                    <StyledDeliteItem
-                                      onClick={() => {
-                                        deleteItemComment(
-                                          comment.sellingPostItemCommentsID
-                                        );
-                                      }}
-                                      width={30}
-                                      height={30}
-                                      src={trashIcon}
-                                    />
-                                    }
-                                    <StyledTextBold>
-                                      {new Date(
-                                        comment.sellingPostItemCommentsDate
-                                      ).toLocaleString("sv-SE")}
-                                    </StyledTextBold>
-                                  </WrapperRow>
-                                    </>                                  
-                                  ))}
-                                </WrapperRowSpaceBetween>
-                                <StyledText>
-                                  {comment.sellingPostItemCommentsDescription}
-                                </StyledText>
-                              </WrapperCommentBuy>
-                            ))}
+                          
                         </WrapperItemComment>
                       ))}
                   </WrapperPost>

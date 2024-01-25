@@ -168,6 +168,7 @@ export const Inspiration = () => {
                 inspirationPostDescription: "",
                 inspirationPostImg: undefined,
               });
+              window.location.reload();
             } else {
               seterrorInspirationPostMessage(inspirationPostErrorServererror);
             }
@@ -244,6 +245,7 @@ export const Inspiration = () => {
           setformCommentData({
             inspirationPostCommentDescription: "",
           });
+          window.location.reload();
         } else {
           seterrorInspirationPostCommentMessage(
             inspirationPostErrorServererror
