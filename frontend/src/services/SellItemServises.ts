@@ -1,4 +1,4 @@
-export function saveSellItemData (sellingItemDescription, sellingItemImg, id, token,  sellingItemUnserID, sellingItemID, ) {
+export function saveSellItemData (sellingItemDescription, sellingItemImg, id, token,  sellingItemUnserID, sellingItemID ) {
     return fetch("http://localhost:3000/sellingPostItem", {
         method: "POST",
         headers: {

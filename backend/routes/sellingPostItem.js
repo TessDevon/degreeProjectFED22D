@@ -27,8 +27,8 @@ router.post("/", function (req, res, next) {
 
     let sql = `INSERT INTO sellingpostitems (sellingItemDescription, sellingItemUnserID, sellingItemPostID) VALUES (${mysql.escape(
       newSellingpostitem.sellingItemDescription
-    )}, ${mysql.escape(newSellingpostitem.sellingItemPostID)}, ${mysql.escape(
-      newSellingpostitem.sellingItemUserID
+    )}, ${mysql.escape(newSellingpostitem.userID)}, ${mysql.escape(
+      newSellingpostitem.sellingItemPostID
     )})`;
 
     req.app.locals.con.query(sql, function (err, result) {
