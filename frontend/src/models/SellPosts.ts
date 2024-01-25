@@ -6,6 +6,14 @@ export class sellPost {
     ) {}
 }
 
+export class DeletePost {
+    constructor (
+        public userId: number,
+        public token: number,
+        public deletePostId: number 
+    ) {}
+}
+
 export class ShowSellPost {
     constructor (
         public sellingPostID: number,

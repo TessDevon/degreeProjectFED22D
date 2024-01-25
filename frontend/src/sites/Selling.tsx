@@ -38,10 +38,12 @@ import userimg from "../assets/userImg.jpg";
 import userimg2 from "../assets/userImg2.jpg";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import {
+  deleteSellPostData,
   fetchSellPostData,
   saveSellPostData,
 } from "../services/SellPostServices";
 import {
+  deleteSellItemData,
   fetchSellItemData,
   saveSellItemData,
 } from "../services/SellItemServises";
@@ -56,6 +58,7 @@ import { ShowPersons } from "../models/PersonClass";
 import { fetchPersonsData } from "../services/UserServices";
 import { ShowInspirationPostComment } from "../models/InspirationPosts";
 import {
+  deleteSellItemCommentData,
   fetchSellBuyItemData,
   saveSellItemBuyData,
 } from "../services/SellItemBuyServices";
@@ -90,11 +93,11 @@ export const Selling = () => {
   });
   //const[deleteIcon, setDeliteIcon] = useState(true) För att styra radera utifrån anvID.
 
-  const [showPosts, setShowPost] = useState<ShowSellPost>([]);
-  const [showUsers, setShowUsers] = useState<ShowPersons>([]);
-  const [showItemComments, setShowItemComments] = useState<ShowSellingPostItem>(
-    []
-  );
+  const [showPosts, setShowPost] = useState<ShowSellPost[]>([]);
+  const [showUsers, setShowUsers] = useState<ShowPersons[]>([]);
+  const [showItemComments, setShowItemComments] = useState<
+    ShowSellingPostItem[]
+  >([]);
   const [showComments, setShowComments] = useState<ShowInspirationPostComment>(
     []
   );
@@ -188,6 +191,26 @@ export const Selling = () => {
     console.log(formData);
   };
 
+  const deletePost = (
+    e: ChangeEvent<HTMLInputElement>,
+    deletePostId: number
+  ) => {
+    console.log("Körs");
+
+    let id = "";
+    let token = "";
+
+    const userLocalstorage = JSON.parse(
+      localStorage.getItem("userIdLocalStorage") || ""
+    );
+    if (userLocalstorage) {
+      id = userLocalstorage.id;
+      token = userLocalstorage.token;
+    }
+
+    deleteSellPostData(id, token, deletePostId);
+  };
+
   ////////////////////////////////////////////////////////////////////////////
   //////////////////////// Form to sell Item /////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////
@@ -256,6 +279,26 @@ export const Selling = () => {
     }
   };
 
+  const deleteItem = (
+    e: ChangeEvent<HTMLInputElement>,
+    deleteItemId: number
+  ) => {
+    console.log("Körs");
+
+    let id = "";
+    let token = "";
+
+    const userLocalstorage = JSON.parse(
+      localStorage.getItem("userIdLocalStorage") || ""
+    );
+    if (userLocalstorage) {
+      id = userLocalstorage.id;
+      token = userLocalstorage.token;
+    }
+
+    deleteSellItemData(id, token, deleteItemId);
+  };
+
   //////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////// Form to Comment /////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////
@@ -314,6 +357,26 @@ export const Selling = () => {
     }
   };
 
+  const deleteItemComment = (
+    e: ChangeEvent<HTMLInputElement>,
+    deleteItemCommentId: number
+  ) => {
+    console.log("Körs");
+
+    let id = "";
+    let token = "";
+
+    const userLocalstorage = JSON.parse(
+      localStorage.getItem("userIdLocalStorage") || ""
+    );
+    if (userLocalstorage) {
+      id = userLocalstorage.id;
+      token = userLocalstorage.token;
+    }
+
+    deleteSellItemCommentData(id, token, deleteItemCommentId);
+  };
+
   return (
     <>
       <WrapperBody>
@@ -342,6 +405,9 @@ export const Selling = () => {
                         ))}
                       <WrapperRow>
                         <StyledDeliteItem
+                          onClick={(e) => {
+                            deletePost(e, post.sellingPostID);
+                          }}
                           width={30}
                           height={30}
                           src={trashIcon}
@@ -416,6 +482,9 @@ export const Selling = () => {
                             <WrapperRowSpaceBetween>
                               <WrapperRow>
                                 <StyledDeliteItem
+                                  onClick={(e) => {
+                                    deleteItem(e, itemcomment.sellingItemID);
+                                  }}
                                   width={30}
                                   height={30}
                                   src={trashIcon}
@@ -484,6 +553,7 @@ export const Selling = () => {
                                   </WrapperUserview>
                                   <WrapperRow>
                                     <StyledDeliteItem
+                                      onClick={(e) => {deleteItemComment(e, comment.sellingPostItemCommentsID)}}
                                       width={30}
                                       height={30}
                                       src={trashIcon}

@@ -46,7 +46,6 @@ export function saveSellPostImg (sellingPostImg, userID, token, sellingPostID) {
 }
 
 
-
 export function fetchSellPostData (userID, token) {
     return fetch("http://localhost:3000/sellingPost", {
         method:"GET", 
@@ -67,6 +66,35 @@ export function fetchSellPostData (userID, token) {
     .then(data => {
         
         return data;
+    })
+    .catch((err) => {
+        console.log(err)
+        return false
+    })
+}
+
+
+export function deleteSellPostData (userID, token, deletePostId) {
+    return fetch("http://localhost:3000/sellingPost/" + deletePostId, {
+        method:"DELETE", 
+        headers: {
+            "Content-Type": "application/json",      
+        },
+        body: JSON.stringify({
+            userId:userID, token:token 
+        })
+    })
+    
+    .then(res => {
+        if (res.ok) {
+            return res.json();
+        } else {
+            throw "Post not deleted"
+        }
+    })
+    .then(data => {console.log('Deleted post');return data;})
+    .then(data => {
+        return true;
     })
     .catch((err) => {
         console.log(err)

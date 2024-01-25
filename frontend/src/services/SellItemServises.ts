@@ -70,3 +70,34 @@ export function fetchSellItemData (userID, token) {
         return false
     })
 }
+
+
+export function deleteSellItemData (userID, token, deleteItemId) {
+    return fetch("http://localhost:3000/sellingPostItem/" + deleteItemId, {
+        method:"DELETE", 
+        headers: {
+            "Content-Type": "application/json",      
+        },
+        body: JSON.stringify({
+            userId:userID, token:token 
+        })
+    })
+    
+    .then(res => {
+        if (res.ok) {
+            return res.json();
+        } else {
+            throw "Post not deleted"
+        }
+    })
+    .then(data => {console.log('Deleted post');return data;})
+    .then(data => {
+        return true;
+    })
+    .catch((err) => {
+        console.log(err)
+        return false
+    })
+}
+
+

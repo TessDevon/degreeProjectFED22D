@@ -79,7 +79,38 @@ router.post("/:sellingPostID/sellimage", upload.single("image"), function(req,re
     })
 })
 
+router.delete('/:deletePostId', function(req,res,next) {
+    let deletedPostId = req.params.deletePostId
+    let userId = req.body.userId
+    let token = req.body.token
 
+    let userToken = (CryptoJS.SHA3(userId + process.env.TOKEN).toString())
+
+    if (userToken != token) {
+        res.sendStatus(401);
+        return
+    }
+    
+    req.app.locals.con.connect(function(err){
+        if (err) {
+            console.log(err);
+            res.send(500);
+            return
+        }
+
+        let sql = `DELETE FROM sellingposts WHERE sellingPostUserID = ${mysql.escape(userId)} AND sellingPostID = ${mysql.escape(deletedPostId)}`
+
+        req.app.locals.con.query(sql, function(err, result) {
+            if(err) {
+                console.log(err);
+                res.send(500);
+                return
+            }
+            console.log('result', result);
+            res.json(result);
+        })
+    })
+})
 
 
 router.get('/', function(req,res,next) {

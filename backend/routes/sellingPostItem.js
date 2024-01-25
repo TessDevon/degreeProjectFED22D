@@ -125,4 +125,37 @@ router.get("/", function (req, res, next) {
   });
 });
 
+router.delete('/:deleteItemId', function(req,res,next) {
+  let deletedItemId = req.params.deleteItemId
+  let userId = req.body.userId
+  let token = req.body.token
+
+  let userToken = (CryptoJS.SHA3(userId + process.env.TOKEN).toString())
+
+  if (userToken != token) {
+      res.sendStatus(401);
+      return
+  }
+  
+  req.app.locals.con.connect(function(err){
+      if (err) {
+          console.log(err);
+          res.send(500);
+          return
+      }
+
+      let sql = `DELETE FROM sellingpostitems WHERE sellingItemUnserID = ${mysql.escape(userId)} AND sellingItemID = ${mysql.escape(deletedItemId)}`
+
+      req.app.locals.con.query(sql, function(err, result) {
+          if(err) {
+              console.log(err);
+              res.send(500);
+              return
+          }
+          console.log('result', result);
+          res.json(result);
+      })
+  })
+})
+
 module.exports = router;
