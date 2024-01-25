@@ -103,6 +103,20 @@ export const Inspiration = () => {
     if (showPosts.length == 0) fetchPostFunction();
   }, [showPosts, showUsers, showComments]);
 
+
+
+  // Get userID to check users view.
+  function getUser () {
+    let id = "";
+    const userLocalstorage = JSON.parse(
+      localStorage.getItem("userIdLocalStorage") || ""
+    );
+    if (userLocalstorage) {
+      id = userLocalstorage.id;
+    }
+    return id;
+  }
+  
   //////////////////////////////////////////////////////////////////////
   //////////////////////////// Form to add Post ////////////////////////
   //////////////////////////////////////////////////////////////////////
@@ -170,7 +184,6 @@ export const Inspiration = () => {
   };
 
   const deleteInspirationPost = (
-    e: ChangeEvent<HTMLInputElement>,
     deleteInspirationPostId: number
   ) => {
     console.log("Körs");
@@ -243,7 +256,6 @@ export const Inspiration = () => {
   };
 
   const deleteInspirationCommnet = (
-    e: ChangeEvent<HTMLInputElement>,
     deleteInspirationPostCommentId: number
   ) => {
     console.log("Körs");
@@ -280,6 +292,7 @@ export const Inspiration = () => {
                             Number(user.userID) == post.inspirationPostUserID
                         )
                         .map((user: ShowPersons) => (
+                          <>
                           <WrapperUserview key={user.userID}>
                             <StyledUserImg
                               width={70}
@@ -290,20 +303,21 @@ export const Inspiration = () => {
                               {user.userFirstname} {user.userLastname}
                             </StyledTextBold>
                           </WrapperUserview>
-                        ))}
                       <WrapperRow>
+                        {user.userID == getUser() && 
                         <StyledDeliteItem
-                          onClick={(e) => {
-                            deleteInspirationPost(e, post.inspirationPostID);
-                          }}
+                          onClick={() => {
+                            deleteInspirationPost(post.inspirationPostID);}}
                           width={30}
                           height={30}
                           src={trashIcon}
-                        />
+                        />}
                         <StyledTextBold>
                           {new Date(post.inspirationPostDate).toLocaleString('sv-SE')}
                         </StyledTextBold>
                       </WrapperRow>
+                      </>
+                      ))}
                     </WrapperRowSpaceBetween>
                     <StyledInspirationPostImg
                       width={160}
@@ -330,6 +344,7 @@ export const Inspiration = () => {
                                   comment.inpirationCommentsUserID
                               )
                               .map((user: ShowPersons) => (
+                              <>
                                 <WrapperUserview key={user.userID}>
                                   <StyledUserImg
                                     width={70}
@@ -340,30 +355,27 @@ export const Inspiration = () => {
                                     {user.userFirstname} {user.userLastname}
                                   </StyledTextBold>
                                 </WrapperUserview>
-                              ))}
                             <WrapperRow>
+                            {user.userID == getUser() &&
                               <StyledDeliteItem
-                                onClick={(e) => {
-                                  deleteInspirationCommnet(
-                                    e,
-                                    comment.inspirationCommentsID
-                                  );
-                                }}
+                                onClick={() => {deleteInspirationCommnet(Number(comment.inspirationCommentsID));}}
                                 width={30}
                                 height={30}
                                 src={trashIcon}
                               />
+                            }
                               <StyledTextBold>
                                 {new Date(comment.inspirationCommentsDate).toLocaleString('sv-SE')}
                               </StyledTextBold>
                             </WrapperRow>
+                            </>
+                            ))}
                           </WrapperRowSpaceBetween>
                           <StyledText>
                             {comment.inspirationCommentsDescription}
                           </StyledText>
                         </WrapperComment>
                       ))}
-
                     <form
                       onSubmit={(e) =>
                         handleCommentSubmit(e, post.inspirationPostID)
