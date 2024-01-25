@@ -390,7 +390,10 @@ export const Selling = () => {
                   <WrapperPost key={post.sellingPostID}>
                     <WrapperRowSpaceBetween>
                       {showUsers
-                        .filter((user) => Number(user.userID) == post.sellingPostUserID)
+                        .filter(
+                          (user) =>
+                            Number(user.userID) == post.sellingPostUserID
+                        )
                         .map((user: ShowPersons) => (
                           <WrapperUserview key={user.userID}>
                             <StyledUserImg
@@ -412,7 +415,11 @@ export const Selling = () => {
                           height={30}
                           src={trashIcon}
                         />
-                        <StyledTextBold>{post.sellingPostDate}</StyledTextBold>
+                        <StyledTextBold>
+                          {new Date(post.sellingPostDate).toLocaleString(
+                            "sv-SE"
+                          )}
+                        </StyledTextBold>
                       </WrapperRow>
                     </WrapperRowSpaceBetween>
                     <StyledInspirationPostImg
@@ -465,7 +472,8 @@ export const Selling = () => {
                             {showUsers
                               .filter(
                                 (user) =>
-                                  Number(user.userID) == itemcomment.sellingItemUnserID
+                                  Number(user.userID) ==
+                                  itemcomment.sellingItemUnserID
                               )
                               .map((user: ShowPersons) => (
                                 <WrapperUserview key={user.userID}>
@@ -489,8 +497,11 @@ export const Selling = () => {
                                   height={30}
                                   src={trashIcon}
                                 />
+
                                 <StyledTextBold>
-                                  {itemcomment.sellingItemDate}
+                                  {new Date(
+                                    itemcomment.sellingItemDate
+                                  ).toLocaleString("sv-SE")}
                                 </StyledTextBold>
                               </WrapperRow>
                             </WrapperRowSpaceBetween>
@@ -543,30 +554,42 @@ export const Selling = () => {
                                 key={comment.sellingPostItemCommentsID}
                               >
                                 <WrapperRowSpaceBetween>
-                                {showUsers
-                              .filter(
-                                (user) =>
-                                  Number(user.userID) == comment.sellingpostitemcommentsUserID
-                              )
-                              .map((user: ShowPersons) => (
-                                  <WrapperUserview>
-                                    <StyledUserImg
-                                      width={70}
-                                      height={70}
-                                      src={`http://localhost:3000/upload/${user.userImg}`}
-                                    />
-                                    <StyledTextBold>{user.userFirstname} {user.userLastname}</StyledTextBold>
-                                  </WrapperUserview>
-                              ))}
+                                  {showUsers
+                                    .filter(
+                                      (user) =>
+                                        Number(user.userID) ==
+                                        comment.sellingpostitemcommentsUserID
+                                    )
+                                    .map((user: ShowPersons) => (
+                                      <WrapperUserview>
+                                        <StyledUserImg
+                                          width={70}
+                                          height={70}
+                                          src={`http://localhost:3000/upload/${user.userImg}`}
+                                        />
+                                        <StyledTextBold>
+                                          {user.userFirstname}{" "}
+                                          {user.userLastname}
+                                        </StyledTextBold>
+                                      </WrapperUserview>
+                                    ))}
                                   <WrapperRow>
                                     <StyledDeliteItem
-                                      onClick={(e) => {deleteItemComment(e, comment.sellingPostItemCommentsID)}}
+                                      onClick={(e) => {
+                                        deleteItemComment(
+                                          e,
+                                          comment.sellingPostItemCommentsID
+                                        );
+                                      }}
                                       width={30}
                                       height={30}
                                       src={trashIcon}
                                     />
+
                                     <StyledTextBold>
-                                      {comment.sellingPostItemCommentsDate}
+                                      {new Date(
+                                        comment.sellingPostItemCommentsDate
+                                      ).toLocaleString("sv-SE")}
                                     </StyledTextBold>
                                   </WrapperRow>
                                 </WrapperRowSpaceBetween>

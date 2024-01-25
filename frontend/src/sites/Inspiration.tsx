@@ -301,7 +301,7 @@ export const Inspiration = () => {
                           src={trashIcon}
                         />
                         <StyledTextBold>
-                          {post.inspirationPostDate}
+                          {new Date(post.inspirationPostDate).toLocaleString('sv-SE')}
                         </StyledTextBold>
                       </WrapperRow>
                     </WrapperRowSpaceBetween>
@@ -354,7 +354,7 @@ export const Inspiration = () => {
                                 src={trashIcon}
                               />
                               <StyledTextBold>
-                                {comment.inspirationCommentsDate}
+                                {new Date(comment.inspirationCommentsDate).toLocaleString('sv-SE')}
                               </StyledTextBold>
                             </WrapperRow>
                           </WrapperRowSpaceBetween>
