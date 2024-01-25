@@ -349,7 +349,7 @@ export const Inspiration = () => {
                                   <StyledUserImg
                                     width={70}
                                     height={70}
-                                    src={userimg2}
+                                    src={`http://localhost:3000/upload/${user.userImg}`}
                                   />
                                   <StyledTextBold>
                                     {user.userFirstname} {user.userLastname}

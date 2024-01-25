@@ -34,7 +34,7 @@ import { ShowPersons } from "../models/PersonClass";
     }
 
     export function saveUserImg (userImage, userId, token) {
-        console.log(userImage)
+        //console.log(userImage)
         const formdata = new FormData()
         formdata.append("image", userImage)
         return fetch("http://localhost:3000/users/" +userId+ "/userimage", {
