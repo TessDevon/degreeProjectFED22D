@@ -113,6 +113,39 @@ router.get('/', function(req,res,next) {
         })
     })
 });
+
+router.delete('/:deleteInspirationPostId', function(req,res,next) {
+    let deleteInspirationPostId = req.params.deleteInspirationPostId
+    let userId = req.body.userId
+    let token = req.body.token
+
+    let userToken = (CryptoJS.SHA3(userId + process.env.TOKEN).toString())
+
+    if (userToken != token) {
+        res.sendStatus(401);
+        return
+    }
+    
+    req.app.locals.con.connect(function(err){
+        if (err) {
+            console.log(err);
+            res.send(500);
+            return
+        }
+
+        let sql = `DELETE FROM inspirationposts WHERE inspirationPostUserID = ${mysql.escape(userId)} AND inspirationPostID = ${mysql.escape(deleteInspirationPostId)}`
+
+        req.app.locals.con.query(sql, function(err, result) {
+            if(err) {
+                console.log(err);
+                res.sendStatus(500);
+                return
+            }
+            console.log('result', result);
+            res.json(result);
+        })
+    })
+})
        
 module.exports = router;
 

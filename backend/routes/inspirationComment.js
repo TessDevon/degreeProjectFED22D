@@ -33,7 +33,7 @@ router.post("/", function (req, res, next) {
         return;
       }
       console.log("result", result);
-      res.send(201);
+      res.json(result);
     });
   });
 });
@@ -70,4 +70,39 @@ router.get("/", function (req, res, next) {
   });
 });
 
+router.delete('/:deleteInspirationPostCommentId', function(req,res,next) {
+  let deleteInspirationPostCommentId = req.params.deleteInspirationPostCommentId
+  let userId = req.body.userId
+  let token = req.body.token
+
+  let userToken = (CryptoJS.SHA3(userId + process.env.TOKEN).toString())
+
+  if (userToken != token) {
+      res.sendStatus(401);
+      return
+  }
+  
+  req.app.locals.con.connect(function(err){
+      if (err) {
+          console.log(err);
+          res.send(500);
+          return
+      }
+
+      let sql = `DELETE FROM inspirationcomments WHERE inpirationCommentsUserID = ${mysql.escape(userId)} AND inspirationCommentsID = ${mysql.escape(deleteInspirationPostCommentId)}`
+
+      req.app.locals.con.query(sql, function(err, result) {
+          if(err) {
+              console.log(err);
+              res.sendStatus(500);
+              return
+          }
+          console.log('result', result);
+          res.json(result);
+      })
+  })
+})
+
 module.exports = router;
+
+
