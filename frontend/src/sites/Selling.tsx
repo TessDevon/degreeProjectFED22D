@@ -390,7 +390,7 @@ export const Selling = () => {
                   <WrapperPost key={post.sellingPostID}>
                     <WrapperRowSpaceBetween>
                       {showUsers
-                        .filter((user) => user.userID == post.sellingPostUserID)
+                        .filter((user) => Number(user.userID) == post.sellingPostUserID)
                         .map((user: ShowPersons) => (
                           <WrapperUserview key={user.userID}>
                             <StyledUserImg
@@ -465,7 +465,7 @@ export const Selling = () => {
                             {showUsers
                               .filter(
                                 (user) =>
-                                  user.userID == itemcomment.sellingItemUnserID
+                                  Number(user.userID) == itemcomment.sellingItemUnserID
                               )
                               .map((user: ShowPersons) => (
                                 <WrapperUserview key={user.userID}>
@@ -543,14 +543,21 @@ export const Selling = () => {
                                 key={comment.sellingPostItemCommentsID}
                               >
                                 <WrapperRowSpaceBetween>
+                                {showUsers
+                              .filter(
+                                (user) =>
+                                  Number(user.userID) == comment.sellingpostitemcommentsUserID
+                              )
+                              .map((user: ShowPersons) => (
                                   <WrapperUserview>
                                     <StyledUserImg
                                       width={70}
                                       height={70}
-                                      src={userimg2}
+                                      src={`http://localhost:3000/upload/${user.userImg}`}
                                     />
-                                    <StyledTextBold>Marie</StyledTextBold>
+                                    <StyledTextBold>{user.userFirstname} {user.userLastname}</StyledTextBold>
                                   </WrapperUserview>
+                              ))}
                                   <WrapperRow>
                                     <StyledDeliteItem
                                       onClick={(e) => {deleteItemComment(e, comment.sellingPostItemCommentsID)}}
