@@ -31,11 +31,16 @@ import {
   ShowInspirationPostComment,
 } from "../models/InspirationPosts";
 import {
-  fetchInspirationPostCommentData,
+  deleteInspirationPostData,
   fetchInspirationPostData,
-  saveInspirationPostCommentData,
   saveInspirationPostData,
 } from "../services/InsparationPostServices";
+
+import {
+  deleteInspirationPostCommentData,
+  fetchInspirationPostCommentData,
+  saveInspirationPostCommentData,
+} from "../services/InspirationCommentServises";
 import {
   StyledDeliteItem,
   StyledInspirationPostImg,
@@ -71,11 +76,11 @@ export const Inspiration = () => {
   });
 
   //const[deleteIcon, setDeliteIcon] = useState(true) //För att styra radera utifrån anvID.
-  const [showPosts, setShowPost] = useState<ShowInspirationPost>([]);
-  const [showUsers, setShowUsers] = useState<ShowPersons>([]);
-  const [showComments, setShowComments] = useState<ShowInspirationPostComment>(
-    []
-  );
+  const [showPosts, setShowPost] = useState<ShowInspirationPost[]>([]);
+  const [showUsers, setShowUsers] = useState<ShowPersons[]>([]);
+  const [showComments, setShowComments] = useState<
+    ShowInspirationPostComment[]
+  >([]);
 
   useEffect(() => {
     const fetchPostFunction = async () => {
@@ -98,8 +103,6 @@ export const Inspiration = () => {
     if (showPosts.length == 0) fetchPostFunction();
   }, [showPosts, showUsers, showComments]);
 
-  //console.log(showComments);
-
   //////////////////////////////////////////////////////////////////////
   //////////////////////////// Form to add Post ////////////////////////
   //////////////////////////////////////////////////////////////////////
@@ -119,7 +122,6 @@ export const Inspiration = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    //console.log(formData);
 
     let id = "";
     let token = "";
@@ -165,7 +167,26 @@ export const Inspiration = () => {
     } else {
       seterrorInspirationPostMessage(inspirationPostErrorName);
     }
-    //console.log(formData);
+  };
+
+  const deleteInspirationPost = (
+    e: ChangeEvent<HTMLInputElement>,
+    deleteInspirationPostId: number
+  ) => {
+    console.log("Körs");
+
+    let id = "";
+    let token = "";
+
+    const userLocalstorage = JSON.parse(
+      localStorage.getItem("userIdLocalStorage") || ""
+    );
+    if (userLocalstorage) {
+      id = userLocalstorage.id;
+      token = userLocalstorage.token;
+    }
+
+    deleteInspirationPostData(id, token, deleteInspirationPostId);
   };
 
   //////////////////////////////////////////////////////////////////////
@@ -186,7 +207,6 @@ export const Inspiration = () => {
   };
   const handleCommentSubmit = (e: FormEvent, inspirationPostID: number) => {
     e.preventDefault();
-    //console.log(formCommentData);
 
     let id = "";
     let token = "";
@@ -220,7 +240,26 @@ export const Inspiration = () => {
     } else {
       seterrorInspirationPostCommentMessage(inspirationPostErrorName);
     }
-    //console.log(FormData);
+  };
+
+  const deleteInspirationCommnet = (
+    e: ChangeEvent<HTMLInputElement>,
+    deleteInspirationPostCommentId: number
+  ) => {
+    console.log("Körs");
+
+    let id = "";
+    let token = "";
+
+    const userLocalstorage = JSON.parse(
+      localStorage.getItem("userIdLocalStorage") || ""
+    );
+    if (userLocalstorage) {
+      id = userLocalstorage.id;
+      token = userLocalstorage.token;
+    }
+
+    deleteInspirationPostCommentData(id, token, deleteInspirationPostCommentId);
   };
 
   return (
@@ -237,7 +276,8 @@ export const Inspiration = () => {
                     <WrapperRowSpaceBetween>
                       {showUsers
                         .filter(
-                          (user) => user.userID == post.inspirationPostUserID
+                          (user) =>
+                            Number(user.userID) == post.inspirationPostUserID
                         )
                         .map((user: ShowPersons) => (
                           <WrapperUserview key={user.userID}>
@@ -253,6 +293,9 @@ export const Inspiration = () => {
                         ))}
                       <WrapperRow>
                         <StyledDeliteItem
+                          onClick={(e) => {
+                            deleteInspirationPost(e, post.inspirationPostID);
+                          }}
                           width={30}
                           height={30}
                           src={trashIcon}
@@ -283,7 +326,7 @@ export const Inspiration = () => {
                             {showUsers
                               .filter(
                                 (user) =>
-                                  user.userID ==
+                                  Number(user.userID) ==
                                   comment.inpirationCommentsUserID
                               )
                               .map((user: ShowPersons) => (
@@ -300,6 +343,12 @@ export const Inspiration = () => {
                               ))}
                             <WrapperRow>
                               <StyledDeliteItem
+                                onClick={(e) => {
+                                  deleteInspirationCommnet(
+                                    e,
+                                    comment.inspirationCommentsID
+                                  );
+                                }}
                                 width={30}
                                 height={30}
                                 src={trashIcon}
