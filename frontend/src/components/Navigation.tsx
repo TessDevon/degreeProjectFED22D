@@ -142,8 +142,12 @@ return (
                 {t('navigationAboutText')}
             </Link>
           </StyleNavLi>
+          <StyleNavLi className="headerLink" onClick={closeBurgerClickNav}>
+            <Link style={{textDecoration:'none', color: 'black'}} className="Link" to="/Chat" >
+                {t('navigationChatText')}
+            </Link>
+          </StyleNavLi>
         </StyledNavUl>
-        <StyleNavP> {t('navigationChatText')}</StyleNavP> 
         <StyleNavP onClick={Logout}> 
           {t('navigationLogoutText')}
         </StyleNavP>

@@ -129,6 +129,14 @@ i18next
                 scaleMiniLabeltext: 'Dockhusmått i cm:',
                 checkNumberErrorMessage: 'Skriv endast in siffror i detta fält.',
 
+
+                chatH3: 'Chattsida med dina chattkontakter',
+                chatHeaderText: 'Chat med ',
+                chatHeaderFormText: 'Skicka meddelande till',
+                chatHeaderChatInfoText: 'Tänk på',
+                chatHeaderUserText: 'Användare på din chatsida',
+                chatInfoText: 'I denna grupp hänger vi för att ha trevligt tillsammans och ge varandra energi. Köp är binande och hanteras mellan köpare och säljare. För mer info läs gärna på "Om sidan"',
+
                 //footer
                 authertext: 'Built and styled by: TessDevon'
             }   
