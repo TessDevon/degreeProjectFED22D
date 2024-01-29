@@ -51,6 +51,8 @@ import trashIcon from "../assets/trashIcon.svg";
 import { ScaleCalculator } from "../components/ScaleCalculator";
 import { ShowPersons } from "../models/PersonClass";
 import { fetchPersonsData } from "../services/UserServices";
+import { startChat } from "../services/ChatServices";
+import { useNavigate } from "react-router-dom"
 
 export const Inspiration = () => {
   const { t } = useTranslation();
@@ -60,7 +62,7 @@ export const Inspiration = () => {
     errorInspirationPostCommentMessage,
     seterrorInspirationPostCommentMessage,
   ] = useState("");
-  const checkPostText = new RegExp(/^[a-zA-ZåäöÅÄÖ ,.'-/!]+$/i);
+  const checkPostText = new RegExp(/^[a-zA-ZåäöÅÄÖ ,.'-/!?:();]+$/i);
   const checkPostImg = new RegExp(/.*\.(jpe?g|png|jpg)$/i);
   const inspirationPostErrorName = t("inspirationPostErrorName");
   const inspirationPostErrorImg = t("inspirationPostErrorImg");
@@ -276,6 +278,18 @@ export const Inspiration = () => {
     deleteInspirationPostCommentData(id, token, deleteInspirationPostCommentId);
   };
 
+  ///////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////// Chat /////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////////////////////
+
+const navigate = useNavigate();
+
+function startChat (userID) {
+
+
+  navigate("/Chat?id="+userID)  //Skicka parameter i urlen.
+}
+
   return (
     <>
       <WrapperBody>
@@ -301,7 +315,7 @@ export const Inspiration = () => {
                               height={70}
                               src={`http://localhost:3000/upload/${user.userImg}`}
                             />
-                            <StyledTextBold>
+                            <StyledTextBold onClick={() => {startChat(user.userID)}}>
                               {user.userFirstname} {user.userLastname}
                             </StyledTextBold>
                           </WrapperUserview>
@@ -353,7 +367,7 @@ export const Inspiration = () => {
                                     height={70}
                                     src={`http://localhost:3000/upload/${user.userImg}`}
                                   />
-                                  <StyledTextBold>
+                                  <StyledTextBold onClick={() => {startChat(user.userID)}}>
                                     {user.userFirstname} {user.userLastname}
                                   </StyledTextBold>
                                 </WrapperUserview>

@@ -92,7 +92,7 @@ export const Selling = () => {
   const [showComments, setShowComments] = useState<ShowSellingPostComment>([]);
 
 
-  const checkPostText = new RegExp(/^[a-zA-ZåäöÅÄÖ0-9 ,.'-/!]+$/i);
+  const checkPostText = new RegExp(/^[a-zA-ZåäöÅÄÖ ,.'-/!?:();]+$/i);
   const checkPostImg = new RegExp(/.*\.(jpe?g|png|jpg)$/i);
   const sellingPostErrorName = t("inspirationPostErrorName");
   const sellingPostErrorImg = t("inspirationPostErrorImg");
