@@ -1,181 +1,189 @@
 import styled from "styled-components";
 
 ///////////////////////////////////////////////////
-//////////////// Generell /////////////////////////
+//////////////// General /////////////////////////
 ///////////////////////////////////////////////////
 
-export const Wrapper = styled.div` 
-    background-color: #9f2033;
-    width: 100%;
-`
-export const HeaderWrapper = styled.div `
-    border-width: 2px;
-    border:1px #c7a440 solid; 
-    box-shadow: 0px 3px 5px #C7A440;
-    display: flex;
+export const Wrapper = styled.div`
+  background-color: #9f2033;
+  width: 100%;
+`;
+export const HeaderWrapper = styled.div`
+  border-width: 2px;
+  border: 1px #c7a440 solid;
+  box-shadow: 0px 3px 5px #c7a440;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const WrapperOuter = styled.div`
+  background-color: white;
+  width: 95%;
+  margin-left: 2.5%;
+  @media (min-width: 1600px) {
+    width: 80%;
+    margin-left: 10%;
+  }
+
+`;
+
+export const WrapperBody = styled.div`
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+`;
+
+export const WrapperbodyOuter = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (min-width: 1024px) {
     flex-direction: row;
-    justify-content: space-between;
+  }
 `;
 
-export const WrapperOuter = styled.div `
-background-color: white;
-width: 95%;
-margin-left: 2.5%;
+export const WrapperRow = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
 
-export const WrapperBody = styled.div `
-    padding-left: 2.5%;
-    padding-right: 2.5%;
+export const WrapperRowSpaceBetween = styled(WrapperRow)`
+  justify-content: space-between;
 `;
 
-export const WrapperbodyOuter = styled.div `
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    @media (min-width: 1024px) {
-        flex-direction: row;
-    }
+export const WrapperPost = styled.article`
+  border: 1px #c7a440 solid;
+  box-shadow: 3px 3px 3px #c7a440;
+  border-radius: 10px;
+  padding: 3%;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `;
 
-export const WrapperRow = styled.div `
-    display: flex;
-    flex-direction: row;
-    
+export const WrapperChatRight = styled(WrapperPost)`
+  width: 50%;
+  box-shadow: 3px 3px 3px #c7a440;
+  display: flex;
+  position: relative;
+  left: 40%;
+  padding-top: 0px;
+  padding-bottom: 0px;
 `;
 
-export const WrapperRowSpaceBetween = styled(WrapperRow) `
-    justify-content: space-between;
+export const WrapperChatLeft = styled(WrapperPost)`
+  width: 50%;
+  border: 1px #9f2033 solid;
+  box-shadow: 3px 3px 3px #9f2033;
+  display: flex;
+  padding-top: 0px;
+  padding-bottom: 0px;
 `;
 
-export const WrapperPost = styled.article `
-    border: 1px #C7A440 solid;
-    box-shadow: 3px 3px 3px #C7A440;
-    border-radius: 10px;
-    padding: 3%;
-    margin-top: 10px;
-    margin-bottom: 10px;
+export const WrapperComment = styled.div`
+  border-left: 1px #c7a440 solid;
+  border-top: 1px #c7a440 solid;
+  border-top-left-radius: 15px;
+  padding-left: 2%;
+  margin-top: 20px;
 `;
 
-export const WrapperComment = styled.div `
-    border-left: 1px #C7A440 solid;
-    border-top: 1px #C7A440 solid;
-    border-top-left-radius: 15px;
-    padding-left: 2%;
-    margin-top: 20px;
+export const WrapperItemComment = styled(WrapperComment)`
+  border: 1px #c7a440 solid;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  padding-right: 2%;
 `;
 
-export const WrapperItemComment = styled(WrapperComment) `
-        border: 1px #C7A440 solid;
-        border-top-left-radius: 15px;
-        border-bottom-right-radius: 15px;
-        padding-right: 2%;
-`;
-
-export const WrapperCommentBuy = styled.div `
-    border-left: 1px #C7A440 solid;
-    border-top: 1px #C7A440 solid;
-    border-top-left-radius: 15px;
-    padding-left: 2%;
-    margin-top: 20px;
-
+export const WrapperCommentBuy = styled.div`
+  border-left: 1px #c7a440 solid;
+  border-top: 1px #c7a440 solid;
+  border-top-left-radius: 15px;
+  padding-left: 2%;
+  margin-top: 20px;
 `;
 
 ///////////////////////////////////////////////////
-//////////////// Specifik /////////////////////////
+//////////////// Specific /////////////////////////
 ///////////////////////////////////////////////////
 
-export const HeaderWrapperInner = styled.div `
-    display: flex;
-    flex-direction: row;
-    width:75%;
+export const HeaderWrapperInner = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 75%;
 
-    @media (min-width: 863px) {
-        width: 50%;
-    }
+  @media (min-width: 863px) {
+    width: 50%;
+  }
 `;
 
-export const WrapperbodyInnerLeftAbout = styled.section `
-    margin-left: 5%;
-    margin-right: 5%;
-    width: 90%;
-    
-    @media (min-width: 1024px) {
-        width: 70%;
-        margin-bottom: 3%;
-    }    
-`
+export const WrapperbodyInnerLeftAbout = styled.section`
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
 
-export const WrapperbodyInnerRightAbout = styled.section ` 
-    border: 1px solid #C7A440;
-    //box-shadow: 5px -5px 5px #C7A440;
-    padding:15px;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-bottom: 5%;
-    width: 85%;
-    box-shadow: 3px 3px 3px #C7A440;
-    border-bottom-right-radius: 15px;
-    /*border-right: 1px #C7A440 solid;
-    border-bottom: 1px #C7A440 solid;
-    
-    
-    margin-top:5%;
-    margin-bottom: 5%;
-    padding: 15px;
-*/
-    @media (min-width: 1024px) {
-        width: 20%;
-        margin-bottom: 3%;
-    }
-`
-
-
-export const WrapperbodyInnerLeftInspiration = styled.section `
-    margin-left: 5%;
-    margin-right: 5%;
-    width: 90%;
-    
-    
-    @media (min-width: 1024px) {
-        width: 60%;
-    }    
-`
-
-export const WrapperbodyInnerRightInspiration = styled.section ` 
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-bottom: 5%;
-    width: 90%;
-    
-
-    @media (min-width: 1024px) {
-        width: 30%;
-        margin-bottom: 0%;
-        padding-left: 5%;
-        margin-left: 0px;
-        border-left: 1px solid #C7A440;
-        
-    }
-`
-
-export const WrapperUserview = styled(WrapperRow) `
-    width: 45%;
+  @media (min-width: 1024px) {
+    width: 70%;
+    margin-bottom: 3%;
+  }
 `;
 
-export const WrapperInspirationRightInnerView = styled.article `
-    border-right: 1px #C7A440 solid;
-    border-bottom: 1px #C7A440 solid;
-    box-shadow: 3px 3px 3px #C7A440;
-    border-bottom-right-radius: 15px;
-    margin-top:5%;
-    margin-bottom: 5%;
-    padding: 15px;
-    
+export const WrapperbodyInnerRightAbout = styled.section`
+  border: 1px solid #c7a440;
+  padding: 15px;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 5%;
+  width: 85%;
+  box-shadow: 3px 3px 3px #c7a440;
+  border-bottom-right-radius: 15px;
+
+  @media (min-width: 1024px) {
+    width: 20%;
+    margin-bottom: 3%;
+  }
 `;
 
+export const WrapperbodyInnerLeftInspiration = styled.section`
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
 
-export const WrapperFooter = styled.div `
-    border: 1px #C7A440 solid;
-    box-shadow: 0px -2px 5px #C7A440;
+  @media (min-width: 1024px) {
+    width: 60%;
+  }
+`;
+
+export const WrapperbodyInnerRightInspiration = styled.section`
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 5%;
+  width: 90%;
+
+  @media (min-width: 1024px) {
+    width: 30%;
+    margin-bottom: 0%;
+    padding-left: 5%;
+    margin-left: 0px;
+    border-left: 1px solid #c7a440;
+  }
+`;
+
+export const WrapperUserview = styled(WrapperRow)`
+  width: 45%;
+`;
+
+export const WrapperInspirationRightInnerView = styled.article`
+  border-right: 1px #c7a440 solid;
+  border-bottom: 1px #c7a440 solid;
+  box-shadow: 3px 3px 3px #c7a440;
+  border-bottom-right-radius: 15px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  padding: 15px;
+`;
+
+export const WrapperFooter = styled.div`
+  border: 1px #c7a440 solid;
+  box-shadow: 0px -2px 5px #c7a440;
 `;

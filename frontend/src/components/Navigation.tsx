@@ -40,6 +40,10 @@ const StyleNav = styled.nav `
         margin-bottom: 0px;
         right: 30px;
     }
+
+    @media (min-width: 1600px) {
+        right: 180px;
+    }
   `;
 
 const StyledNavUl = styled.ul `

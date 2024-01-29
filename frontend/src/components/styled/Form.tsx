@@ -19,9 +19,11 @@ export const StyledTextInput = styled.input `
 
 export const StyledTextInputComment = styled.input `
     font-size: 18px;
+    height: 30px;
     display: inline;
     margin-bottom: 3%;
     width: 50%;
+    
 `;
 
 export const StyledRadioInput = styled.input `
@@ -52,4 +54,3 @@ export const StyledsScaleText = styled.p `
         font-size:20px;
     }
 `;
-//export const StyledScaleNumber = styled.input ``;
