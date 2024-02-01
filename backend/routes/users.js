@@ -137,7 +137,7 @@ router.post("/login", function (req, res) {
 
       if (result.length > 0) {
         let userToken = CryptoJS.SHA3(
-          result[0].userID + process.env.TOKEN
+          result[0].userId + process.env.TOKEN
         ).toString();
         if (passwordToCheck === result[0].userPassword) {
           res.json({ userId: result[0].userId, token: userToken });
