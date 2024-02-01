@@ -86,7 +86,7 @@ export const Selling = () => {
   const [showComments, setShowComments] = useState<ShowSellingPostComment>([]);
 
 
-  const checkPostText = new RegExp(/^[a-zA-ZåäöÅÄÖ ,.'-/!?:();]+$/i);
+  const checkPostText = new RegExp(/^[a-zA-ZåäöÅÄÖ 0-9,.'-/!?:();]+$/i);
   const checkPostImg = new RegExp(/.*\.(jpe?g|png|jpg)$/i);
   const sellingPostErrorName = t("inspirationPostErrorName");
   const sellingPostErrorImg = t("inspirationPostErrorImg");
@@ -382,7 +382,7 @@ export const Selling = () => {
             <div>
               <StyledH3>{t("sellviewHeaderPost")}</StyledH3>
               <div>
-                {showPosts.map((post: ShowSellPost) => (
+                {showPosts != false && showPosts.map((post: ShowSellPost) => (
                   <WrapperPost key={post.sellingPostID}>
                     <WrapperRowSpaceBetween>
                       {showUsers
@@ -518,7 +518,7 @@ export const Selling = () => {
                           <StyledInspirationPostImg
                             width={160}
                             height={75}
-                            src={`http://localhost:3000/upload/selling/${post.sellingPostImg}`}
+                            src={`http://localhost:3000/upload/selling/${itemcomment.sellingItemImg}`}
                           />
                           <StyledText>
                             {itemcomment.sellingItemDescription}
