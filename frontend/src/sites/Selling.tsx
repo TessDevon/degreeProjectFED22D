@@ -396,7 +396,7 @@ export const Selling = () => {
                               <StyledUserImg
                                 width={70}
                                 height={70}
-                                src={`http://localhost:3000/upload/${user.userImg}`}
+                                src={`http://localhost:3000/upload/users/${user.userImg}`}
                               />
                               <StyledTextBold>
                                 {user.userFirstname} {user.userLastname}
@@ -484,7 +484,7 @@ export const Selling = () => {
                                     <StyledUserImg
                                       width={70}
                                       height={70}
-                                      src={`http://localhost:3000/upload/${user.userImg}`}
+                                      src={`http://localhost:3000/upload/users/${user.userImg}`}
                                     />
                                     <StyledTextBold>
                                       {user.userFirstname} {user.userLastname}
@@ -546,7 +546,7 @@ export const Selling = () => {
                                           <StyledUserImg
                                             width={70}
                                             height={70}
-                                            src={`http://localhost:3000/upload/${user.userImg}`}
+                                            src={`http://localhost:3000/upload/users/${user.userImg}`}
                                           />
                                           <StyledTextBold>
                                             {user.userFirstname}{" "}
