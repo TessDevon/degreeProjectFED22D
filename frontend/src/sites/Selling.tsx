@@ -32,7 +32,6 @@ import {
 } from "../components/styled/Wrappers";
 import { useTranslation } from "react-i18next";
 import trashIcon from "../assets/trashIcon.svg";
-import sellImg from "../assets/sellImg.jpg";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import {
   deleteSellPostData,
@@ -519,7 +518,7 @@ export const Selling = () => {
                           <StyledInspirationPostImg
                             width={160}
                             height={75}
-                            src={sellImg}
+                            src={`http://localhost:3000/upload/selling/${post.sellingPostImg}`}
                           />
                           <StyledText>
                             {itemcomment.sellingItemDescription}
