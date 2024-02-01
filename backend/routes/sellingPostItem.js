@@ -7,6 +7,10 @@ const CryptoJS = require("crypto-js");
 
 const multer = require("multer");
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////// Save new item ///////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
 router.post("/", function (req, res, next) {
   let newSellingpostitem = req.body;
   let userId = newSellingpostitem.userID;
@@ -42,6 +46,10 @@ router.post("/", function (req, res, next) {
     });
   });
 });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////// Save image with multer to a folder in backendmap. And save the link in the database. ///////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 let storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -92,16 +100,19 @@ router.post(
   }
 );
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////// Fetch all sellingitems ///////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 router.get("/", function (req, res, next) {
+  let userId = req.headers.userid;
+  let token = req.headers.token;
 
-  let userId = req.headers.userid
-  let token = req.headers.token
-
-  let userToken = (CryptoJS.SHA3(userId + process.env.TOKEN).toString())
+  let userToken = CryptoJS.SHA3(userId + process.env.TOKEN).toString();
 
   if (userToken != token) {
-      res.sendStatus(401);
-      return
+    res.sendStatus(401);
+    return;
   }
 
   req.app.locals.con.connect(function (err) {
@@ -125,37 +136,43 @@ router.get("/", function (req, res, next) {
   });
 });
 
-router.delete('/:deleteItemId', function(req,res,next) {
-  let deletedItemId = req.params.deleteItemId
-  let userId = req.body.userId
-  let token = req.body.token
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////// Delete a selected item based on  ID ////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  let userToken = (CryptoJS.SHA3(userId + process.env.TOKEN).toString())
+router.delete("/:deleteItemId", function (req, res, next) {
+  let deletedItemId = req.params.deleteItemId;
+  let userId = req.body.userId;
+  let token = req.body.token;
+
+  let userToken = CryptoJS.SHA3(userId + process.env.TOKEN).toString();
 
   if (userToken != token) {
-      res.sendStatus(401);
-      return
+    res.sendStatus(401);
+    return;
   }
-  
-  req.app.locals.con.connect(function(err){
+
+  req.app.locals.con.connect(function (err) {
+    if (err) {
+      console.log(err);
+      res.send(500);
+      return;
+    }
+
+    let sql = `DELETE FROM sellingpostitems WHERE sellingItemUnserID = ${mysql.escape(
+      userId
+    )} AND sellingItemID = ${mysql.escape(deletedItemId)}`;
+
+    req.app.locals.con.query(sql, function (err, result) {
       if (err) {
-          console.log(err);
-          res.send(500);
-          return
+        console.log(err);
+        res.send(500);
+        return;
       }
-
-      let sql = `DELETE FROM sellingpostitems WHERE sellingItemUnserID = ${mysql.escape(userId)} AND sellingItemID = ${mysql.escape(deletedItemId)}`
-
-      req.app.locals.con.query(sql, function(err, result) {
-          if(err) {
-              console.log(err);
-              res.send(500);
-              return
-          }
-          console.log('result', result);
-          res.json(result);
-      })
-  })
-})
+      console.log("result", result);
+      res.json(result);
+    });
+  });
+});
 
 module.exports = router;

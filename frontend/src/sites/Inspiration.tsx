@@ -285,8 +285,6 @@ export const Inspiration = () => {
 const navigate = useNavigate();
 
 function startChat (userID) {
-
-
   navigate("/Chat?id="+userID)  //Skicka parameter i urlen.
 }
 

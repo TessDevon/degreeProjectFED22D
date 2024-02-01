@@ -3,6 +3,10 @@ var router = express.Router();
 const mysql = require("mysql2");
 const CryptoJS = require("crypto-js");
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////// Save comment to current post /////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 router.post("/", function (req, res, next) {
   let newSellingItemcomment = req.body;
   let userId = newSellingItemcomment.userID;
@@ -26,9 +30,9 @@ router.post("/", function (req, res, next) {
 
     let sql = `INSERT INTO sellingpostitemcomments (sellingPostItemCommentsDescription, sellingpostitemcommentsUserID , sellingPostItemID) VALUES (${mysql.escape(
       newSellingItemcomment.sellingPostItemCommentsDescription
-    )}, ${mysql.escape(
-      newSellingItemcomment.userID
-    )}, ${mysql.escape(newSellingItemcomment.sellingPostItemID)})`;
+    )}, ${mysql.escape(newSellingItemcomment.userID)}, ${mysql.escape(
+      newSellingItemcomment.sellingPostItemID
+    )})`;
 
     req.app.locals.con.query(sql, function (err, result) {
       if (err) {
@@ -41,6 +45,10 @@ router.post("/", function (req, res, next) {
     });
   });
 });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////// Fetch all comments /////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 router.get("/", function (req, res, next) {
   let userId = req.headers.userid;
@@ -73,6 +81,10 @@ router.get("/", function (req, res, next) {
     });
   });
 });
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////// Delete selected comment based on ID ////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 router.delete("/:deleteItemCommentId", function (req, res, next) {
   let deleteItemCommentId = req.params.deleteItemCommentId;
