@@ -61,24 +61,22 @@ export const WrapperPost = styled.article`
   margin-bottom: 10px;
 `;
 
-export const WrapperChatRight = styled(WrapperPost)`
-  width: 50%;
-  box-shadow: 3px 3px 3px #c7a440;
+export const WrapperChatuser = styled(WrapperPost)`
   display: flex;
-  position: relative;
-  left: 40%;
-  padding-top: 0px;
-  padding-bottom: 0px;
-`;
+  flex-direction: row;
+  //justify-content: space-between;
+  padding-right: 12%;
+`
 
-export const WrapperChatLeft = styled(WrapperPost)`
-  width: 50%;
-  border: 1px #9f2033 solid;
+export const WrapperChatuserActive = styled(WrapperChatuser)`
+  border: 1px #9f2033 solid; 
   box-shadow: 3px 3px 3px #9f2033;
+`
+export const WrapperChatShowUser = styled.div `
   display: flex;
-  padding-top: 0px;
-  padding-bottom: 0px;
-`;
+  flex-direction: row;
+  justify-content: space-between;
+`
 
 export const WrapperComment = styled.div`
   border-left: 1px #c7a440 solid;
@@ -167,6 +165,26 @@ export const WrapperbodyInnerRightInspiration = styled.section`
     margin-left: 0px;
     border-left: 1px solid #c7a440;
   }
+`;
+export const WrapperChatRight = styled(WrapperPost)`
+  width: 50%;
+  box-shadow: 3px 3px 3px #c7a440;
+  display: flex;
+  position: relative;
+  left: 40%;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  flex-direction: column;
+`;
+
+export const WrapperChatLeft = styled(WrapperPost)`
+  width: 50%;
+  border: 1px #9f2033 solid;
+  box-shadow: 3px 3px 3px #9f2033;
+  display: flex;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  flex-direction: column;
 `;
 
 export const WrapperUserview = styled(WrapperRow)`

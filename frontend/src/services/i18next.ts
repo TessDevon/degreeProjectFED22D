@@ -130,12 +130,16 @@ i18next
                 checkNumberErrorMessage: 'Skriv endast in siffror i detta fält.',
 
 
-                chatH3: 'Chattsida med dina chattkontakter',
+                chatH3: 'Chat',
                 chatHeaderText: 'Chat med ',
-                chatHeaderFormText: 'Skicka meddelande till',
+                chatHeaderFormText: 'Skicka meddelande',
                 chatHeaderChatInfoText: 'Tänk på',
-                chatHeaderUserText: 'Användare på din chatsida',
+                chatHeaderUserText: 'Min chatlista',
                 chatInfoText: 'I denna grupp hänger vi för att ha trevligt tillsammans och ge varandra energi. Köp är binande och hanteras mellan köpare och säljare. För mer info läs gärna på "Om sidan"',
+                chatMessageText: 'Skriv in din text som ska skickas',
+                chatMessageBtnText: 'Skicka',
+                chatInnerTextMe: 'Jag skriver',
+                chatInnerTextOtherPerson: 'skriver',
 
                 //footer
                 authertext: 'Built and styled by: TessDevon'

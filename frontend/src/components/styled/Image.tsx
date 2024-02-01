@@ -71,3 +71,7 @@ export const StyledDeliteItem = styled.img`
     width:30px;
   }
 `;
+
+export const StyledUserImgChat = styled(StyledUserImg) `
+  margin-left: 0px;
+`
