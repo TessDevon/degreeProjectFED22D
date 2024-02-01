@@ -46,13 +46,11 @@ import {
   StyledInspirationPostImg,
   StyledUserImg,
 } from "../components/styled/Image";
-import userimg2 from "../assets/userImg2.jpg";
 import trashIcon from "../assets/trashIcon.svg";
 import { ScaleCalculator } from "../components/ScaleCalculator";
 import { ShowPersons } from "../models/PersonClass";
 import { fetchPersonsData } from "../services/UserServices";
-import { startChat } from "../services/ChatServices";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 export const Inspiration = () => {
   const { t } = useTranslation();
@@ -77,7 +75,6 @@ export const Inspiration = () => {
     inspirationPostCommentDescription: "",
   });
 
-  //const[deleteIcon, setDeliteIcon] = useState(true) //För att styra radera utifrån anvID.
   const [showPosts, setShowPost] = useState<ShowInspirationPost[]>([]);
   const [showUsers, setShowUsers] = useState<ShowPersons[]>([]);
   const [showComments, setShowComments] = useState<
@@ -105,10 +102,8 @@ export const Inspiration = () => {
     if (showPosts.length == 0) fetchPostFunction();
   }, [showPosts, showUsers, showComments]);
 
-
-
   // Get userID to check users view.
-  function getUser () {
+  function getUser() {
     let id = "";
     const userLocalstorage = JSON.parse(
       localStorage.getItem("userIdLocalStorage") || ""
@@ -118,7 +113,7 @@ export const Inspiration = () => {
     }
     return id;
   }
-  
+
   //////////////////////////////////////////////////////////////////////
   //////////////////////////// Form to add Post ////////////////////////
   //////////////////////////////////////////////////////////////////////
@@ -186,9 +181,7 @@ export const Inspiration = () => {
     }
   };
 
-  const deleteInspirationPost = (
-    deleteInspirationPostId: number
-  ) => {
+  const deleteInspirationPost = (deleteInspirationPostId: number) => {
     console.log("Körs");
 
     let id = "";
@@ -259,9 +252,7 @@ export const Inspiration = () => {
     }
   };
 
-  const deleteInspirationCommnet = (
-    deleteInspirationPostCommentId: number
-  ) => {
+  const deleteInspirationCommnet = (deleteInspirationPostCommentId: number) => {
     console.log("Körs");
 
     let id = "";
@@ -282,11 +273,11 @@ export const Inspiration = () => {
   //////////////////////////////////// Chat /////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////////////////
 
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
-function startChat (userID) {
-  navigate("/Chat?id="+userID)  //Skicka parameter i urlen.
-}
+  function startChat(userID) {
+    navigate("/Chat?id=" + userID); //Skicka parameter i urlen.
+  }
 
   return (
     <>
@@ -307,31 +298,41 @@ function startChat (userID) {
                         )
                         .map((user: ShowPersons) => (
                           <>
-                          <WrapperUserview key={user.userID}>
-                            <StyledUserImg
-                              width={70}
-                              height={70}
-                              src={`http://localhost:3000/upload/${user.userImg}`}
-                            />
-                            <StyledTextBold onClick={() => {startChat(user.userID)}}>
-                              {user.userFirstname} {user.userLastname}
-                            </StyledTextBold>
-                          </WrapperUserview>
-                      <WrapperRow>
-                        {user.userID == getUser() && 
-                        <StyledDeliteItem
-                          onClick={() => {
-                            deleteInspirationPost(post.inspirationPostID);}}
-                          width={30}
-                          height={30}
-                          src={trashIcon}
-                        />}
-                        <StyledTextBold>
-                          {new Date(post.inspirationPostDate).toLocaleString('sv-SE')}
-                        </StyledTextBold>
-                      </WrapperRow>
-                      </>
-                      ))}
+                            <WrapperUserview key={user.userID}>
+                              <StyledUserImg
+                                width={70}
+                                height={70}
+                                src={`http://localhost:3000/upload/${user.userImg}`}
+                              />
+                              <StyledTextBold
+                                onClick={() => {
+                                  startChat(user.userID);
+                                }}
+                              >
+                                {user.userFirstname} {user.userLastname}
+                              </StyledTextBold>
+                            </WrapperUserview>
+                            <WrapperRow>
+                              {user.userID == getUser() && (
+                                <StyledDeliteItem
+                                  onClick={() => {
+                                    deleteInspirationPost(
+                                      post.inspirationPostID
+                                    );
+                                  }}
+                                  width={30}
+                                  height={30}
+                                  src={trashIcon}
+                                />
+                              )}
+                              <StyledTextBold>
+                                {new Date(
+                                  post.inspirationPostDate
+                                ).toLocaleString("sv-SE")}
+                              </StyledTextBold>
+                            </WrapperRow>
+                          </>
+                        ))}
                     </WrapperRowSpaceBetween>
                     <StyledInspirationPostImg
                       width={160}
@@ -358,32 +359,44 @@ function startChat (userID) {
                                   comment.inpirationCommentsUserID
                               )
                               .map((user: ShowPersons) => (
-                              <>
-                                <WrapperUserview key={user.userID}>
-                                  <StyledUserImg
-                                    width={70}
-                                    height={70}
-                                    src={`http://localhost:3000/upload/${user.userImg}`}
-                                  />
-                                  <StyledTextBold onClick={() => {startChat(user.userID)}}>
-                                    {user.userFirstname} {user.userLastname}
-                                  </StyledTextBold>
-                                </WrapperUserview>
-                            <WrapperRow>
-                            {user.userID == getUser() &&
-                              <StyledDeliteItem
-                                onClick={() => {deleteInspirationCommnet(Number(comment.inspirationCommentsID));}}
-                                width={30}
-                                height={30}
-                                src={trashIcon}
-                              />
-                            }
-                              <StyledTextBold>
-                                {new Date(comment.inspirationCommentsDate).toLocaleString('sv-SE')}
-                              </StyledTextBold>
-                            </WrapperRow>
-                            </>
-                            ))}
+                                <>
+                                  <WrapperUserview key={user.userID}>
+                                    <StyledUserImg
+                                      width={70}
+                                      height={70}
+                                      src={`http://localhost:3000/upload/${user.userImg}`}
+                                    />
+                                    <StyledTextBold
+                                      onClick={() => {
+                                        startChat(user.userID);
+                                      }}
+                                    >
+                                      {user.userFirstname} {user.userLastname}
+                                    </StyledTextBold>
+                                  </WrapperUserview>
+                                  <WrapperRow>
+                                    {user.userID == getUser() && (
+                                      <StyledDeliteItem
+                                        onClick={() => {
+                                          deleteInspirationCommnet(
+                                            Number(
+                                              comment.inspirationCommentsID
+                                            )
+                                          );
+                                        }}
+                                        width={30}
+                                        height={30}
+                                        src={trashIcon}
+                                      />
+                                    )}
+                                    <StyledTextBold>
+                                      {new Date(
+                                        comment.inspirationCommentsDate
+                                      ).toLocaleString("sv-SE")}
+                                    </StyledTextBold>
+                                  </WrapperRow>
+                                </>
+                              ))}
                           </WrapperRowSpaceBetween>
                           <StyledText>
                             {comment.inspirationCommentsDescription}

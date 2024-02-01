@@ -1,11 +1,6 @@
 import { useTranslation } from "react-i18next";
-import {
-  ErrorLeftcenterdMassage,
-} from "./styled/ErrorMassage";
-import {
-  scaleMini,
-  scaleReal,
-} from "../models/ScaleClass";
+import { ErrorLeftcenterdMassage } from "./styled/ErrorMassage";
+import { scaleMini, scaleReal } from "../models/ScaleClass";
 import { ChangeEvent, FormEvent, useState } from "react";
 import {
   StyledSpanGoldText,
@@ -20,14 +15,12 @@ import {
 } from "./styled/Form";
 import { StyledButtonInspirationviewComment } from "./styled/Buttons";
 
-
 export const ScaleCalculator = () => {
   const { t } = useTranslation();
   const [errorRealMessage, seterrorRealMessage] = useState("");
   const [errorMiniMessage, seterrorMiniMessage] = useState("");
   const checkNumber = new RegExp(/^[0-9]/);
   const checkNumberErrorMessage = t("checkNumberErrorMessage");
-
 
   ///////////////////////////////////////////////////////////////////////
   ///////////////// Real to dolls ///////////////////////////////////////

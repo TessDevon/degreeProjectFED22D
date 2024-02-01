@@ -33,9 +33,6 @@ import {
 import { useTranslation } from "react-i18next";
 import trashIcon from "../assets/trashIcon.svg";
 import sellImg from "../assets/sellImg.jpg";
-import sellImgfirst from "../assets/sellImgfirst.jpg";
-import userimg from "../assets/userImg.jpg";
-import userimg2 from "../assets/userImg2.jpg";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import {
   deleteSellPostData,
@@ -56,7 +53,6 @@ import {
 } from "../models/SellPosts";
 import { ShowPersons } from "../models/PersonClass";
 import { fetchPersonsData } from "../services/UserServices";
-import { ShowInspirationPostComment } from "../models/InspirationPosts";
 import {
   deleteSellItemCommentData,
   fetchSellBuyItemData,
@@ -69,7 +65,6 @@ export const Selling = () => {
   const [errorSellingPostMessage, seterrorSellingPostMessage] = useState("");
   const [errorSellingPostItemMessage, seterrorSellingPostItemMessage] =
     useState("");
-
   const [errorSellingPostItemBuyMessage, seterrorSellingPostItemBuyMessage] =
     useState("");
   const [formData, setFormData] = useState<sellPost>({
@@ -97,9 +92,7 @@ export const Selling = () => {
   const sellingPostErrorName = t("inspirationPostErrorName");
   const sellingPostErrorImg = t("inspirationPostErrorImg");
   const sellingPostErrorServererror = t("inspirationPostErrorServererror");
-  
 
-  
 
   useEffect(() => {
     const fetchPostFunction = async () => {

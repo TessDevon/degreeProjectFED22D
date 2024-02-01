@@ -25,7 +25,6 @@ export const WrapperOuter = styled.div`
     width: 80%;
     margin-left: 10%;
   }
-
 `;
 
 export const WrapperBody = styled.div`
@@ -61,23 +60,6 @@ export const WrapperPost = styled.article`
   margin-bottom: 10px;
 `;
 
-export const WrapperChatuser = styled(WrapperPost)`
-  display: flex;
-  flex-direction: row;
-  //justify-content: space-between;
-  padding-right: 12%;
-`
-
-export const WrapperChatuserActive = styled(WrapperChatuser)`
-  border: 1px #9f2033 solid; 
-  box-shadow: 3px 3px 3px #9f2033;
-`
-export const WrapperChatShowUser = styled.div `
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`
-
 export const WrapperComment = styled.div`
   border-left: 1px #c7a440 solid;
   border-top: 1px #c7a440 solid;
@@ -85,6 +67,10 @@ export const WrapperComment = styled.div`
   padding-left: 2%;
   margin-top: 20px;
 `;
+
+///////////////////////////////////////////////////
+//////////////// Specific /////////////////////////
+///////////////////////////////////////////////////
 
 export const WrapperItemComment = styled(WrapperComment)`
   border: 1px #c7a440 solid;
@@ -100,10 +86,6 @@ export const WrapperCommentBuy = styled.div`
   padding-left: 2%;
   margin-top: 20px;
 `;
-
-///////////////////////////////////////////////////
-//////////////// Specific /////////////////////////
-///////////////////////////////////////////////////
 
 export const HeaderWrapperInner = styled.div`
   display: flex;
@@ -204,4 +186,20 @@ export const WrapperInspirationRightInnerView = styled.article`
 export const WrapperFooter = styled.div`
   border: 1px #c7a440 solid;
   box-shadow: 0px -2px 5px #c7a440;
+`;
+
+export const WrapperChatuser = styled(WrapperPost)`
+  display: flex;
+  flex-direction: row;
+  padding-right: 12%;
+`;
+
+export const WrapperChatuserActive = styled(WrapperChatuser)`
+  border: 1px #9f2033 solid;
+  box-shadow: 3px 3px 3px #9f2033;
+`;
+export const WrapperChatShowUser = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
