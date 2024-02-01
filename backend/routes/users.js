@@ -68,7 +68,7 @@ function createNewUser(req, res) {
 
   let storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, "public/upload");
+      cb(null, "public/upload/users");
     },
     filename: function (req, file, cb) {
       cb(null, uuidv4() + "." + file.originalname.split(".").pop());

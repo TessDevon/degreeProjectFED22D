@@ -21,7 +21,7 @@ export const WrapperOuter = styled.div`
   background-color: white;
   width: 95%;
   margin-left: 2.5%;
-  @media (min-width: 1600px) {
+  @media (min-width: 1650px) {
     width: 80%;
     margin-left: 10%;
   }
