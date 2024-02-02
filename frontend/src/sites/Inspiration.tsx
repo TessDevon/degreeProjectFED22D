@@ -240,7 +240,10 @@ export const Inspiration = () => {
           setformCommentData({
             inspirationPostCommentDescription: "",
           });
-          window.location.reload();
+          fetchInspirationPostCommentData(id, token).then((data) =>
+            setShowComments(data)
+          );
+          // Ladda om kommentarerna när man lagt in en ny.
         } else {
           seterrorInspirationPostCommentMessage(
             inspirationPostErrorServererror
@@ -288,150 +291,153 @@ export const Inspiration = () => {
             <div>
               <StyledH3>{t("inspirationheaderPost")}</StyledH3>
               <div>
-                {showPosts.map((post: ShowInspirationPost) => (
-                  <WrapperPost key={post.inspirationPostID}>
-                    <WrapperRowSpaceBetween>
-                      {showUsers
-                        .filter(
-                          (user) =>
-                            Number(user.userID) == post.inspirationPostUserID
-                        )
-                        .map((user: ShowPersons) => (
-                          <>
-                            <WrapperUserview key={user.userID}>
-                              <StyledUserImg
-                                width={70}
-                                height={70}
-                                src={`http://localhost:3000/upload/users/${user.userImg}`}
-                              />
-                              <StyledTextBold
+                {showPosts != false &&
+                  showPosts.map((post: ShowInspirationPost) => (
+                    <WrapperPost key={post.inspirationPostID}>
+                      <WrapperRowSpaceBetween>
+                        {showUsers
+                          .filter(
+                            (user) =>
+                              Number(user.userID) == post.inspirationPostUserID
+                          )
+                          .map((user: ShowPersons) => (
+                            <>
+                              <WrapperUserview
                                 onClick={() => {
                                   startChat(user.userID);
                                 }}
+                                key={user.userID}
                               >
-                                {user.userFirstname} {user.userLastname}
-                              </StyledTextBold>
-                            </WrapperUserview>
-                            <WrapperRow>
-                              {user.userID == getUser() && (
-                                <StyledDeliteItem
-                                  onClick={() => {
-                                    deleteInspirationPost(
-                                      post.inspirationPostID
-                                    );
-                                  }}
-                                  width={30}
-                                  height={30}
-                                  src={trashIcon}
+                                <StyledUserImg
+                                  width={70}
+                                  height={70}
+                                  src={`http://localhost:3000/upload/users/${user.userImg}`}
                                 />
-                              )}
-                              <StyledTextBold>
-                                {new Date(
-                                  post.inspirationPostDate
-                                ).toLocaleString("sv-SE")}
-                              </StyledTextBold>
-                            </WrapperRow>
-                          </>
-                        ))}
-                    </WrapperRowSpaceBetween>
-                    <StyledInspirationPostImg
-                      width={160}
-                      height={75}
-                      src={`http://localhost:3000/upload/inspiration/${post.inspirationPostImg}`}
-                    />
-                    <StyledTextGold>
-                      {post.inspirationPostHeader}
-                    </StyledTextGold>
-                    <StyledText>{post.inspirationPostDescription}</StyledText>
-                    {showComments
-                      .filter(
-                        (comment) =>
-                          comment.inspirationCommentsPostID ==
-                          post.inspirationPostID
-                      )
-                      .map((comment: ShowInspirationPostComment) => (
-                        <WrapperComment key={comment.inspirationCommentsID}>
-                          <WrapperRowSpaceBetween>
-                            {showUsers
-                              .filter(
-                                (user) =>
-                                  Number(user.userID) ==
-                                  comment.inpirationCommentsUserID
-                              )
-                              .map((user: ShowPersons) => (
-                                <>
-                                  <WrapperUserview key={user.userID}>
-                                    <StyledUserImg
-                                      width={70}
-                                      height={70}
-                                      src={`http://localhost:3000/upload/users/${user.userImg}`}
-                                    />
-                                    <StyledTextBold
+                                <StyledTextBold>
+                                  {user.userFirstname} {user.userLastname}
+                                </StyledTextBold>
+                              </WrapperUserview>
+                              <WrapperRow>
+                                {user.userID == getUser() && (
+                                  <StyledDeliteItem
+                                    onClick={() => {
+                                      deleteInspirationPost(
+                                        post.inspirationPostID
+                                      );
+                                    }}
+                                    width={30}
+                                    height={30}
+                                    src={trashIcon}
+                                  />
+                                )}
+                                <StyledTextBold>
+                                  {new Date(
+                                    post.inspirationPostDate
+                                  ).toLocaleString("sv-SE")}
+                                </StyledTextBold>
+                              </WrapperRow>
+                            </>
+                          ))}
+                      </WrapperRowSpaceBetween>
+                      <StyledInspirationPostImg
+                        width={160}
+                        height={75}
+                        src={`http://localhost:3000/upload/inspiration/${post.inspirationPostImg}`}
+                      />
+                      <StyledTextGold>
+                        {post.inspirationPostHeader}
+                      </StyledTextGold>
+                      <StyledText>{post.inspirationPostDescription}</StyledText>
+                      {showComments
+                        .filter(
+                          (comment) =>
+                            comment.inspirationCommentsPostID ==
+                            post.inspirationPostID
+                        )
+                        .map((comment: ShowInspirationPostComment) => (
+                          <WrapperComment key={comment.inspirationCommentsID}>
+                            <WrapperRowSpaceBetween>
+                              {showUsers
+                                .filter(
+                                  (user) =>
+                                    Number(user.userID) ==
+                                    comment.inpirationCommentsUserID
+                                )
+                                .map((user: ShowPersons) => (
+                                  <>
+                                    <WrapperUserview
                                       onClick={() => {
                                         startChat(user.userID);
                                       }}
+                                      key={user.userID}
                                     >
-                                      {user.userFirstname} {user.userLastname}
-                                    </StyledTextBold>
-                                  </WrapperUserview>
-                                  <WrapperRow>
-                                    {user.userID == getUser() && (
-                                      <StyledDeliteItem
-                                        onClick={() => {
-                                          deleteInspirationCommnet(
-                                            Number(
-                                              comment.inspirationCommentsID
-                                            )
-                                          );
-                                        }}
-                                        width={30}
-                                        height={30}
-                                        src={trashIcon}
+                                      <StyledUserImg
+                                        width={70}
+                                        height={70}
+                                        src={`http://localhost:3000/upload/users/${user.userImg}`}
                                       />
-                                    )}
-                                    <StyledTextBold>
-                                      {new Date(
-                                        comment.inspirationCommentsDate
-                                      ).toLocaleString("sv-SE")}
-                                    </StyledTextBold>
-                                  </WrapperRow>
-                                </>
-                              ))}
-                          </WrapperRowSpaceBetween>
+                                      <StyledTextBold>
+                                        {user.userFirstname} {user.userLastname}
+                                      </StyledTextBold>
+                                    </WrapperUserview>
+                                    <WrapperRow>
+                                      {user.userID == getUser() && (
+                                        <StyledDeliteItem
+                                          onClick={() => {
+                                            deleteInspirationCommnet(
+                                              Number(
+                                                comment.inspirationCommentsID
+                                              )
+                                            );
+                                          }}
+                                          width={30}
+                                          height={30}
+                                          src={trashIcon}
+                                        />
+                                      )}
+                                      <StyledTextBold>
+                                        {new Date(
+                                          comment.inspirationCommentsDate
+                                        ).toLocaleString("sv-SE")}
+                                      </StyledTextBold>
+                                    </WrapperRow>
+                                  </>
+                                ))}
+                            </WrapperRowSpaceBetween>
+                            <StyledText>
+                              {comment.inspirationCommentsDescription}
+                            </StyledText>
+                          </WrapperComment>
+                        ))}
+                      <form
+                        onSubmit={(e) =>
+                          handleCommentSubmit(e, post.inspirationPostID)
+                        }
+                      >
+                        <WrapperComment>
                           <StyledText>
-                            {comment.inspirationCommentsDescription}
+                            {t("inspirationPostCommentDescriptionText")}
                           </StyledText>
+                          <WrapperRowSpaceBetween>
+                            <StyledTextInputComment
+                              value={
+                                formCommentData.inspirationPostCommentDescription
+                              }
+                              type="text"
+                              onChange={handleCommentChange}
+                              name="inspirationPostCommentDescription"
+                            />
+                            <StyledButtonInspirationviewComment>
+                              {t("inspirationCommentBtn")}
+                            </StyledButtonInspirationviewComment>
+                          </WrapperRowSpaceBetween>
+                          <ErrorMassage>
+                            {errorInspirationPostCommentMessage}
+                          </ErrorMassage>
                         </WrapperComment>
-                      ))}
-                    <form
-                      onSubmit={(e) =>
-                        handleCommentSubmit(e, post.inspirationPostID)
-                      }
-                    >
-                      <WrapperComment>
-                        <StyledText>
-                          {t("inspirationPostCommentDescriptionText")}
-                        </StyledText>
-                        <WrapperRowSpaceBetween>
-                          <StyledTextInputComment
-                            value={
-                              formCommentData.inspirationPostCommentDescription
-                            }
-                            type="text"
-                            onChange={handleCommentChange}
-                            name="inspirationPostCommentDescription"
-                          />
-                          <StyledButtonInspirationviewComment>
-                            {t("inspirationCommentBtn")}
-                          </StyledButtonInspirationviewComment>
-                        </WrapperRowSpaceBetween>
-                        <ErrorMassage>
-                          {errorInspirationPostCommentMessage}
-                        </ErrorMassage>
-                      </WrapperComment>
-                    </form>
-                  </WrapperPost>
-                ))}
+                      </form>
+                    </WrapperPost>
+                  ))}
               </div>
             </div>
           </WrapperbodyInnerLeftInspiration>
