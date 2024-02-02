@@ -45,11 +45,8 @@ At the end I will do user test on users. I have the following 3 interview tasks 
 If the opportunity exists, I will add tests for Javascript functions
 
 
-## Applicationflow
-![Applicationflow](./frontend/src/assets/applicationflow.jpg)
-
-## Sitemap
-![Sitemap](./frontend/src/assets/sitemap.jpg)
+## Applicationflow and Sitemap
+![Applicationflow](./frontend/src/assets/appflowSitemap.jpg)
 
 ## Result 
 ![Desktop-Login](./frontend/src/assets/resultLoginDesktop.jpg)
