@@ -397,17 +397,18 @@ export const Selling = () => {
                           )
                           .map((user: ShowPersons) => (
                             <>
-                              <WrapperUserview key={user.userID}>
+                              <WrapperUserview
+                                onClick={() => {
+                                  startChat(user.userID);
+                                }}
+                                key={user.userID}
+                              >
                                 <StyledUserImg
                                   width={70}
                                   height={70}
                                   src={`http://localhost:3000/upload/users/${user.userImg}`}
                                 />
-                                <StyledTextBold
-                                  onClick={() => {
-                                    startChat(user.userID);
-                                  }}
-                                >
+                                <StyledTextBold>
                                   {user.userFirstname} {user.userLastname}
                                 </StyledTextBold>
                               </WrapperUserview>
@@ -489,17 +490,18 @@ export const Selling = () => {
                                 )
                                 .map((user: ShowPersons) => (
                                   <>
-                                    <WrapperUserview key={user.userID}>
+                                    <WrapperUserview
+                                      onClick={() => {
+                                        startChat(user.userID);
+                                      }}
+                                      key={user.userID}
+                                    >
                                       <StyledUserImg
                                         width={70}
                                         height={70}
                                         src={`http://localhost:3000/upload/users/${user.userImg}`}
                                       />
-                                      <StyledTextBold
-                                        onClick={() => {
-                                          startChat(user.userID);
-                                        }}
-                                      >
+                                      <StyledTextBold>
                                         {user.userFirstname} {user.userLastname}
                                       </StyledTextBold>
                                     </WrapperUserview>
@@ -555,17 +557,18 @@ export const Selling = () => {
                                       )
                                       .map((user: ShowPersons) => (
                                         <>
-                                          <WrapperUserview>
+                                          <WrapperUserview
+                                            onClick={() => {
+                                              startChat(user.userID);
+                                            }}
+                                            key={user.userID}
+                                          >
                                             <StyledUserImg
                                               width={70}
                                               height={70}
                                               src={`http://localhost:3000/upload/users/${user.userImg}`}
                                             />
-                                            <StyledTextBold
-                                              onClick={() => {
-                                                startChat(user.userID);
-                                              }}
-                                            >
+                                            <StyledTextBold>
                                               {user.userFirstname}{" "}
                                               {user.userLastname}
                                             </StyledTextBold>
