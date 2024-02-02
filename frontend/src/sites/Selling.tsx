@@ -14,6 +14,7 @@ import {
 import {
   StyledText,
   StyledTextBold,
+  StyledTextBoldDate,
   StyledTextGold,
 } from "../components/styled/Text";
 import {
@@ -435,11 +436,11 @@ export const Selling = () => {
                                     src={trashIcon}
                                   />
                                 )}
-                                <StyledTextBold>
+                                <StyledTextBoldDate>
                                   {new Date(
                                     post.sellingPostDate
                                   ).toLocaleString("sv-SE")}
-                                </StyledTextBold>
+                                </StyledTextBoldDate>
                               </WrapperRow>
                             </>
                           ))}
@@ -531,11 +532,11 @@ export const Selling = () => {
                                             src={trashIcon}
                                           />
                                         )}
-                                        <StyledTextBold>
+                                        <StyledTextBoldDate>
                                           {new Date(
                                             itemcomment.sellingItemDate
                                           ).toLocaleString("sv-SE")}
-                                        </StyledTextBold>
+                                        </StyledTextBoldDate>
                                       </WrapperRow>
                                     </WrapperRowSpaceBetween>
                                   </>
@@ -662,7 +663,7 @@ export const Selling = () => {
                 <div>
                   <div>
                     <StyledText>{t("sellPostHeader")}</StyledText>
-                    <StyledTextInput
+                    <StyledTextInputComment
                       value={formData.sellPostHeader}
                       type="text"
                       onChange={handleChange}
@@ -671,7 +672,7 @@ export const Selling = () => {
                   </div>
                   <div>
                     <StyledText>{t("sellPostDescription")}</StyledText>
-                    <StyledTextInput
+                    <StyledTextInputComment
                       value={formData.sellPostDescription}
                       type="text"
                       onChange={handleChange}
@@ -681,7 +682,7 @@ export const Selling = () => {
 
                   <div>
                     <StyledText>{t("sellPostImg")}</StyledText>
-                    <StyledTextInput
+                    <StyledTextInputComment
                       //value={formData.sellPostImg}
                       type="file"
                       onChange={handleChange}

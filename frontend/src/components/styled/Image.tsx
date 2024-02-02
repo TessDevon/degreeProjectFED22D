@@ -64,14 +64,19 @@ export const StyledUserImg = styled.img`
 `;
 
 export const StyledDeliteItem = styled.img`
-  padding: 18px;
+  padding: 0px;
   width: 20px;
+  align-self: right;
+
+  @media (min-width: 540px) {
+    padding: 18px;
+  }
 
   @media (min-width: 768px) {
-    width:30px;
+    width: 30px;
   }
 `;
 
-export const StyledUserImgChat = styled(StyledUserImg) `
+export const StyledUserImgChat = styled(StyledUserImg)`
   margin-left: 0px;
-`
+`;

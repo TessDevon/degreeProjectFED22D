@@ -48,7 +48,12 @@ export const WrapperRow = styled.div`
 `;
 
 export const WrapperRowSpaceBetween = styled(WrapperRow)`
-  justify-content: space-between;
+  flex-direction: column;
+
+  @media (min-width: 540px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
 export const WrapperPost = styled.article`
@@ -170,8 +175,11 @@ export const WrapperChatLeft = styled(WrapperPost)`
 `;
 
 export const WrapperUserview = styled(WrapperRow)`
-  width: 45%;
   cursor: pointer;
+  width: 80%;
+  @media (min-width: 1024px) {
+    width: 45%;
+  }
 `;
 
 export const WrapperInspirationRightInnerView = styled.article`

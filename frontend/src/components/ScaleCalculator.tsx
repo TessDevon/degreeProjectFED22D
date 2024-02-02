@@ -10,7 +10,7 @@ import {
 import {
   StyledLabelText,
   StyledRadioInput,
-  StyledTextInput,
+  StyledTextInputComment,
   StyledsScaleText,
 } from "./styled/Form";
 import { StyledButtonInspirationviewComment } from "./styled/Buttons";
@@ -109,7 +109,7 @@ export const ScaleCalculator = () => {
           <div>
             <StyledTextBold>{t("scaleRealHeader")}</StyledTextBold>
             <StyledLabelText>{t("scaleRealLabeltext")}</StyledLabelText>
-            <StyledTextInput
+            <StyledTextInputComment
               value={scaleRealData.selectedRealMeasure}
               type="text"
               onChange={handleRealChange}
@@ -164,7 +164,7 @@ export const ScaleCalculator = () => {
           <div>
             <StyledTextBold>{t("scaleMiniHeader")}</StyledTextBold>
             <StyledLabelText>{t("scaleMiniLabeltext")}</StyledLabelText>
-            <StyledTextInput
+            <StyledTextInputComment
               value={scaleMiniData.selectedMiniMeasure}
               type="text"
               onChange={handleMiniChange}

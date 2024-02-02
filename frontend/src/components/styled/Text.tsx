@@ -11,19 +11,19 @@ export const StyledText = styled.p`
 
 export const StyleTextBlock = styled(StyledText)`
   display: block;
-`
+`;
 
 export const StyledTextFlow = styled(StyledText)`
   float: inline-end;
-`
+`;
 
 export const StyledTextBold = styled(StyledText)`
   font-weight: bold;
 `;
 
-export const StyledTextBlock = styled(StyledText) `
+export const StyledTextBlock = styled(StyledText)`
   display: block;
-`
+`;
 
 export const FooterText = styled(StyledText)`
   text-shadow: 1px 1px 1px #7e6829;
@@ -52,23 +52,39 @@ export const StyledSpanGoldText = styled(StyledSpanText)`
   color: #c7a440;
 `;
 
-export const StyledChatTextRight = styled(StyledText) `
+export const StyledChatTextRight = styled(StyledText)`
   color: #c7a440;
-`
+`;
 
 export const StyleChatTextRightRight = styled(StyledChatTextRight)`
   text-align: end;
-`
+`;
 
-export const StyleChatTextLeft = styled(StyledText) `
+export const StyleChatTextLeft = styled(StyledText)`
   color: #9f2033;
-`
+`;
 
 export const StyleChatTextLeftRight = styled(StyleChatTextLeft)`
   text-align: end;
-`
+`;
 
-export const StyledChatText = styled(StyledText) `
+export const StyledChatText = styled(StyledText)`
   margin-top: 0px;
   margin-bottom: 0px;
-`
+`;
+
+export const StyledTextBoldDate = styled(StyledText)`
+  font-weight: bold;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  text-align: right;
+  width: 95%;
+
+  @media (min-width: 540px) {
+    width: 100%;
+    margin-top: 18px;
+    margin-bottom: 18px;
+    margin-left: 0px;
+  }
+`;

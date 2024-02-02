@@ -4,6 +4,7 @@ import { StyledH2, StyledH3 } from "../components/styled/Headers";
 import {
   StyledText,
   StyledTextBold,
+  StyledTextBoldDate,
   StyledTextGold,
 } from "../components/styled/Text";
 import {
@@ -276,11 +277,14 @@ export const Inspiration = () => {
       token = userLocalstorage.token;
     }
 
-    deleteInspirationPostCommentData(id, token, deleteInspirationPostCommentId);
-
-    fetchInspirationPostCommentData(id, token).then((data) =>
-      setShowComments(data)
-    );
+    deleteInspirationPostCommentData(
+      id,
+      token,
+      deleteInspirationPostCommentId
+    )
+      fetchInspirationPostCommentData(id, token).then((data) =>
+        setShowComments(data)
+      );
   };
 
   ///////////////////////////////////////////////////////////////////////////////////////////
@@ -341,11 +345,11 @@ export const Inspiration = () => {
                                     src={trashIcon}
                                   />
                                 )}
-                                <StyledTextBold>
+                                <StyledTextBoldDate>
                                   {new Date(
                                     post.inspirationPostDate
                                   ).toLocaleString("sv-SE")}
-                                </StyledTextBold>
+                                </StyledTextBoldDate>
                               </WrapperRow>
                             </>
                           ))}
@@ -406,11 +410,11 @@ export const Inspiration = () => {
                                           src={trashIcon}
                                         />
                                       )}
-                                      <StyledTextBold>
+                                      <StyledTextBoldDate>
                                         {new Date(
                                           comment.inspirationCommentsDate
                                         ).toLocaleString("sv-SE")}
-                                      </StyledTextBold>
+                                      </StyledTextBoldDate>
                                     </WrapperRow>
                                   </>
                                 ))}
@@ -462,7 +466,7 @@ export const Inspiration = () => {
                 <div>
                   <div>
                     <StyledText>{t("inspirationPostHeaderText")}</StyledText>
-                    <StyledTextInput
+                    <StyledTextInputComment
                       value={formData.inspirationPostHeader}
                       type="text"
                       onChange={handleChange}
@@ -473,7 +477,7 @@ export const Inspiration = () => {
                     <StyledText>
                       {t("inspirationPostDescriptionText")}
                     </StyledText>
-                    <StyledTextInput
+                    <StyledTextInputComment
                       value={formData.inspirationPostDescription}
                       type="text"
                       onChange={handleChange}
@@ -483,7 +487,7 @@ export const Inspiration = () => {
 
                   <div>
                     <StyledText>{t("inspirationPostImg")}</StyledText>
-                    <StyledTextInput
+                    <StyledTextInputComment
                       type="file"
                       onChange={handleChange}
                       name="inspirationPostImg"
