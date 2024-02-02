@@ -201,9 +201,9 @@ export const Inspiration = () => {
       token = userLocalstorage.token;
     }
 
-    deleteInspirationPostData(id, token, deleteInspirationPostId);
-
-    fetchInspirationPostData(id, token).then((data) => setShowPost(data));
+    deleteInspirationPostData(id, token, deleteInspirationPostId).then(() => {
+      fetchInspirationPostData(id, token).then((data) => setShowPost(data));
+    });
   };
 
   //////////////////////////////////////////////////////////////////////
@@ -281,10 +281,11 @@ export const Inspiration = () => {
       id,
       token,
       deleteInspirationPostCommentId
-    )
+    ).then(() => {
       fetchInspirationPostCommentData(id, token).then((data) =>
         setShowComments(data)
       );
+    });
   };
 
   ///////////////////////////////////////////////////////////////////////////////////////////

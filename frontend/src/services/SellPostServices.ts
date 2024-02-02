@@ -16,9 +16,9 @@ export function saveSellPostData (sellingPostHeader, sellingPostDescription, sel
     })
     .then(data=> {console.log('Sparat inlägg');return data;})
     .then(data =>{
-        saveSellPostImg(sellingPostImg, userID, token, data.postID)
+        return saveSellPostImg(sellingPostImg, userID, token, data.postID)
         //localStorage.setItem("userIdLocalStorage", JSON.stringify({id:data.userId, token:data.token}))
-        return true;
+        //return true;
     })
     .catch ((err) => {
         console.log(err)

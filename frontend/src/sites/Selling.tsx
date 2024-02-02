@@ -209,8 +209,9 @@ export const Selling = () => {
       token = userLocalstorage.token;
     }
 
-    deleteSellPostData(id, token, deletePostId);
-    fetchSellPostData(id, token).then((data) => setShowPost(data));
+    deleteSellPostData(id, token, deletePostId).then(() => {
+      fetchSellPostData(id, token).then((data) => setShowPost(data));
+    });
   };
 
   ////////////////////////////////////////////////////////////////////////////
@@ -299,9 +300,9 @@ export const Selling = () => {
       token = userLocalstorage.token;
     }
 
-    deleteSellItemData(id, token, deleteItemId);
-
-    fetchSellItemData(id, token).then((data) => setShowItemComments(data));
+    deleteSellItemData(id, token, deleteItemId).then(() => {
+      fetchSellItemData(id, token).then((data) => setShowItemComments(data));
+    });
   };
 
   //////////////////////////////////////////////////////////////////////////////////////////////
@@ -350,7 +351,7 @@ export const Selling = () => {
       ).then((ok) => {
         if (ok) {
           seterrorSellingPostItemBuyMessage("");
-          
+
           fetchSellBuyItemData(id, token).then((data) => setShowComments(data));
           setformSellData({
             sellingItemBuyDescription: "",
@@ -379,8 +380,9 @@ export const Selling = () => {
       token = userLocalstorage.token;
     }
 
-    deleteSellItemCommentData(id, token, deleteItemCommentId);
-    fetchSellBuyItemData(id, token).then((data) => setShowComments(data));
+    deleteSellItemCommentData(id, token, deleteItemCommentId).then(() => {
+      fetchSellBuyItemData(id, token).then((data) => setShowComments(data));
+    });
   };
 
   const navigate = useNavigate();

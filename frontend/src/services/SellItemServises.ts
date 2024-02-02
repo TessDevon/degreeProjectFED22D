@@ -15,8 +15,8 @@ export function saveSellItemData (sellingItemDescription, sellingItemImg, id, to
     })
     .then(data=> {console.log('Sparat inlägg');return data;})
     .then(data => {
-        saveItemPostImg(sellingItemImg, id, token, data.postID)
-        return true;
+        return saveItemPostImg(sellingItemImg, id, token, data.postID)
+        //return true;
     })
     .catch ((err) => {
         console.log(err)

@@ -30,8 +30,8 @@ export function saveInspirationPostData(
       return data;
     })
     .then((data) => {
-      savePostImg(inspirationPostImg, userID, token, data.postID);
-      return true;
+      return savePostImg(inspirationPostImg, userID, token, data.postID);
+      //return true;
     })
     .catch((err) => {
       console.log(err);
