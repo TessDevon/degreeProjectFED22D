@@ -146,7 +146,7 @@ io.on("connection", function (socket) {
               console.log(err);
             }
             console.log("result", result);
-            socket.emit("chatID", { chatID: result.insertID });
+            socket.emit("chatID", { chatID: result.insertId });
           });
         } else {
           socket.emit("chatID", { chatID: result[0].chatID });

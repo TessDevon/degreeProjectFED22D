@@ -36,7 +36,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Chat = () => {
   const { t } = useTranslation();
-
+  const checkPostText = new RegExp(/^[a-zA-ZåäöÅÄÖ 0-9,.'-/!?:();]+$/i);
   const [chatmessageEvents, setChatmessageEvents] = useState([]);
   const [otherChatPersonID, setOtherChatPersonID] = useState("");
   const [chatID, setChatID] = useState("");
@@ -46,6 +46,8 @@ export const Chat = () => {
   const [formData, setFormData] = useState({
     chatComment: "",
   });
+  const [errorChatMessage, seterrorChatMessage] = useState("");
+  const sellingPostErrorName = t("inspirationPostErrorName");
 
   let userId = "";
   let token = "";
@@ -104,6 +106,8 @@ export const Chat = () => {
     // Got chatID to start chat.
     function onChatId(msg) {
       setChatID(msg.chatID);
+      fetchChatPersonsData(userId, token).then((data) => setShowChatUser(data));
+      //Fix so person show in list when new chat starts.
     }
 
     // Function that runs when a certain message is received.
@@ -135,15 +139,20 @@ export const Chat = () => {
   };
 
   function handleChatSubmit(event) {
-    // Send messages from the form.
     event.preventDefault();
-    socket.emit("chatmessage", {
-      text: formData.chatComment,
-      chatID: chatID,
-      otherChatPersonID: otherChatPersonID,
-      userId: userId,
-    });
-    setFormData({ chatComment: "" });
+    if (checkPostText.test(formData.chatComment)) {
+      // Send messages from the form.
+
+      socket.emit("chatmessage", {
+        text: formData.chatComment,
+        chatID: chatID,
+        otherChatPersonID: otherChatPersonID,
+        userId: userId,
+      });
+      setFormData({ chatComment: "" });
+    } else {
+      seterrorChatMessage(sellingPostErrorName);
+    }
   }
 
   function getUser() {
@@ -229,7 +238,7 @@ export const Chat = () => {
                       {t("chatMessageBtnText")}
                     </StyledButtonInspirationviewComment>
                   </WrapperRowSpaceBetween>
-                  <ErrorMassage>{}</ErrorMassage>
+                  <ErrorMassage>{errorChatMessage}</ErrorMassage>
                 </div>
               </form>
             </WrapperInspirationRightInnerView>
@@ -268,7 +277,6 @@ export const Chat = () => {
                                   src={`http://localhost:3000/upload/users/${user.userImg}`}
                                 />
                                 <StyledTextBold>
-                                  {" "}
                                   {user.userFirstname} {user.userLastname}
                                 </StyledTextBold>
                               </WrapperChatuser>
