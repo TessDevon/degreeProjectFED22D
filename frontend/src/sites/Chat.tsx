@@ -1,3 +1,4 @@
+import LoginModal from "../components/LoginModal";
 import { StyledH2, StyledH3 } from "../components/styled/Headers";
 import { useTranslation } from "react-i18next";
 import {
@@ -18,6 +19,7 @@ import {
   StyleChatTextRightRight,
   StyledChatText,
   StyledChatTextRight,
+  StyledSpanGoldText,
   StyledText,
   StyledTextBold,
 } from "../components/styled/Text";
@@ -141,7 +143,7 @@ export const Chat = () => {
       otherChatPersonID: otherChatPersonID,
       userId: userId,
     });
-    setFormData({chatComment: ""})
+    setFormData({ chatComment: "" });
   }
 
   function getUser() {
@@ -234,6 +236,10 @@ export const Chat = () => {
             <WrapperInspirationRightInnerView>
               <StyledH3>{t("chatHeaderChatInfoText")}</StyledH3>
               <StyledText>{t("chatInfoText")}</StyledText>
+              <StyledSpanGoldText>
+                {t("chatInfoTextBoldGold")}
+              </StyledSpanGoldText>
+              <StyledTextBold>{t("chatInfoTextBold")}</StyledTextBold>
             </WrapperInspirationRightInnerView>
             <div>
               <StyledH3>{t("chatHeaderUserText")}</StyledH3>
@@ -284,7 +290,6 @@ export const Chat = () => {
                                   src={`http://localhost:3000/upload/users/${user.userImg}`}
                                 />
                                 <StyledTextBold>
-                                  {" "}
                                   {user.userFirstname} {user.userLastname}
                                 </StyledTextBold>
                               </WrapperChatuserActive>
@@ -296,6 +301,7 @@ export const Chat = () => {
           </WrapperbodyInnerRightInspiration>
         </WrapperbodyOuter>
       </WrapperBody>
+      <LoginModal></LoginModal>
     </>
   );
 };

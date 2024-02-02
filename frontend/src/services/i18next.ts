@@ -102,7 +102,7 @@ i18next
                 sellPostDescription: 'Beskrivning',
                 sellPostImg: 'Lägg till bild',
                 sellInformation: '',
-                sellHeaderRule: 'Försäljningsregler:',
+                sellHeaderRule: 'Tänk på',
                 selltextRule:'FAST PRIS eller som AUKTION, auktion ska pågå i minst 24 timmar och allt som syns på bilden ska ingå. Kommentera köp i varan. Köp är bindande och det är bara ordet ”köper” som låser köpen, alt "köper om...". Inläggen ska tas bort 24 timmar efter såld vara. Om varorna inte sålts inom en månad kommer dessa att tas bort.',
                 sellAddItemBtn:'Kommentera',
 
@@ -135,6 +135,8 @@ i18next
                 chatHeaderFormText: 'Skicka meddelande',
                 chatHeaderChatInfoText: 'Tänk på',
                 chatHeaderUserText: 'Min chatlista',
+                chatInfoTextBoldGold:'För att starta chat:',
+                chatInfoTextBold: ' Tryck på den användaren som du vill chatta med i inspirationsvyn eller säljvyn. Då startas en chat och det är bara att börja skriva.',
                 chatInfoText: 'I denna grupp hänger vi för att ha trevligt tillsammans och ge varandra energi. Köp är binande och hanteras mellan köpare och säljare. För mer info läs gärna på "Om sidan"',
                 chatMessageText: 'Skriv in din text som ska skickas',
                 chatMessageBtnText: 'Skicka',
