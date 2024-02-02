@@ -171,6 +171,7 @@ export const WrapperChatLeft = styled(WrapperPost)`
 
 export const WrapperUserview = styled(WrapperRow)`
   width: 45%;
+  cursor: pointer;
 `;
 
 export const WrapperInspirationRightInnerView = styled.article`
@@ -192,11 +193,13 @@ export const WrapperChatuser = styled(WrapperPost)`
   display: flex;
   flex-direction: row;
   padding-right: 12%;
+  cursor: pointer;
 `;
 
 export const WrapperChatuserActive = styled(WrapperChatuser)`
   border: 1px #9f2033 solid;
   box-shadow: 3px 3px 3px #9f2033;
+  cursor: pointer;
 `;
 export const WrapperChatShowUser = styled.div`
   display: flex;
