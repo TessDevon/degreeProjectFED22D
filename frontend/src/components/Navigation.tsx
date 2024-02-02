@@ -134,7 +134,7 @@ const Navigation = ({ open, closeBurgerClickNav }: IOpenProps) => {
             <Link
               style={{ textDecoration: "none", color: "black" }}
               className="Link"
-              to="/"
+              to="/inspiration"
             >
               {t("navigationInspirationText")}
             </Link>
@@ -152,7 +152,7 @@ const Navigation = ({ open, closeBurgerClickNav }: IOpenProps) => {
             <Link
               style={{ textDecoration: "none", color: "black" }}
               className="Link"
-              to="/About"
+              to="/"
             >
               {t("navigationAboutText")}
             </Link>

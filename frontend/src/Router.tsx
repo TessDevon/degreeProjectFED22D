@@ -16,7 +16,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element:<Inspiration></Inspiration>,
+                element:<About></About>,
                 index:true
             },
             {
@@ -24,8 +24,8 @@ export const router = createBrowserRouter([
                 element: <Selling></Selling>,
             },
             {
-                path: "/about",
-                element: <About></About>
+                path: "/inspiration",
+                element: <Inspiration></Inspiration>
             }, 
             {
                 path:"/chat",
