@@ -7,7 +7,7 @@ Today there are Facebook groups for dollhouses and miniature worlds. These are d
 
 By using this page, users will be able to be inspired, sell and buy miniatures and communicate in a simpler and smoother way. Without disturbing steps between activities. 
 
-![Alt text](image.png)
+![userpersonas](userpersonas.jpg)
 
-![Alt text](image-1.png)
+![moodboard](moodboard.jpg)
 
