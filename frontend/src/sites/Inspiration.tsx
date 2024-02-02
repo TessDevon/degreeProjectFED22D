@@ -60,7 +60,7 @@ export const Inspiration = () => {
     errorInspirationPostCommentMessage,
     seterrorInspirationPostCommentMessage,
   ] = useState("");
-  const checkPostText = new RegExp(/^[a-zA-ZåäöÅÄÖ ,.'-/!?:();]+$/i);
+  const checkPostText = new RegExp(/^[a-zA-ZåäöÅÄÖ0-9 ,.'-/!?:();]+$/i);
   const checkPostImg = new RegExp(/.*\.(jpe?g|png|jpg)$/i);
   const inspirationPostErrorName = t("inspirationPostErrorName");
   const inspirationPostErrorImg = t("inspirationPostErrorImg");
@@ -165,7 +165,12 @@ export const Inspiration = () => {
                 inspirationPostDescription: "",
                 inspirationPostImg: undefined,
               });
-              window.location.reload();
+              //window.location.reload();
+              // FUNGERAR EJ PÅ BILDEN!!
+              fetchInspirationPostData(id, token).then((data) =>
+                setShowPost(data)
+              );
+              //Ladda om sidan genom att hämta listan på nytta efter sparning.
             } else {
               seterrorInspirationPostMessage(inspirationPostErrorServererror);
             }
@@ -196,6 +201,8 @@ export const Inspiration = () => {
     }
 
     deleteInspirationPostData(id, token, deleteInspirationPostId);
+
+    fetchInspirationPostData(id, token).then((data) => setShowPost(data));
   };
 
   //////////////////////////////////////////////////////////////////////
@@ -270,6 +277,10 @@ export const Inspiration = () => {
     }
 
     deleteInspirationPostCommentData(id, token, deleteInspirationPostCommentId);
+
+    fetchInspirationPostCommentData(id, token).then((data) =>
+      setShowComments(data)
+    );
   };
 
   ///////////////////////////////////////////////////////////////////////////////////////////

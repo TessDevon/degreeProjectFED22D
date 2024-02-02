@@ -175,7 +175,9 @@ export const Selling = () => {
                 sellPostDescription: "",
                 sellPostImg: undefined,
               });
-              window.location.reload();
+              fetchSellPostData(id, token).then((data) => setShowPost(data));
+
+              //window.location.reload();
             } else {
               seterrorSellingPostMessage(sellingPostErrorServererror);
             }
@@ -207,6 +209,7 @@ export const Selling = () => {
     }
 
     deleteSellPostData(id, token, deletePostId);
+    fetchSellPostData(id, token).then((data) => setShowPost(data));
   };
 
   ////////////////////////////////////////////////////////////////////////////
@@ -265,7 +268,10 @@ export const Selling = () => {
               sellingItemDescription: "",
               sellingItemImg: undefined,
             });
-            window.location.reload();
+            fetchSellItemData(id, token).then((data) =>
+              setShowItemComments(data)
+            );
+            //window.location.reload();
           } else {
             seterrorSellingPostItemMessage(sellingPostErrorServererror);
           }
@@ -293,6 +299,8 @@ export const Selling = () => {
     }
 
     deleteSellItemData(id, token, deleteItemId);
+
+    fetchSellItemData(id, token).then((data) => setShowItemComments(data));
   };
 
   //////////////////////////////////////////////////////////////////////////////////////////////
@@ -341,10 +349,12 @@ export const Selling = () => {
       ).then((ok) => {
         if (ok) {
           seterrorSellingPostItemBuyMessage("");
+          
+          fetchSellBuyItemData(id, token).then((data) => setShowComments(data));
           setformSellData({
             sellingItemBuyDescription: "",
           });
-          window.location.reload();
+          //window.location.reload();
         } else {
           seterrorSellingPostItemBuyMessage(sellingPostErrorServererror);
         }
@@ -369,6 +379,7 @@ export const Selling = () => {
     }
 
     deleteSellItemCommentData(id, token, deleteItemCommentId);
+    fetchSellBuyItemData(id, token).then((data) => setShowComments(data));
   };
 
   const navigate = useNavigate();
