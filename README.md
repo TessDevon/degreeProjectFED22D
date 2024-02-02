@@ -11,8 +11,11 @@ By using this page, users will be able to be inspired, sell and buy miniatures a
 
 ![moodboard](./frontend/src/assets/moodboard.jpg)
 
+Whireframe
 ![whireframe](./frontend/src/assets/whireframe.jpg)
-
+Prototype Phone
 ![prototypPhone](./frontend/src/assets/prototypphone.jpg)
+Prototype Tablet
 ![prototypTablet](./frontend/src/assets/prototyptablet.jpg)
+Prototyp Desktop
 ![prototypDesktop](./frontend/src/assets/prototypdesktop.jpg)
