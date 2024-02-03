@@ -53,3 +53,4 @@ If the opportunity exists, I will add tests for Javascript functions
 ![Desktop-Inspiration](./frontend/src/assets/resultInspirationDesktop.jpg)
 ![Desktop-Sell](./frontend/src/assets/resultBuyAndSellDesktop.jpg)
 ![Desktop-Chat](./frontend/src/assets/resultChatDesktop.jpg)
+![Mobile](./frontend/src/assets/resultmobile.jpg)
