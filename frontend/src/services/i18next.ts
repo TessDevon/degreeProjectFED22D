@@ -144,7 +144,12 @@ i18next
                 chatInnerTextOtherPerson: 'skriver',
 
                 //footer
-                authertext: 'Built and styled by: TessDevon'
+                authertext: 'Built and styled by: TessDevon',
+                
+                alttextuserimg: 'Användarbild',
+                alttextinspirationimg: 'Inspirationsbild från användare',
+                alttextSellingGroupImg: 'Bild som beskriver försäljningen',
+                alttextSellingItemImg: 'Bild på varan som säljs'
             }   
         }
     }

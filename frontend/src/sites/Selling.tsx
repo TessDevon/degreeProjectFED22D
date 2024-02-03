@@ -421,6 +421,7 @@ export const Selling = () => {
                                   width={70}
                                   height={70}
                                   src={`http://localhost:3000/upload/users/${user.userImg}`}
+                                  alt={t('alttextuserimg')}
                                 />
                                 <StyledTextBold>
                                   {user.userFirstname} {user.userLastname}
@@ -451,6 +452,7 @@ export const Selling = () => {
                         width={160}
                         height={75}
                         src={`http://localhost:3000/upload/selling/${post.sellingPostImg}`}
+                        alt={t('alttextSellingGroupImg')}            
                       />
                       <StyledTextGold>{post.sellingPostHeader}</StyledTextGold>
                       <StyledText>{post.sellingPostDescription}</StyledText>
@@ -514,6 +516,7 @@ export const Selling = () => {
                                         width={70}
                                         height={70}
                                         src={`http://localhost:3000/upload/users/${user.userImg}`}
+                                        alt={t('alttextuserimg')}
                                       />
                                       <StyledTextBold>
                                         {user.userFirstname} {user.userLastname}
@@ -548,6 +551,7 @@ export const Selling = () => {
                               width={160}
                               height={75}
                               src={`http://localhost:3000/upload/selling/${itemcomment.sellingItemImg}`}
+                              alt={t('alttextSellingItemImg')}              
                             />
                             <StyledText>
                               {itemcomment.sellingItemDescription}
@@ -581,6 +585,7 @@ export const Selling = () => {
                                               width={70}
                                               height={70}
                                               src={`http://localhost:3000/upload/users/${user.userImg}`}
+                                              alt={t('alttextuserimg')}
                                             />
                                             <StyledTextBold>
                                               {user.userFirstname}{" "}
