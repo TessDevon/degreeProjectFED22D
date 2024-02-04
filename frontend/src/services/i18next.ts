@@ -27,7 +27,7 @@ i18next
                 loginMaintext: 'Våra miniatyrvärldar är en inspirationssida för alla som samlar, renoverar och har docksåp som hobby. Här kan man få inspiration genom inlägg från användarna men även en möjlighet att köpa miniatyrer av andra användare eller sälja det man inte längre behöver.',
                 loginInnerMainheader: 'Logga in',
                 loginFormEmailText: 'Epost',
-                loginFormPasswordText: 'Lösenord (minst 6 tecken, varav en stor bokstav och en siffra)',
+                loginFormPasswordText: 'Lösenord (minst 8 tecken, varav en stor bokstav och en siffra)',
                 loginFormBtnText: 'Logga in',
                 loginRegisterBtnText: 'Registrera dig',
                 loginInfoResistrationText : 'Registrera ny användare? Tryck på knappen nedan.',
