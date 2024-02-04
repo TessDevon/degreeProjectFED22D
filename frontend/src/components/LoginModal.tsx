@@ -8,6 +8,7 @@ import { StyledText } from './styled/Text';
 import { StyledTextInput, StyledTextInputHoleRow, WrapperInputsTwoColum} from './styled/Form';
 import { StyledButtonCenter, StyledButtonRightsided } from './styled/Buttons';
 import { ErrorMassage } from './styled/ErrorMassage';
+import { useNavigate } from 'react-router-dom';
 
 ///////////////////// Modals //////////////////////////////////////
 
@@ -40,6 +41,7 @@ export default function LoginModal() {
     const checkPassword = new RegExp(/^(?=.*[A-ZÅÄÖa-zåäö])(?=.*\d)[A-ZÅÄÖa-zåäö\d]{8,}$/)
     // Requires login with at least one capital letter and number, at least 6 characters and no spaces. 
     const checkImg = new RegExp(/.*\.(jpe?g|png|jpg)$/i)  
+    const navigate = useNavigate();
     
 
     ///////////////// Check if user is loggedin //////////////////////
@@ -90,6 +92,7 @@ export default function LoginModal() {
                     if (ok) {
                         setShowLoginModal(false)
                         setErrorLoginMessage('')
+                        navigate("/")
                     } else {
                         setErrorLoginMessage(loginErrorServererror);
                         setFormLoginData({email: "", password: "",})
@@ -150,6 +153,7 @@ export default function LoginModal() {
                                 if (ok) {
                                     setRegisterModal(false)
                                     setErrorLoginMessage('')
+                                    navigate("/")
                                 } else {
                                     seterrorRegisterMessage(registerErrorServererror);
                                     setFormData({
