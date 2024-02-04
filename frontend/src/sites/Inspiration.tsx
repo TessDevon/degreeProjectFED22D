@@ -251,7 +251,7 @@ export const Inspiration = () => {
         inspirationPostID
       ).then((ok) => {
         if (ok) {
-          seterrorInspirationPostMessage("");
+          seterrorInspirationPostCommentMessage("");
           setformCommentData({
             inspirationPostCommentDescription: "",
           });
