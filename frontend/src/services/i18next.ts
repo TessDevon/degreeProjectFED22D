@@ -29,7 +29,8 @@ i18next
                 loginFormEmailText: 'Epost',
                 loginFormPasswordText: 'Lösenord (minst 6 tecken, varav en stor bokstav och en siffra)',
                 loginFormBtnText: 'Logga in',
-                loginRegisterBtnText: 'Registrera dig som ny användare',
+                loginRegisterBtnText: 'Registrera dig',
+                loginInfoResistrationText : 'Registrera ny användare? Tryck på knappen nedan.',
 
                 //Registerview
                 registerInnerMainheader: 'Registrera ny användare',

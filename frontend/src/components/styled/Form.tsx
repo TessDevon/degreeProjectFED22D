@@ -6,17 +6,21 @@ export const StyledForm = styled.form`
 
 export const WrapperInputsTwoColum = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
+@media (min-width: 760px) {
+  flex-direction: row;
+}
 `;
 
 export const StyledTextInput = styled.input`
   width: 80%;
-  font-size: 18px;
+  font-size: 16px;
   display: block;
   margin-bottom: 3%;
-  @media (min-width: 540px) {
+  @media (min-width: 760px) {
     width: 50%;
+    font-size: 18px;
   }
 `;
 

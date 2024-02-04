@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledText = styled.p`
   font-family: "Jaldi";
+  margin-bottom: 0px;
   font-size: 18px;
 
   @media (min-width: 1024px) {

@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import { loginPerson, registerPerson } from '../models/PersonClass';
 import { LoginUser, saveNewUserData } from '../services/UserServices';
 import { useTranslation } from "react-i18next";
-import { StyledH2, StyledH3 } from './styled/Headers';
+import { StyleH3Gold, StyledH2, StyledH3, StyledLogin, StyledRegistration } from './styled/Headers';
 import { StyledText } from './styled/Text';
 import { StyledTextInput, StyledTextInputHoleRow, WrapperInputsTwoColum} from './styled/Form';
 import { StyledButtonCenter, StyledButtonRightsided } from './styled/Buttons';
@@ -188,7 +188,7 @@ export default function LoginModal() {
             <Modal isOpen={showLoginModal} style={customStyles}>
                 <StyledH2>{t('loginMainheader')}</StyledH2>
                 <StyledText>{t('loginMaintext')}</StyledText>
-                <StyledH3>{t('loginInnerMainheader')}</StyledH3>
+                <StyledLogin>{t('loginInnerMainheader')}</StyledLogin>
                 <ErrorMassage>{errorLoginMessage}</ErrorMassage>
                 <div className='loginView'>
                     <form onSubmit={handleLoginSubmit}>
@@ -202,29 +202,30 @@ export default function LoginModal() {
                         </div>
                         <StyledButtonRightsided>{t('loginFormBtnText')}</StyledButtonRightsided> 
                     </form>
+                    <StyleH3Gold> {t('loginInfoResistrationText')} </StyleH3Gold>
                     <StyledButtonCenter onClick={goToRegister}>{t('loginRegisterBtnText')}</StyledButtonCenter>
                 </div>
             </Modal>
             <Modal isOpen={showRegisterModal} style={customStyles}>
                 <StyledH2>{t('loginMainheader')}</StyledH2>
                 <StyledText> {t('loginMaintext')}</StyledText>
-                <StyledH3> {t('registerInnerMainheader')}</StyledH3>
+                <StyledRegistration> {t('registerInnerMainheader')}</StyledRegistration>
                 <ErrorMassage>{errorRegisterMessage}</ErrorMassage>
                 <form onSubmit={handleSubmit}>
                     <WrapperInputsTwoColum>
                         <div>
                             <div>
                                 <StyledText>{t('registerFirstnameText')}</StyledText>
-                                <StyledTextInput value={formData.firstname} type='text' onChange={handleChange} name='firstname'/>    
+                                <StyledTextInputHoleRow value={formData.firstname} type='text' onChange={handleChange} name='firstname'/>    
                             </div>
                             <div>
                                 <StyledText>{t('registerLastnameText')}</StyledText>
-                                <StyledTextInput value={formData.lastname} type='text' onChange={handleChange} name='lastname'/>
+                                <StyledTextInputHoleRow value={formData.lastname} type='text' onChange={handleChange} name='lastname'/>
                             </div>  
 
                             <div>
                                 <StyledText>{t('loginFormEmailText')}</StyledText>
-                                <StyledTextInput value={formData.email} type='text' onChange={handleChange} name='email'/>
+                                <StyledTextInputHoleRow value={formData.email} type='text' onChange={handleChange} name='email'/>
                             </div>
                         </div>
                         <div>
