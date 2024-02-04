@@ -24,7 +24,7 @@ import {
   StyledTextInputComment,
 } from "../components/styled/Form";
 import { StyledButtonInspirationviewComment } from "../components/styled/Buttons";
-import { ErrorMassage } from "../components/styled/ErrorMassage";
+import { ErrorMassage, OkMassage } from "../components/styled/ErrorMassage";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import {
   InspirationPost,
@@ -61,11 +61,13 @@ export const Inspiration = () => {
     errorInspirationPostCommentMessage,
     seterrorInspirationPostCommentMessage,
   ] = useState("");
+  const [okSellingPostMessage, setOkSellingPostMessage] = useState("");
   const checkPostText = new RegExp(/^[a-zA-ZåäöÅÄÖ0-9 ,.'-/!?:();]+$/i);
   const checkPostImg = new RegExp(/.*\.(jpe?g|png|jpg)$/i);
   const inspirationPostErrorName = t("inspirationPostErrorName");
   const inspirationPostErrorImg = t("inspirationPostErrorImg");
   const inspirationPostErrorServererror = t("inspirationPostErrorServererror");
+  const okmessage = t("sellingOkMessage");
 
   const [formData, setFormData] = useState<InspirationPost>({
     inspirationPostHeader: "",
@@ -146,6 +148,10 @@ export const Inspiration = () => {
       token = userLocalstorage.token;
     }
 
+    function okMessage() {
+      setOkSellingPostMessage("");
+    }
+
     if (checkPostText.test(formData.inspirationPostHeader)) {
       if (checkPostText.test(formData.inspirationPostDescription)) {
         if (
@@ -167,10 +173,11 @@ export const Inspiration = () => {
                 inspirationPostImg: undefined,
               });
               //window.location.reload();
-              // FUNGERAR EJ PÅ BILDEN!!
-              fetchInspirationPostData(id, token).then((data) =>
-                setShowPost(data)
-              );
+              fetchInspirationPostData(id, token).then((data) => {
+                setShowPost(data);
+                setOkSellingPostMessage(okmessage);
+                setTimeout(okMessage, 3000);
+              });
               //Ladda om sidan genom att hämta listan på nytta efter sparning.
             } else {
               seterrorInspirationPostMessage(inspirationPostErrorServererror);
@@ -328,7 +335,7 @@ export const Inspiration = () => {
                                   width={70}
                                   height={70}
                                   src={`http://localhost:3000/upload/users/${user.userImg}`}
-                                  alt={t('alttextuserimg')}
+                                  alt={t("alttextuserimg")}
                                 />
                                 <StyledTextBold>
                                   {user.userFirstname} {user.userLastname}
@@ -360,7 +367,7 @@ export const Inspiration = () => {
                         width={160}
                         height={75}
                         src={`http://localhost:3000/upload/inspiration/${post.inspirationPostImg}`}
-                        alt={t('alttextinspirationimg')}
+                        alt={t("alttextinspirationimg")}
                       />
                       <StyledTextGold>
                         {post.inspirationPostHeader}
@@ -393,7 +400,7 @@ export const Inspiration = () => {
                                         width={70}
                                         height={70}
                                         src={`http://localhost:3000/upload/users/${user.userImg}`}
-                                        alt={t('alttextuserimg')}
+                                        alt={t("alttextuserimg")}
                                       />
                                       <StyledTextBold>
                                         {user.userFirstname} {user.userLastname}
@@ -498,6 +505,7 @@ export const Inspiration = () => {
                     />
                   </div>
                 </div>
+                <OkMassage>{okSellingPostMessage}</OkMassage>
                 <StyledButtonInspirationviewComment>
                   {t("inspirationAddPostBtnText")}
                 </StyledButtonInspirationviewComment>

@@ -84,7 +84,7 @@ i18next
                 inspirationPostHeaderText:'Rubrik',
                 inspirationPostDescriptionText: 'Beskrivning',
                 inspirationPostImg: 'Lägg till bild',
-                inspirationAddPostBtnText: 'Skicka',
+                inspirationAddPostBtnText: 'Lägg till',
                 inspirationCommentBtn: 'Kommentera',
 
                 
@@ -105,6 +105,7 @@ i18next
                 sellHeaderRule: 'Tänk på',
                 selltextRule:'FAST PRIS eller som AUKTION, auktion ska pågå i minst 24 timmar och allt som syns på bilden ska ingå. Kommentera köp i varan. Köp är bindande och det är bara ordet ”köper” som låser köpen, alt "köper om...". Inläggen ska tas bort 24 timmar efter såld vara. Om varorna inte sålts inom en månad kommer dessa att tas bort.',
                 sellAddItemBtn:'Kommentera',
+                sellingOkMessage: 'Meddelandet är tillagt',
 
                 sellingPostItemErrorName:'Skriv in text i textfälten.',
                 sellingPostItemErrorImg:'Lägg till bild (filformatet jpg och png)',
@@ -113,7 +114,7 @@ i18next
                 sellingItemInutText: 'Lägg till vara med beskrivning och bild',
                 sellItemBtn:'Lägg till',
 
-                sellItemBuyBtn:'Köpinlägg',
+                sellItemBuyBtn:'Kommentera',
                 sellingItemInutBuyText:'Köpkommentar',
 
                 scaleErrorRadio: 'Endast siffror',
@@ -128,7 +129,6 @@ i18next
                 scaleMiniHeader: 'Räkna om dockhus mått till verklig skala från vald dockhusskala:',
                 scaleMiniLabeltext: 'Dockhusmått i cm:',
                 checkNumberErrorMessage: 'Skriv endast in siffror i detta fält.',
-
 
                 chatH3: 'Chat',
                 chatHeaderText: 'Chat med ',

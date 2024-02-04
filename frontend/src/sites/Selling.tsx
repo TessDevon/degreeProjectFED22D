@@ -1,6 +1,6 @@
 import LoginModal from "../components/LoginModal";
 import { StyledButtonInspirationviewComment } from "../components/styled/Buttons";
-import { ErrorMassage } from "../components/styled/ErrorMassage";
+import { ErrorMassage, OkMassage } from "../components/styled/ErrorMassage";
 import {
   StyledTextInput,
   StyledTextInputComment,
@@ -62,6 +62,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Selling = () => {
   const { t } = useTranslation();
+  const [okSellingPostMessage, setOkSellingPostMessage] = useState("");
   const [errorSellingPostMessage, seterrorSellingPostMessage] = useState("");
   const [errorSellingPostItemMessage, seterrorSellingPostItemMessage] =
     useState("");
@@ -91,6 +92,7 @@ export const Selling = () => {
   const sellingPostErrorName = t("inspirationPostErrorName");
   const sellingPostErrorImg = t("inspirationPostErrorImg");
   const sellingPostErrorServererror = t("inspirationPostErrorServererror");
+  const okmessage = t("sellingOkMessage");
 
   useEffect(() => {
     const fetchPostFunction = async () => {
@@ -156,6 +158,10 @@ export const Selling = () => {
       token = userLocalstorage.token;
     }
 
+    function okMessage() {
+      setOkSellingPostMessage("");
+    }
+
     if (checkPostText.test(formData.sellPostHeader)) {
       if (checkPostText.test(formData.sellPostDescription)) {
         if (
@@ -177,7 +183,8 @@ export const Selling = () => {
                 sellPostImg: undefined,
               });
               fetchSellPostData(id, token).then((data) => setShowPost(data));
-
+              setOkSellingPostMessage(okmessage);
+              setTimeout(okMessage, 3000);
               //window.location.reload();
             } else {
               seterrorSellingPostMessage(sellingPostErrorServererror);
@@ -421,7 +428,7 @@ export const Selling = () => {
                                   width={70}
                                   height={70}
                                   src={`http://localhost:3000/upload/users/${user.userImg}`}
-                                  alt={t('alttextuserimg')}
+                                  alt={t("alttextuserimg")}
                                 />
                                 <StyledTextBold>
                                   {user.userFirstname} {user.userLastname}
@@ -452,7 +459,7 @@ export const Selling = () => {
                         width={160}
                         height={75}
                         src={`http://localhost:3000/upload/selling/${post.sellingPostImg}`}
-                        alt={t('alttextSellingGroupImg')}            
+                        alt={t("alttextSellingGroupImg")}
                       />
                       <StyledTextGold>{post.sellingPostHeader}</StyledTextGold>
                       <StyledText>{post.sellingPostDescription}</StyledText>
@@ -516,7 +523,7 @@ export const Selling = () => {
                                         width={70}
                                         height={70}
                                         src={`http://localhost:3000/upload/users/${user.userImg}`}
-                                        alt={t('alttextuserimg')}
+                                        alt={t("alttextuserimg")}
                                       />
                                       <StyledTextBold>
                                         {user.userFirstname} {user.userLastname}
@@ -551,7 +558,7 @@ export const Selling = () => {
                               width={160}
                               height={75}
                               src={`http://localhost:3000/upload/selling/${itemcomment.sellingItemImg}`}
-                              alt={t('alttextSellingItemImg')}              
+                              alt={t("alttextSellingItemImg")}
                             />
                             <StyledText>
                               {itemcomment.sellingItemDescription}
@@ -585,7 +592,7 @@ export const Selling = () => {
                                               width={70}
                                               height={70}
                                               src={`http://localhost:3000/upload/users/${user.userImg}`}
-                                              alt={t('alttextuserimg')}
+                                              alt={t("alttextuserimg")}
                                             />
                                             <StyledTextBold>
                                               {user.userFirstname}{" "}
@@ -697,6 +704,7 @@ export const Selling = () => {
                     />
                   </div>
                 </div>
+                <OkMassage>{okSellingPostMessage}</OkMassage>
                 <StyledButtonInspirationviewComment>
                   {t("inspirationAddPostBtnText")}
                 </StyledButtonInspirationviewComment>
