@@ -55,7 +55,7 @@ export const Chat = () => {
 
   // Fetch the userId and token from localstorage to be used for authentication later.
   const userLocalstorage = JSON.parse(
-    localStorage.getItem("userIdLocalStorage") || ""
+    localStorage.getItem("userIdLocalStorage") || "{}"
   );
   if (userLocalstorage) {
     userId = userLocalstorage.id;
