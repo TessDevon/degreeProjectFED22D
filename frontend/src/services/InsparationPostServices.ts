@@ -1,3 +1,5 @@
+const BASE_URL = import.meta.env.VITE_BASE_URL
+
 export function saveInspirationPostData(
   inspirationPostHeader,
   inspirationPostDescription,
@@ -5,7 +7,7 @@ export function saveInspirationPostData(
   userID,
   token
 ) {
-  return fetch("http://localhost:3000/inspirationPost", {
+  return fetch(`${BASE_URL}/inspirationPost`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -48,7 +50,7 @@ export function savePostImg(
   const formdata = new FormData();
   formdata.append("image", inspirationPostImg);
   return fetch(
-    "http://localhost:3000/inspirationPost/" + inspirationPostID + "/postimage",
+    `${BASE_URL}/inspirationPost/` + inspirationPostID + "/postimage",
     {
       method: "POST",
       headers: {
@@ -69,7 +71,7 @@ export function savePostImg(
 }
 
 export function fetchInspirationPostData(userID, token) {
-  return fetch("http://localhost:3000/inspirationPost", {
+  return fetch(`${BASE_URL}/inspirationPost`, {
     method: "GET",
     headers: {
       token: token,
@@ -102,7 +104,7 @@ export function deleteInspirationPostData(
   deleteInspirationPostId
 ) {
   return fetch(
-    "http://localhost:3000/inspirationPost/" + deleteInspirationPostId,
+    `${BASE_URL}/inspirationPost/` + deleteInspirationPostId,
     {
       method: "DELETE",
       headers: {

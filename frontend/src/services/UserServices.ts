@@ -1,7 +1,6 @@
 // Function that saves a new user, if the email is not already registered.
 // The requirements are in the front end.
-
-import { ShowPersons } from "../models/PersonClass";
+const BASE_URL = import.meta.env.VITE_BASE_URL
 
 export function saveNewUserData(
   firstname,
@@ -10,7 +9,7 @@ export function saveNewUserData(
   password,
   userImage
 ) {
-  return fetch("http://localhost:3000/users", {
+  return fetch(`${BASE_URL}/users/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -48,10 +47,9 @@ export function saveNewUserData(
 }
 
 export function saveUserImg(userImage, userId, token) {
-  //console.log(userImage)
   const formdata = new FormData();
   formdata.append("image", userImage);
-  return fetch("http://localhost:3000/users/" + userId + "/userimage", {
+  return fetch(`${BASE_URL}/users/` + userId + "/userimage", {
     method: "POST",
     headers: {
       token: token,
@@ -72,7 +70,7 @@ export function saveUserImg(userImage, userId, token) {
 // The requirements are in the front end.
 
 export function LoginUser(email, password) {
-  return fetch("http://localhost:3000/users/login", {
+  return fetch(`${BASE_URL}/users/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -81,7 +79,6 @@ export function LoginUser(email, password) {
   })
     .then((res) => {
       if (res.ok) {
-        //console.log("You are logged in")
         return res.json();
       } else {
         throw "Login failed";
@@ -103,7 +100,7 @@ export function LoginUser(email, password) {
 
 
 export function fetchPersonsData(userID, token) {
-  return fetch("http://localhost:3000/users", {
+  return fetch(`${BASE_URL}/users`, {
     method: "GET",
     headers: {
       token: token,

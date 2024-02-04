@@ -1,6 +1,8 @@
+const BASE_URL = import.meta.env.VITE_BASE_URL
+
 export function saveSellPostData (sellingPostHeader, sellingPostDescription, sellingPostImg, userID, token) {
     
-    return fetch("http://localhost:3000/sellingPost", {
+    return fetch(`${BASE_URL}/sellingPost`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",      
@@ -17,8 +19,6 @@ export function saveSellPostData (sellingPostHeader, sellingPostDescription, sel
     .then(data=> {console.log('Sparat inlägg');return data;})
     .then(data =>{
         return saveSellPostImg(sellingPostImg, userID, token, data.postID)
-        //localStorage.setItem("userIdLocalStorage", JSON.stringify({id:data.userId, token:data.token}))
-        //return true;
     })
     .catch ((err) => {
         console.log(err)
@@ -30,7 +30,7 @@ export function saveSellPostImg (sellingPostImg, userID, token, sellingPostID) {
     console.log(sellingPostImg)
     const formdata = new FormData()
     formdata.append("image", sellingPostImg)
-    return fetch("http://localhost:3000/sellingPost/" + sellingPostID +"/sellimage", {
+    return fetch(`${BASE_URL}/sellingPost/` + sellingPostID +"/sellimage", {
         method: "POST",
         headers: {
             "token": token,
@@ -47,7 +47,7 @@ export function saveSellPostImg (sellingPostImg, userID, token, sellingPostID) {
 
 
 export function fetchSellPostData (userID, token) {
-    return fetch("http://localhost:3000/sellingPost", {
+    return fetch(`${BASE_URL}/sellingPost`, {
         method:"GET", 
         headers:{
             "token": token,
@@ -75,7 +75,7 @@ export function fetchSellPostData (userID, token) {
 
 
 export function deleteSellPostData (userID, token, deletePostId) {
-    return fetch("http://localhost:3000/sellingPost/" + deletePostId, {
+    return fetch(`${BASE_URL}/sellingPost/` + deletePostId, {
         method:"DELETE", 
         headers: {
             "Content-Type": "application/json",      

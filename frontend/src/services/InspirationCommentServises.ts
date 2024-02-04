@@ -1,10 +1,12 @@
+const BASE_URL = import.meta.env.VITE_BASE_URL
+
 export function saveInspirationPostCommentData(
   inspirationCommentsDescription,
   userID,
   token,
   inspirationCommentsPostID
 ) {
-  return fetch("http://localhost:3000/inspirationComment/", {
+  return fetch(`${BASE_URL}/inspirationComment/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -37,7 +39,7 @@ export function saveInspirationPostCommentData(
 }
 
 export function fetchInspirationPostCommentData(userID, token) {
-  return fetch("http://localhost:3000/inspirationComment/", {
+  return fetch(`${BASE_URL}/inspirationComment/`, {
     method: "GET",
     headers: {
       token: token,
@@ -70,7 +72,7 @@ export function deleteInspirationPostCommentData(
   deleteInspirationPostCommentId
 ) {
   return fetch(
-    "http://localhost:3000/inspirationComment/" +
+    `${BASE_URL}/inspirationComment/` +
       deleteInspirationPostCommentId,
     {
       method: "DELETE",

@@ -1,10 +1,11 @@
+const BASE_URL = import.meta.env.VITE_BASE_URL
+
 export function fetchChatPersonsData(userID, token) {
-    return fetch("http://localhost:3000/chatUser/", {
+    return fetch(`${BASE_URL}/chatUser/`, {
         method:"GET",
         headers: {
             userID: userID,
         },
-        //body: JSON.stringify({userID:userID, token:token}),
     })
         .then((res) => {
             if (res.ok) {

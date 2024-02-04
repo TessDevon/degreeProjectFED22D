@@ -1,3 +1,5 @@
+const BASE_URL = import.meta.env.VITE_BASE_URL
+
 import LoginModal from "../components/LoginModal";
 import { StyledH2, StyledH3 } from "../components/styled/Headers";
 import { useTranslation } from "react-i18next";
@@ -203,7 +205,7 @@ export const Chat = () => {
                             <StyledUserImgChat
                               width={70}
                               height={70}
-                              src={`http://localhost:3000/upload/users/${user.userImg}`}
+                              src={`${BASE_URL}/upload/users/${user.userImg}`}
                             />
                             <StyleChatTextLeft>
                               {user.userFirstname} {user.userLastname}{" "}
@@ -274,7 +276,7 @@ export const Chat = () => {
                                 <StyledUserImg
                                   width={70}
                                   height={70}
-                                  src={`http://localhost:3000/upload/users/${user.userImg}`}
+                                  src={`${BASE_URL}/upload/users/${user.userImg}`}
                                 />
                                 <StyledTextBold>
                                   {user.userFirstname} {user.userLastname}
@@ -295,7 +297,7 @@ export const Chat = () => {
                                 <StyledUserImg
                                   width={70}
                                   height={70}
-                                  src={`http://localhost:3000/upload/users/${user.userImg}`}
+                                  src={`${BASE_URL}/upload/users/${user.userImg}`}
                                 />
                                 <StyledTextBold>
                                   {user.userFirstname} {user.userLastname}

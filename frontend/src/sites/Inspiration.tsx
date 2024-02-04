@@ -1,3 +1,5 @@
+const BASE_URL = import.meta.env.VITE_BASE_URL
+
 import LoginModal from "../components/LoginModal";
 import { useTranslation } from "react-i18next";
 import { StyledH2, StyledH3 } from "../components/styled/Headers";
@@ -334,7 +336,7 @@ export const Inspiration = () => {
                                 <StyledUserImg
                                   width={70}
                                   height={70}
-                                  src={`http://localhost:3000/upload/users/${user.userImg}`}
+                                  src={`${BASE_URL}/upload/users/${user.userImg}`}
                                   alt={t("alttextuserimg")}
                                 />
                                 <StyledTextBold>
@@ -366,7 +368,7 @@ export const Inspiration = () => {
                       <StyledInspirationPostImg
                         width={160}
                         height={75}
-                        src={`http://localhost:3000/upload/inspiration/${post.inspirationPostImg}`}
+                        src={`${BASE_URL}/upload/inspiration/${post.inspirationPostImg}`}
                         alt={t("alttextinspirationimg")}
                       />
                       <StyledTextGold>
@@ -399,7 +401,7 @@ export const Inspiration = () => {
                                       <StyledUserImg
                                         width={70}
                                         height={70}
-                                        src={`http://localhost:3000/upload/users/${user.userImg}`}
+                                        src={`${BASE_URL}/upload/users/${user.userImg}`}
                                         alt={t("alttextuserimg")}
                                       />
                                       <StyledTextBold>

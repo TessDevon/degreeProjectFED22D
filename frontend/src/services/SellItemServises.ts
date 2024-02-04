@@ -1,5 +1,7 @@
+const BASE_URL = import.meta.env.VITE_BASE_URL
+
 export function saveSellItemData (sellingItemDescription, sellingItemImg, id, token,  sellingItemUnserID, sellingItemID ) {
-    return fetch("http://localhost:3000/sellingPostItem", {
+    return fetch(`${BASE_URL}/sellingPostItem`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -28,7 +30,7 @@ export function saveItemPostImg (sellingItemImg, id, token, sellingItemPostID) {
     console.log(sellingItemImg) 
     const formdata = new FormData()
     formdata.append("image", sellingItemImg)
-    return fetch("http://localhost:3000/sellingPostItem/" + sellingItemPostID + "/itemimage", {
+    return fetch(`${BASE_URL}/sellingPostItem/` + sellingItemPostID + "/itemimage", {
         method: "POST", 
         headers: {
             "token": token,
@@ -45,7 +47,7 @@ export function saveItemPostImg (sellingItemImg, id, token, sellingItemPostID) {
 }
 
 export function fetchSellItemData (userID, token) {
-    return fetch("http://localhost:3000/sellingPostItem", {
+    return fetch(`${BASE_URL}/sellingPostItem`, {
         method:"GET", 
         headers:{
             "token": token,
@@ -73,7 +75,7 @@ export function fetchSellItemData (userID, token) {
 
 
 export function deleteSellItemData (userID, token, deleteItemId) {
-    return fetch("http://localhost:3000/sellingPostItem/" + deleteItemId, {
+    return fetch(`${BASE_URL}/sellingPostItem/` + deleteItemId, {
         method:"DELETE", 
         headers: {
             "Content-Type": "application/json",      

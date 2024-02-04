@@ -1,3 +1,4 @@
+const BASE_URL = import.meta.env.VITE_BASE_URL
 import LoginModal from "../components/LoginModal";
 import { StyledButtonInspirationviewComment } from "../components/styled/Buttons";
 import { ErrorMassage, OkMassage } from "../components/styled/ErrorMassage";
@@ -428,7 +429,7 @@ export const Selling = () => {
                                 <StyledUserImg
                                   width={70}
                                   height={70}
-                                  src={`http://localhost:3000/upload/users/${user.userImg}`}
+                                  src={`${BASE_URL}/upload/users/${user.userImg}`}
                                   alt={t("alttextuserimg")}
                                 />
                                 <StyledTextBold>
@@ -459,7 +460,7 @@ export const Selling = () => {
                       <StyledInspirationPostImg
                         width={160}
                         height={75}
-                        src={`http://localhost:3000/upload/selling/${post.sellingPostImg}`}
+                        src={`${BASE_URL}/upload/selling/${post.sellingPostImg}`}
                         alt={t("alttextSellingGroupImg")}
                       />
                       <StyledTextGold>{post.sellingPostHeader}</StyledTextGold>
@@ -523,7 +524,7 @@ export const Selling = () => {
                                       <StyledUserImg
                                         width={70}
                                         height={70}
-                                        src={`http://localhost:3000/upload/users/${user.userImg}`}
+                                        src={`${BASE_URL}/upload/users/${user.userImg}`}
                                         alt={t("alttextuserimg")}
                                       />
                                       <StyledTextBold>
@@ -558,7 +559,7 @@ export const Selling = () => {
                             <StyledInspirationPostImg
                               width={160}
                               height={75}
-                              src={`http://localhost:3000/upload/selling/${itemcomment.sellingItemImg}`}
+                              src={`${BASE_URL}/upload/selling/${itemcomment.sellingItemImg}`}
                               alt={t("alttextSellingItemImg")}
                             />
                             <StyledText>
@@ -592,7 +593,7 @@ export const Selling = () => {
                                             <StyledUserImg
                                               width={70}
                                               height={70}
-                                              src={`http://localhost:3000/upload/users/${user.userImg}`}
+                                              src={`${BASE_URL}/upload/users/${user.userImg}`}
                                               alt={t("alttextuserimg")}
                                             />
                                             <StyledTextBold>

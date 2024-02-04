@@ -1,5 +1,7 @@
+const BASE_URL = import.meta.env.VITE_BASE_URL
+
 export function saveSellItemBuyData (sellingItemBuyDescription, id, token, sellingItemUnserID, sellingItemID ) {
-    return fetch("http://localhost:3000/sellingPostItemComments", {
+    return fetch(`${BASE_URL}/sellingPostItemComments`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -25,7 +27,7 @@ export function saveSellItemBuyData (sellingItemBuyDescription, id, token, selli
 
 
 export function fetchSellBuyItemData (userID, token) {
-    return fetch("http://localhost:3000/sellingPostItemComments", {
+    return fetch(`${BASE_URL}/sellingPostItemComments`, {
         method:"GET", 
         headers:{
             "token": token,
@@ -52,7 +54,7 @@ export function fetchSellBuyItemData (userID, token) {
 }
 
 export function deleteSellItemCommentData (userID, token, deleteItemCommentId) {
-    return fetch("http://localhost:3000/sellingPostItemComments/" + deleteItemCommentId, {
+    return fetch(`${BASE_URL}/sellingPostItemComments/` + deleteItemCommentId, {
         method:"DELETE", 
         headers: {
             "Content-Type": "application/json",      
