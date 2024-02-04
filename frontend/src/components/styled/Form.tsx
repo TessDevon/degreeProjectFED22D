@@ -41,7 +41,7 @@ export const StyledRadioInput = styled.input`
   margin-bottom: 3%;
 `;
 
-export const StyledTextInputHoleRow = styled(StyledTextInput)`
+export const StyledTextInputHoleRow = styled(StyledTextInputComment)`
   width: 80%;
 `;
 

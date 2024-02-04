@@ -20,8 +20,8 @@ import {
   WrapperbodyOuter,
 } from "../components/styled/Wrappers";
 import {
-  StyledTextInput,
   StyledTextInputComment,
+  StyledTextInputHoleRow,
 } from "../components/styled/Form";
 import { StyledButtonInspirationviewComment } from "../components/styled/Buttons";
 import { ErrorMassage, OkMassage } from "../components/styled/ErrorMassage";
@@ -477,7 +477,7 @@ export const Inspiration = () => {
                 <div>
                   <div>
                     <StyledText>{t("inspirationPostHeaderText")}</StyledText>
-                    <StyledTextInputComment
+                    <StyledTextInputHoleRow
                       value={formData.inspirationPostHeader}
                       type="text"
                       onChange={handleChange}
@@ -488,7 +488,7 @@ export const Inspiration = () => {
                     <StyledText>
                       {t("inspirationPostDescriptionText")}
                     </StyledText>
-                    <StyledTextInputComment
+                    <StyledTextInputHoleRow
                       value={formData.inspirationPostDescription}
                       type="text"
                       onChange={handleChange}
@@ -498,7 +498,7 @@ export const Inspiration = () => {
 
                   <div>
                     <StyledText>{t("inspirationPostImg")}</StyledText>
-                    <StyledTextInputComment
+                    <StyledTextInputHoleRow
                       type="file"
                       onChange={handleChange}
                       name="inspirationPostImg"

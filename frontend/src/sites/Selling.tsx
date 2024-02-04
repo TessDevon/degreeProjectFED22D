@@ -4,6 +4,7 @@ import { ErrorMassage, OkMassage } from "../components/styled/ErrorMassage";
 import {
   StyledTextInput,
   StyledTextInputComment,
+  StyledTextInputHoleRow,
 } from "../components/styled/Form";
 import { StyledH2, StyledH3 } from "../components/styled/Headers";
 import {
@@ -677,7 +678,7 @@ export const Selling = () => {
                 <div>
                   <div>
                     <StyledText>{t("sellPostHeader")}</StyledText>
-                    <StyledTextInputComment
+                    <StyledTextInputHoleRow
                       value={formData.sellPostHeader}
                       type="text"
                       onChange={handleChange}
@@ -686,7 +687,7 @@ export const Selling = () => {
                   </div>
                   <div>
                     <StyledText>{t("sellPostDescription")}</StyledText>
-                    <StyledTextInputComment
+                    <StyledTextInputHoleRow
                       value={formData.sellPostDescription}
                       type="text"
                       onChange={handleChange}
