@@ -1,9 +1,11 @@
 ## degreeProjectFED22D
 # My degree project - The small world webpage
 
-This website is aimed to creative hobby activities, like dollhouses and mini worlds. The users should be able to inspire each other with project they work on, and other users can comment their thoughts to the projects. The site also includes a possibility to sell and by items and own creations. This site is going to have a live chat / chat, there users have the possibility to talk to each other. 
+This website is aimed to creative hobby activities, like dollhouses and mini worlds. Users inspire each other with their own projects they are working on. Other users can comment and ask questions in the posts. The site also includes a possibility to sell and by items and own creations. The site has a live chat where users have the opportunity to talk to a selected user. About, for example, projects or to close a deal between them.  
 
-Today there are Facebook groups for dollhouses and miniature worlds. These are divided into an inspiration page and a buy and sell page. Facebook messenger is used to complete purchases between buyers and sellers. There are different views in different places. My idea with this project is to gather everything in one place. 
+There is also a feature that many new users will appreciate. Scale converter. There are two scale converters one from life size to the two most common scales in the dollhouse world. The other is reverse scale counter. Now you have the opportunity to see if the object you want to buy fits the house you have. You can also find out what size the item you are looking for should have in order to fit. Now the user does not have to buy the wrong size of the item they are looking for. 
+
+Today there are Facebook groups for dollhouses and miniature worlds. These are divided into an inspiration pages and a buy and sell pages. Facebook messenger is used to complete purchases between buyers and sellers. There are different views in different places. My idea with this project is to gather everything in one place. 
 
 By using this page, users will be able to be inspired, sell and buy miniatures and communicate in a simpler and smoother way. Without disturbing steps between activities. 
 
