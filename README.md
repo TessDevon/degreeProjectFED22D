@@ -46,11 +46,15 @@ If the opportunity exists, I will add tests for Javascript functions
 
 
 ## Applicationflow and Sitemap
-![Applicationflow](./frontend/src/assets/appflowSitemap.jpg)
+![Applicationflow](./frontend/src/assets/applicationflow.jpg)
+## Sitemap
+![Sitemap](./frontend/src/assets/sitemap.jpg)
 
 ## Result 
+Desktop
 ![Desktop-Login](./frontend/src/assets/resultLoginDesktop.jpg)
 ![Desktop-Inspiration](./frontend/src/assets/resultInspirationDesktop.jpg)
 ![Desktop-Sell](./frontend/src/assets/resultBuyAndSellDesktop.jpg)
 ![Desktop-Chat](./frontend/src/assets/resultChatDesktop.jpg)
+Mobile
 ![Mobile](./frontend/src/assets/resultmobile.jpg)
