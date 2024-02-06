@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
 export const StyledH1 = styled.h1`
-  color: #c7a440;
+  color: #7e6829;
   font-family: "Alex Brush";
   font-size: 36px;
   margin: 15px;
   margin-bottom: 0px;
   padding: 0px;
-  text-shadow: 1px 2px 2px #7e6829;
+  text-shadow: 1px 2px 2px #c7a440;
 
   @media (min-width: 768px) {
     font-size: 36px;
-    text-shadow: 1px 1px 1px #7e6829;
+    text-shadow: 1px 1px 1px #c7a440;
   }
 
   @media (min-width: 1170px) {
@@ -25,11 +25,11 @@ export const StyledH1 = styled.h1`
 `;
 
 export const StyledH2 = styled.h1`
-  color: #c7a440;
+  color: #7e6829;
   font-family: "Antic Didone";
   text-align: center;
   font-size: 24px;
-  text-shadow: 1px 1px 1px #7e6829;
+  text-shadow: 1px 1px 1px #c7a440;
 
   @media (min-width: 760px) {
   font-size: 36px;
@@ -49,7 +49,7 @@ export const StyledH3 = styled.h3`
   text-align: center;
   margin: 0px;
   
-  text-shadow: 1px 1px 1px #7e6829;
+  text-shadow: 1px 1px 1px #c7a440;
   
   @media (min-width: 760px) {
   font-size: 24px;
@@ -75,5 +75,5 @@ export const StyledRegistration = styled(StyledH3)`
 export const StyleH3Gold = styled(StyledH3)`
   margin-top: 20px;
   margin-bottom: 10px;
-  color: #c7a440;
+  color: #7e6829;
 `

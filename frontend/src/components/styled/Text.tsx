@@ -27,15 +27,15 @@ export const StyledTextBlock = styled(StyledText)`
 `;
 
 export const FooterText = styled(StyledText)`
-  text-shadow: 1px 1px 1px #7e6829;
+  text-shadow: 1px 1px 1px #c7a440;
   font-size: 18px;
   margin: 0px 15px;
   text-align: end;
 `;
 
 export const StyledTextGold = styled(StyledTextBold)`
-  text-shadow: 1px 0.5px 0.5px #7e6829;
-  color: #c7a440;
+  text-shadow: 1px 0.5px 0.5px #c7a440;
+  color: #7e6829;
 `;
 
 export const StyledSpanText = styled.span`
@@ -49,12 +49,12 @@ export const StyledSpanText = styled.span`
 `;
 
 export const StyledSpanGoldText = styled(StyledSpanText)`
-  text-shadow: 1px 0.5px 0.5px #7e6829;
-  color: #c7a440;
+  text-shadow: 1px 0.5px 0.5px #c7a440;
+  color: #7e6829;
 `;
 
 export const StyledChatTextRight = styled(StyledText)`
-  color: #c7a440;
+  color: #7e6829;
 `;
 
 export const StyleChatTextRightRight = styled(StyledChatTextRight)`
