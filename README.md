@@ -7,6 +7,12 @@ There is also a feature that many new users will appreciate. Scale converter. Th
 
 Today there are Facebook groups for dollhouses and miniature worlds. These are divided into an inspiration pages and a buy and sell pages. Facebook messenger is used to complete purchases between buyers and sellers. There are different views in different places. My idea with this project is to gather everything in one place. 
 
+There are several events in Sweden that you can find if you seach on google. Many of the new users don't know they exist.  
+
+Another problem that many new users in this hobby have is the scale. How do you know if the item you want to buy fits the house you have? There came the idea of the scale converter which converts the scale from real scale to selected dollhouse scale and vice versa. There are the two most common scales to choose from. 
+
+My idea with this project is to gather everything in one place. 
+
 By using this page, users will be able to be inspired, sell and buy miniatures and communicate in a simpler and smoother way. Without disturbing steps between activities. 
 
 ![userpersonas](./frontend/src/assets/userpersonas.jpg)
