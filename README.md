@@ -53,10 +53,7 @@ If the opportunity exists, I will add tests for Javascript functions
 ![Sitemap](./frontend/src/assets/sitemap.jpg)
 
 ## Result 
-Desktop
-![Desktop-Login](./frontend/src/assets/resultLoginDesktop.jpg)
-![Desktop-Inspiration](./frontend/src/assets/resultInspirationDesktop.jpg)
-![Desktop-Sell](./frontend/src/assets/resultBuyAndSellDesktop.jpg)
-![Desktop-Chat](./frontend/src/assets/resultChatDesktop.jpg)
-Mobile
-![Mobile](./frontend/src/assets/resultmobile.jpg)
+![Desktop](./frontend/src/assets/Desktop.jpg)
+![Tablet](./frontend/src/assets/Tablet.jpg)
+![Mobile](./frontend/src/assets/Mobile.jpg)
+
