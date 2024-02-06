@@ -53,7 +53,10 @@ If the opportunity exists, I will add tests for Javascript functions
 ![Sitemap](./frontend/src/assets/sitemap.jpg)
 
 ## Result 
+Desktop
 ![Desktop](./frontend/src/assets/Desktop.jpg)
+Tablet
 ![Tablet](./frontend/src/assets/Tablet.jpg)
+Mobile
 ![Mobile](./frontend/src/assets/Mobile.jpg)
 
