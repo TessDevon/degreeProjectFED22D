@@ -45,12 +45,13 @@ Configuration setups for development - Vite
 Other package - i18next, to handle text, possibility to add more languages ​​later
 
 ## Test plan 
+I have made observations on users in the forums that exist today. There is the basis for the website. I have also done user tests on two possible user for the page. I have gone through the tests and added tasks to the backlog that were fixed during the end of this project.  
 
-I have made observations on the forums that exist today. There is the basis for the website.  
+Have tested the colors on the page so it has enough contrast. https://accessibleweb.com/color-contrast-checker/ I had to make a change. Made the text in gold darker.  
 
-At the end I will do user test on users. I have the following 3 interview tasks for the testing: A – Create a post, B – Make a comment on a post, C – Start a chat with another user.  
+I have tested the page on the windows edge emulator and located some bugs in the responsiveness which now is fixed.
 
-If the opportunity exists, I will add tests for Javascript functions
+If the opportunity exists, I will add tests for Javascript functions.
 
 
 ## Applicationflow
