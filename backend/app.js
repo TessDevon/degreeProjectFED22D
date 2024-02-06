@@ -34,6 +34,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+console.log(process.env.DB_HOST)
+console.log(process.env.DB_PORT)
+console.log(process.env.DB_USER)
+
 app.locals.con = mysql.createConnection({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
