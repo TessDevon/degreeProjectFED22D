@@ -13,6 +13,9 @@ import { useNavigate } from 'react-router-dom';
 ///////////////////// Modals //////////////////////////////////////
 
 const customStyles = {
+    overlay: {
+        zIndex: 25
+    },
     content: {
       top: '50%',
       left: '50%',
@@ -26,8 +29,7 @@ const customStyles = {
       flexDirection: 'column', 
     },
   };
-        /*console.log(checkPassword);
-        console.log(formLoginData.password)*/
+        
 export default function LoginModal() {
     const { t } = useTranslation();
     Modal.setAppElement('#root');
