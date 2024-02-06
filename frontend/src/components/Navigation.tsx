@@ -17,6 +17,7 @@ const StyleNav = styled.nav`
   border: 2px solid #c7a440;
   transition: transform 0.3s ease-in-out;
   border-bottom-left-radius: 15px;
+  z-index: 18;
 
   @media (min-width: 940px) {
     padding: 0px;
