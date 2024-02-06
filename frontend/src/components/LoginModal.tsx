@@ -27,6 +27,7 @@ const customStyles = {
       paddingRight:'20%',
       display:'flex',
       flexDirection: 'column', 
+      innerWidth: '100%',
     },
   };
         
