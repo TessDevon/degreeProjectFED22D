@@ -4,9 +4,9 @@ import { loginPerson, registerPerson } from '../models/PersonClass';
 import { LoginUser, saveNewUserData } from '../services/UserServices';
 import { useTranslation } from "react-i18next";
 import { StyleH3Gold, StyledH2, StyledH3, StyledLogin, StyledRegistration } from './styled/Headers';
-import { StyledText } from './styled/Text';
+import { StyledText, StyledTextHidden } from './styled/Text';
 import { StyledTextInput, StyledTextInputHoleRow, WrapperInputsTwoColum} from './styled/Form';
-import { StyledButtonCenter, StyledButtonRightsided } from './styled/Buttons';
+import { StyledButtonCenter, StyledButtonLeft, StyledButtonRightsided } from './styled/Buttons';
 import { ErrorMassage } from './styled/ErrorMassage';
 import { useNavigate } from 'react-router-dom';
 
@@ -116,6 +116,11 @@ export default function LoginModal() {
         setRegisterModal(true);
     }
 
+    function goToLogin () {
+        setShowLoginModal(true);
+        setRegisterModal(false);
+    }
+
     
     ///////////////////// Handle new user //////////////////////
     //i18next to js
@@ -215,7 +220,7 @@ export default function LoginModal() {
             </Modal>
             <Modal isOpen={showRegisterModal} style={customStyles}>
                 <StyledH2>{t('loginMainheader')}</StyledH2>
-                <StyledText> {t('loginMaintext')}</StyledText>
+                <StyledTextHidden> {t('loginMaintext')}</StyledTextHidden> 
                 <StyledRegistration> {t('registerInnerMainheader')}</StyledRegistration>
                 <ErrorMassage>{errorRegisterMessage}</ErrorMassage>
                 <form onSubmit={handleSubmit}>
@@ -248,7 +253,8 @@ export default function LoginModal() {
                         </div>
                     </WrapperInputsTwoColum>
                     <StyledButtonRightsided>{t('registerRegistrationbtnText')}</StyledButtonRightsided> 
-                </form>          
+                </form>      
+                <StyledButtonLeft onClick={goToLogin}>{t('registerBackToLogin')}</StyledButtonLeft>
             </Modal>
         </div>
     )

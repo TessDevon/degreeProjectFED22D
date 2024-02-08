@@ -27,3 +27,11 @@ export const StyledButtonInspirationviewComment = styled(StyledButton)`
   height: 35px;
   width: 150px;
 `;
+
+export const StyledButtonLeft = styled(StyledButton)`
+  position: relative;
+  left: 35%;
+  width: 250px;
+  margin-top: 70px;
+  color: #9f2033;
+`;

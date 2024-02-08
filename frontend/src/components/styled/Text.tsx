@@ -89,3 +89,11 @@ export const StyledTextBoldDate = styled(StyledText)`
     margin-left: 0px;
   }
 `;
+
+export const StyledTextHidden = styled(StyledText) `
+    display: none;
+  
+  @media (min-width: 760px) {
+    display: block;
+  }
+`

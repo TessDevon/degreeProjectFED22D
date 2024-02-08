@@ -38,6 +38,7 @@ i18next
                 registerLastnameText: 'Efternamn',
                 registerUserImgText: 'Användarbild (filformatet jpg och png)',
                 registerRegistrationbtnText:'Registrera',
+                registerBackToLogin: 'Tillbaka till loginsidan',
 
                 //loginErrors
                 loginErrorEmail: 'Email är fel ifyllt',
