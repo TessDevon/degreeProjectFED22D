@@ -48,6 +48,7 @@ export const StyledH3 = styled.h3`
   font-size: 18px;
   text-align: center;
   margin: 0px;
+  color: #7e6829;
   
   text-shadow: 1px 1px 1px #c7a440;
   
