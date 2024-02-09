@@ -122,7 +122,12 @@ io.on("connection", function (socket) {
   });
 
   socket.on("newchat", function (msg) {
-    console.log(msg);
+    //console.log(msg);
+    if (msg.userId == undefined || msg.otherChatPersonID == undefined){
+      //console.log(msg.userId)
+      //console.log(msg.otherChatPersonID)
+      return
+    }
 
     //Find the chat in the database
     app.locals.con.connect(function (err) {
