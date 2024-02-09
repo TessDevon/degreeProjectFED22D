@@ -90,10 +90,10 @@ export const StyledTextBoldDate = styled(StyledText)`
   }
 `;
 
-export const StyledTextHidden = styled(StyledText) `
-    display: none;
-  
+export const StyledTextHidden = styled(StyledText)`
+  display: none;
+
   @media (min-width: 760px) {
     display: block;
   }
-`
+`;

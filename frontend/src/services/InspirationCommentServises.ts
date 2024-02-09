@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_BASE_URL
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export function saveInspirationPostCommentData(
   inspirationCommentsDescription,
@@ -72,8 +72,7 @@ export function deleteInspirationPostCommentData(
   deleteInspirationPostCommentId
 ) {
   return fetch(
-    `${BASE_URL}/inspirationComment/` +
-      deleteInspirationPostCommentId,
+    `${BASE_URL}/inspirationComment/` + deleteInspirationPostCommentId,
     {
       method: "DELETE",
       headers: {

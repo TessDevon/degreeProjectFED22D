@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_BASE_URL
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 import LoginModal from "../components/LoginModal";
 import { StyledH2, StyledH3 } from "../components/styled/Headers";

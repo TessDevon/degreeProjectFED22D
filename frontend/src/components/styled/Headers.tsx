@@ -32,15 +32,13 @@ export const StyledH2 = styled.h1`
   text-shadow: 1px 1px 1px #c7a440;
 
   @media (min-width: 760px) {
-  font-size: 36px;
+    font-size: 36px;
   }
 
   @media (min-width: 1410px) {
     margin-bottom: 10px;
     font-size: 40px;
   }
-
-  
 `;
 
 export const StyledH3 = styled.h3`
@@ -49,12 +47,11 @@ export const StyledH3 = styled.h3`
   text-align: center;
   margin: 0px;
   color: #7e6829;
-  
-  text-shadow: 1px 1px 1px #c7a440;
-  
-  @media (min-width: 760px) {
-  font-size: 24px;
 
+  text-shadow: 1px 1px 1px #c7a440;
+
+  @media (min-width: 760px) {
+    font-size: 24px;
   }
 
   @media (min-width: 1410px) {
@@ -66,15 +63,15 @@ export const StyledH3 = styled.h3`
 export const StyledLogin = styled(StyledH3)`
   margin-top: 40px;
   margin-bottom: -30px;
-`
+`;
 
 export const StyledRegistration = styled(StyledH3)`
   margin-top: 40px;
   margin-bottom: -40px;
-`
+`;
 
 export const StyleH3Gold = styled(StyledH3)`
   margin-top: 20px;
   margin-bottom: 10px;
   color: #7e6829;
-`
+`;

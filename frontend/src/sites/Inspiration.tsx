@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_BASE_URL
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 import LoginModal from "../components/LoginModal";
 import { useTranslation } from "react-i18next";
@@ -174,13 +174,11 @@ export const Inspiration = () => {
                 inspirationPostDescription: "",
                 inspirationPostImg: undefined,
               });
-              //window.location.reload();
               fetchInspirationPostData(id, token).then((data) => {
                 setShowPost(data);
                 setOkSellingPostMessage(okmessage);
                 setTimeout(okMessage, 3000);
               });
-              //Ladda om sidan genom att hämta listan på nytta efter sparning.
             } else {
               seterrorInspirationPostMessage(inspirationPostErrorServererror);
             }
@@ -260,7 +258,6 @@ export const Inspiration = () => {
           fetchInspirationPostCommentData(id, token).then((data) =>
             setShowComments(data)
           );
-          // Ladda om kommentarerna när man lagt in en ny.
         } else {
           seterrorInspirationPostCommentMessage(
             inspirationPostErrorServererror

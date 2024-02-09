@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_BASE_URL
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export function saveInspirationPostData(
   inspirationPostHeader,
@@ -103,19 +103,16 @@ export function deleteInspirationPostData(
   token,
   deleteInspirationPostId
 ) {
-  return fetch(
-    `${BASE_URL}/inspirationPost/` + deleteInspirationPostId,
-    {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userId: userID,
-        token: token,
-      }),
-    }
-  )
+  return fetch(`${BASE_URL}/inspirationPost/` + deleteInspirationPostId, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      userId: userID,
+      token: token,
+    }),
+  })
     .then((res) => {
       if (res.ok) {
         return res.json();

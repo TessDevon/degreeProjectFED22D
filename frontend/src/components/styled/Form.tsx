@@ -8,9 +8,9 @@ export const WrapperInputsTwoColum = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-@media (min-width: 760px) {
-  flex-direction: row;
-}
+  @media (min-width: 760px) {
+    flex-direction: row;
+  }
 `;
 
 export const StyledTextInput = styled.input`

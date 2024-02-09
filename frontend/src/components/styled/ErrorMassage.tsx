@@ -11,7 +11,6 @@ export const ErrorLeftcenterdMassage = styled(ErrorMassage)`
   text-align: left;
 `;
 
-
-export const OkMassage = styled(ErrorMassage) `
-  color:#c7a440;
-`
+export const OkMassage = styled(ErrorMassage)`
+  color: #c7a440;
+`;

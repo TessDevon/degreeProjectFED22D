@@ -1,6 +1,6 @@
 // Function that saves a new user, if the email is not already registered.
 // The requirements are in the front end.
-const BASE_URL = import.meta.env.VITE_BASE_URL
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export function saveNewUserData(
   firstname,
@@ -96,8 +96,6 @@ export function LoginUser(email, password) {
       return false;
     });
 }
-
-
 
 export function fetchPersonsData(userID, token) {
   return fetch(`${BASE_URL}/users`, {

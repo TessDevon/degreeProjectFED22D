@@ -8,7 +8,6 @@ import {
   WrapperbodyInnerRightAbout,
   WrapperbodyOuter,
 } from "../components/styled/Wrappers";
-//import { Wrapperbody } from "../components/styled/Wrappers";
 
 export const About = () => {
   const { t } = useTranslation();

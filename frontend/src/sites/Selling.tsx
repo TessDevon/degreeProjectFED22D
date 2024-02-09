@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_BASE_URL
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 import LoginModal from "../components/LoginModal";
 import { StyledButtonInspirationviewComment } from "../components/styled/Buttons";
 import { ErrorMassage, OkMassage } from "../components/styled/ErrorMassage";
@@ -187,7 +187,6 @@ export const Selling = () => {
               fetchSellPostData(id, token).then((data) => setShowPost(data));
               setOkSellingPostMessage(okmessage);
               setTimeout(okMessage, 3000);
-              //window.location.reload();
             } else {
               seterrorSellingPostMessage(sellingPostErrorServererror);
             }
@@ -282,7 +281,6 @@ export const Selling = () => {
             fetchSellItemData(id, token).then((data) =>
               setShowItemComments(data)
             );
-            //window.location.reload();
           } else {
             seterrorSellingPostItemMessage(sellingPostErrorServererror);
           }
@@ -365,7 +363,6 @@ export const Selling = () => {
           setformSellData({
             sellingItemBuyDescription: "",
           });
-          //window.location.reload();
         } else {
           seterrorSellingPostItemBuyMessage(sellingPostErrorServererror);
         }
